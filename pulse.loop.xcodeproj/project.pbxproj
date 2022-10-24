@@ -7,19 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D68BC28E8F730003B191F /* DeviceManager.swift */; };
 		8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */; };
-		8B678B8F28AFEC78009ECC97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8B678B9128AFEC79009ECC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9028AFEC79009ECC97 /* Assets.xcassets */; };
 		8B678B9528AFEC79009ECC97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9428AFEC79009ECC97 /* Preview Assets.xcassets */; };
+		8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */; };
+		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
+		8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */; };
+		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
+		8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */; };
+		8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */; };
+		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B5D68BC28E8F730003B191F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		8B678B8928AFEC78009ECC97 /* pulse.loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulse.loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pulse_loopApp.swift; sourceTree = "<group>"; };
 		8B678B8E28AFEC78009ECC97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8B678B9028AFEC79009ECC97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B678B9228AFEC79009ECC97 /* pulse_loop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pulse_loop.entitlements; sourceTree = "<group>"; };
 		8B678B9428AFEC79009ECC97 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceManager+CBCentralManagerDelegate.swift"; sourceTree = "<group>"; };
+		8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "pulse-loop-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationView.swift; sourceTree = "<group>"; };
+		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
+		8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalSensorReading.swift; sourceTree = "<group>"; };
+		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
+		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +67,11 @@
 		8B678B8B28AFEC78009ECC97 /* pulse.loop */ = {
 			isa = PBXGroup;
 			children = (
+				8B7E66C02901B8EF00DA1C3D /* Bluetooth */,
+				8BB68ADC2906BC1A00AD753B /* Models */,
+				8BB68AD62906B38C00AD753B /* Views */,
+				8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */,
 				8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */,
-				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
 				8B678B9028AFEC79009ECC97 /* Assets.xcassets */,
 				8B678B9228AFEC79009ECC97 /* pulse_loop.entitlements */,
 				8B678B9328AFEC79009ECC97 /* Preview Content */,
@@ -67,6 +85,35 @@
 				8B678B9428AFEC79009ECC97 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8B7E66C02901B8EF00DA1C3D /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				8B5D68BC28E8F730003B191F /* DeviceManager.swift */,
+				8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		8BB68AD62906B38C00AD753B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
+				8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */,
+				8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8BB68ADC2906BC1A00AD753B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */,
+				8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */,
+				8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,7 +144,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					8B678B8828AFEC78009ECC97 = {
 						CreatedOnToolsVersion = 14.0;
@@ -139,8 +186,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B678B8F28AFEC78009ECC97 /* ContentView.swift in Sources */,
+				8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */,
+				8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */,
+				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
+				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
+				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
+				8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
+				8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */,
+				8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +234,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -238,6 +293,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -262,13 +318,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pulse.loop/pulse_loop.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pulse.loop/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pulse-loop-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = pulse.loop;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -300,13 +363,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pulse.loop/pulse_loop.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pulse.loop/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pulse-loop-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = pulse.loop;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
