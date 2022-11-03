@@ -8,8 +8,33 @@
 import Foundation
 
 protocol DeviceProtocol: ObservableObject {
-    var greenSensorData: [OpticalSensorReading] { get set }
-    var redSensorData: [OpticalSensorReading] { get set }
-    var infraredSensorData: [OpticalSensorReading] { get set }
-    var ambientSensorData: [OpticalSensorReading] { get set }
+    
+    // MARK: Battery service.
+    
+    // MARK: Current time service.
+    
+    // MARK: Device information service.
+    
+    // MARK: Heart rate service.
+    
+    // MARK: Pulse oximeter service.
+    
+    // MARK: Firmware upgrade service.
+    
+    // MARK: Historic data.
+    
+    // MARK: Optical frontend configuration.
+    var opticalFrontendConfiguration: OpticalFrontendConfiguration { get set }
+    
+    // MARK: Raw sensor data.
+    var rawOpticalAmbient: [OpticalSensorReading] { get set }
+    var rawOpticalLED1MinusAmbient: [OpticalSensorReading] { get set }
+    var rawOpticalLED1: [OpticalSensorReading] { get set }
+    var rawOpticalLED2: [OpticalSensorReading] { get set }
+    var rawOpticalLED3: [OpticalSensorReading] { get set }
+    
+    // MARK: Settings.
+    
+    // MARK: pulse.loop identifier.
+    var apiVersion: Int { get }
 }

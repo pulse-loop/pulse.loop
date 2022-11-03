@@ -15,7 +15,7 @@ struct ContentView: View {
             sidebar: {
                 List {
                     NavigationLink(destination: {
-                        EmptyView()
+                        OpticalConfigurationView(device: FakeDevice())
                     }, label: {
                         Label("Optical configuration", systemImage: "lightbulb")
                     })
@@ -28,7 +28,7 @@ struct ContentView: View {
                 .navigationTitle("pulse.loop")
             },
             detail: {
-                OpticalConfigurationView(device: FakeDevice())
+                
             }
         )
     }

@@ -15,21 +15,46 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
         VStack {
             ScrollView(.horizontal) {
                 HStack {
-                    OpticalReadingChart(title: "Red", color: .red, data: $device.redSensorData)
-                    OpticalReadingChart(title: "Green", color: .green, data: $device.greenSensorData)
-                    OpticalReadingChart(title: "Infrared", color: .black, data: $device.infraredSensorData)
-                    OpticalReadingChart(title: "Ambient", color: .cyan, data: $device.ambientSensorData)
+                    OpticalReadingChart(title: "Ambient", color: .secondary, data: $device.rawOpticalAmbient)
+                    OpticalReadingChart(title: "LED1 - Ambient", color: .blue, data: $device.rawOpticalLED1MinusAmbient)
+                    OpticalReadingChart(title: "LED1", color: .green, data: $device.rawOpticalLED1)
+                    OpticalReadingChart(title: "LED2", color: .red, data: $device.rawOpticalLED2)
+                    OpticalReadingChart(title: "LED3", color: .yellow, data: $device.rawOpticalLED3)
                 }
+                .frame(height: 300)
             }
             
-            List {
-                Text("Parameters")
-                Text("Parameters")
-                Text("Parameters")
-                Text("Parameters")
-                Text("Parameters")
+            
+            Form {
+                HStack {
+                    Picker(selection: .constant(1), label: Text("Resistor #1")) {
+                        ForEach(OpticalFrontendConfiguration.TIAResistor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r.rawValue)
+                        }
+                    }
+                    
+                    Picker(selection: .constant(1), label: Text("Resistor #2")) {
+                        ForEach(OpticalFrontendConfiguration.TIAResistor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r.rawValue)
+                        }
+                    }
+                }
+                
+                HStack {
+                    Picker(selection: .constant(1), label: Text("Capacitor #1")) {
+                        ForEach(OpticalFrontendConfiguration.TIACapacitor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r.rawValue)
+                        }
+                    }
+                    
+                    Picker(selection: .constant(1), label: Text("Capacitor #2")) {
+                        ForEach(OpticalFrontendConfiguration.TIACapacitor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r.rawValue)
+                        }
+                    }
+                }
             }
-            .listStyle(.inset(alternatesRowBackgrounds: true))
+            .formStyle(.grouped)
         }
     }
 }

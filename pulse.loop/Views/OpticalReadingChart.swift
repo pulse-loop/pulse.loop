@@ -26,6 +26,7 @@ struct OpticalReadingChart: View {
                     y: .value("Value", $0.value)
                 )
             }
+            .chartYScale(domain: .automatic(includesZero: false))
             .foregroundColor(color.opacity(0.7))
         }
         .padding()
@@ -35,6 +36,6 @@ struct OpticalReadingChart: View {
 
 struct OpticalReadingChart_Previews: PreviewProvider {
     static var previews: some View {
-        OpticalReadingChart(title: "Title", color: .green, data: .constant([.init(0), .init(1), .init(2)]))
+        OpticalReadingChart(title: "Title", color: .green, data: .constant([.init(300), .init(150), .init(200)]))
     }
 }

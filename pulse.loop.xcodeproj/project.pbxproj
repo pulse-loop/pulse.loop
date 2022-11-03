@@ -18,6 +18,7 @@
 		8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */; };
 		8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
+		8BE12B6E2913DBBC00AD2FF9 /* OpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* OpticalFrontendConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalSensorReading.swift; sourceTree = "<group>"; };
 		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
+		8BE12B6D2913DBBC00AD2FF9 /* OpticalFrontendConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalFrontendConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */,
 				8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */,
 				8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */,
+				8BE12B6D2913DBBC00AD2FF9 /* OpticalFrontendConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */,
+				8BE12B6E2913DBBC00AD2FF9 /* OpticalFrontendConfiguration.swift in Sources */,
 				8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */,
 				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
