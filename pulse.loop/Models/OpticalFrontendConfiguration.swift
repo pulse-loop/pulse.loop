@@ -94,11 +94,11 @@ struct OpticalFrontendConfiguration {
 }
 
 extension TimeInterval {
-    init(microseconds: Int) {
+    init(microseconds: Double) {
         self = Double(microseconds) / 1_000_000
     }
     
-    init(milliseconds: Int) {
+    init(milliseconds: Double) {
         self = Double(milliseconds) / 1000
     }
 }
