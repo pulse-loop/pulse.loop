@@ -31,6 +31,7 @@ struct OpticalReadingChart: View {
         }
         .padding()
         .frame(minWidth: 300)
+        .drawingGroup()
     }
 }
 

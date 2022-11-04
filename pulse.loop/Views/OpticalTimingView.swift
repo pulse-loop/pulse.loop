@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OpticalTimingView: View {
-    var opticalConfiguration: OpticalFrontendConfiguration
+    @ObservedObject var opticalConfiguration: OpticalFrontendConfiguration
     var ledColors: [Color] = [.blue.opacity(0.75), .red.opacity(0.75), .green.opacity(0.75), .yellow.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
@@ -219,7 +219,11 @@ struct OpticalTimingView_Previews: PreviewProvider {
             dynamicPowerDown: OpticalFrontendConfiguration.DynamicPowerDownPhase(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
-            )
+            ),
+            tiaCapacitor1: .C_17_5_pF,
+            tiaCapacitor2: .C_10_pF,
+            tiaResistor1: .R_1_MΩ,
+            tiaResistor2: .R_25_kΩ
         )
         
         OpticalTimingView(opticalConfiguration: conf)
