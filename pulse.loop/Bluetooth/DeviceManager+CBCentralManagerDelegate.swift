@@ -32,5 +32,15 @@ extension DeviceManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         self.logger.info("Central manager discovered peripheral \"\(peripheral.description)\" (\(RSSI)), with advertisement data \(advertisementData.description).")
+        
+        self.discoveredPeripherals.insert(BLEDevice(from: peripheral))
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        self.logger.info("Central manager connected to peripheral \"\(peripheral.description)\".")
+    }
+    
+    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+        self.logger.info("Central manager will restore state: \(dict).")
     }
 }

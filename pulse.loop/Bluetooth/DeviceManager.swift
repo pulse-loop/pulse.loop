@@ -11,11 +11,13 @@ import OSLog
 
 class DeviceManager: NSObject, ObservableObject {
     internal let logger: Logger
+    internal var discoveredPeripherals: Set<BLEDevice>
     private let centralManager: CBCentralManager
-    
+
     override init() {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Manager")
         self.centralManager = CBCentralManager()
+        self.discoveredPeripherals = Set()
         super.init()
         self.centralManager.delegate = self
     }
@@ -29,6 +31,6 @@ class DeviceManager: NSObject, ObservableObject {
         
         self.logger.info("Starting scan.")
         
-        self.centralManager.scanForPeripherals(withServices: [CBUUID(string: "FAFAFAFA-FAFA-FAFA-FAFA-FAFAFAFAFAFA")])
+        self.centralManager.scanForPeripherals(withServices: [CBUUIDs.pulseLoopIdentifierService])
     }
 }

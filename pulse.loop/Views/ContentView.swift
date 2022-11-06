@@ -19,6 +19,7 @@ struct ContentView: View {
                     }, label: {
                         Label("Optical configuration", systemImage: "lightbulb")
                     })
+                    
                     NavigationLink(destination: {
                         EmptyView()
                     }, label: {
@@ -26,9 +27,25 @@ struct ContentView: View {
                     })
                 }
                 .navigationTitle("pulse.loop")
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            
+                        } label: {
+                            Label("Devices", systemImage: "antenna.radiowaves.left.and.right")
+                        }
+                        .popover(isPresented: .constant(true)) {
+                            NavigationStack {
+                                DeviceSelectionView()
+                            }
+                            .frame(width: 360, height: 480)
+                        }
+                    }
+                }
             },
             detail: {
-                
+                Text("No section selected")
+                    .font(.title)
             }
         )
     }

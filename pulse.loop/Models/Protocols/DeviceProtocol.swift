@@ -9,6 +9,8 @@ import Foundation
 
 protocol DeviceProtocol: ObservableObject {
     
+    associatedtype OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol
+    
     // MARK: Battery service.
     
     // MARK: Current time service.

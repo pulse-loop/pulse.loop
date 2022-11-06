@@ -154,7 +154,7 @@ struct SingleTimingView: View {
             
             HStack {
                 Text("\(name) end")
-                TextField(name, value: $start, formatter: TimeInterval.microsecondsFormatter)
+                TextField(name, value: $end, formatter: TimeInterval.microsecondsFormatter)
                     .multilineTextAlignment(.trailing)
                     .foregroundColor(.gray)
             }
