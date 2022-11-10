@@ -41,17 +41,17 @@ struct CBUUIDs {
     static private let kUUIDServiceSettings = "821198C8-3036-4E14-B01C-364F2B20C603"
     static private let kUUIDServicePulseLoopIdentifier = "68D68245-CFD8-4A1C-9858-B27ABC4C382E"
 
-    static let batteryService = CBUUID(string: kUUIDServiceBattery)
-    static let currentTimeService = CBUUID(string: kUUIDServiceCurrentTime)
-    static let deviceInformationService = CBUUID(string: kUUIDServiceDeviceInformation)
-    static let heartRateService = CBUUID(string: kUUIDServiceHeartRate)
-    static let pulseOximeterService = CBUUID(string: kUUIDServicePulseOximeter)
-    static let firmwareUpgradeService = CBUUID(string: kUUIDServiceFirmwareUpgrade)
-    static let historicDataService = CBUUID(string: kUUIDServiceHistoricData)
-    static let opticalFrontendConfigurationService = CBUUID(string: kUUIDServiceOpticalFrontendConfiguration)
-    static let rawSensorDataService = CBUUID(string: kUUIDServiceRawSensorData)
-    static let settingsService = CBUUID(string: kUUIDServiceSettings)
-    static let pulseLoopIdentifierService = CBUUID(string: kUUIDServicePulseLoopIdentifier)
+    static let batteryServiceIdentifier = CBUUID(string: kUUIDServiceBattery)
+    static let currentTimeServiceIdentifier = CBUUID(string: kUUIDServiceCurrentTime)
+    static let deviceInformationServiceIdentifier = CBUUID(string: kUUIDServiceDeviceInformation)
+    static let heartRateServiceIdentifier = CBUUID(string: kUUIDServiceHeartRate)
+    static let pulseOximeterServiceIdentifier = CBUUID(string: kUUIDServicePulseOximeter)
+    static let firmwareUpgradeServiceIdentifier = CBUUID(string: kUUIDServiceFirmwareUpgrade)
+    static let historicDataServiceIdentifier = CBUUID(string: kUUIDServiceHistoricData)
+    static let opticalFrontendConfigurationServiceIdentifier = CBUUID(string: kUUIDServiceOpticalFrontendConfiguration)
+    static let rawSensorDataServiceIdentifier = CBUUID(string: kUUIDServiceRawSensorData)
+    static let settingsServiceIdentifier = CBUUID(string: kUUIDServiceSettings)
+    static let pulseLoopIdentifierServiceIdentifier = CBUUID(string: kUUIDServicePulseLoopIdentifier)
     
     // MARK: pulse.loop identifier service
     
@@ -61,7 +61,7 @@ struct CBUUIDs {
     
     static private let kUUIDCharacteristicVersion = "1852299D-AE64-4E4F-B915-CB37E7FD57C9"
 
-    static let versionCharacteristic = CBUUID(string: kUUIDCharacteristicVersion)
+    static let versionCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicVersion)
     
     // MARK: Raw sensor data service
     
@@ -79,11 +79,11 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED2ADCReading = "A93B639D-8A8D-43EA-8A5A-8175D7C09E0B"
     static private let kUUIDCharacteristicLED3ADCReading = "C0A12246-79E4-4BD7-8A4F-B841D5590F70"
 
-    static let ambientPhaseReadingCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientPhaseReading)
-    static let led1MinusAmbientCharacteristic = CBUUID(string: kUUIDCharacteristicLED1MinusAmbient)
-    static let led1ADCReadingCharacteristic = CBUUID(string: kUUIDCharacteristicLED1ADCReading)
-    static let led2ADCReadingCharacteristic = CBUUID(string: kUUIDCharacteristicLED2ADCReading)
-    static let led3ADCReadingCharacteristic = CBUUID(string: kUUIDCharacteristicLED3ADCReading)
+    static let ambientPhaseReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientPhaseReading)
+    static let led1MinusAmbientCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1MinusAmbient)
+    static let led1ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCReading)
+    static let led2ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCReading)
+    static let led3ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCReading)
     
     // MARK Optical frontend configuration service
     
@@ -103,12 +103,12 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicAmbientSampleEnd = "83C29A09-B658-4316-A1FD-D8AD97C02F80"
     static private let kUUIDCharacteristicAmbientSampleStart = "C35EBCC5-BCA4-4716-90E3-37B94D9AD6FF"
 
-    static let ambientADCConversionEndCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientADCConversionEnd)
-    static let ambientADCConversionStartCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientADCConversionStart)
-    static let ambientADCResetEndCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientADCResetEnd)
-    static let ambientADCResetStartCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientADCResetStart)
-    static let ambientSampleEndCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientSampleEnd)
-    static let ambientSampleStartCharacteristic = CBUUID(string: kUUIDCharacteristicAmbientSampleStart)
+    static let ambientADCConversionEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCConversionEnd)
+    static let ambientADCConversionStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCConversionStart)
+    static let ambientADCResetEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCResetEnd)
+    static let ambientADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCResetStart)
+    static let ambientSampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientSampleEnd)
+    static let ambientSampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientSampleStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
@@ -118,8 +118,8 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicDynamicPowerDownEnd = "BC276997-792F-4391-9371-78F1C1038DB7"
     static private let kUUIDCharacteristicDynamicPowerDownStart = "0B68331C-B628-4D81-BBDB-47B79EA2430E"
 
-    static let dynamicPowerDownEndCharacteristic = CBUUID(string: kUUIDCharacteristicDynamicPowerDownEnd)
-    static let dynamicPowerDownStartCharacteristic = CBUUID(string: kUUIDCharacteristicDynamicPowerDownStart)
+    static let dynamicPowerDownEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicDynamicPowerDownEnd)
+    static let dynamicPowerDownStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicDynamicPowerDownStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
@@ -143,15 +143,15 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED1SampleEnd = "F60A8B03-FAB1-433D-9D9E-8722DF003329"
     static private let kUUIDCharacteristicLED1SampleStart = "FB219512-DC81-461A-B558-FE6E310E9333"
 
-    static let led1ADCConversionEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED1ADCConversionEnd)
-    static let led1ADCConversionStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED1ADCConversionStart)
-    static let led1ADCResetEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED1ADCResetEnd)
-    static let led1ADCResetStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED1ADCResetStart)
-    static let led1LightingEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED1LightingEnd)
-    static let led1LightingStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED1LightingStart)
-    static let led1CurrentCharacteristic = CBUUID(string: kUUIDCharacteristicLED1Current)
-    static let led1SampleEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED1SampleEnd)
-    static let led1SampleStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED1SampleStart)
+    static let led1ADCConversionEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCConversionEnd)
+    static let led1ADCConversionStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCConversionStart)
+    static let led1ADCResetEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCResetEnd)
+    static let led1ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCResetStart)
+    static let led1LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1LightingEnd)
+    static let led1LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1LightingStart)
+    static let led1CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1Current)
+    static let led1SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1SampleEnd)
+    static let led1SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1SampleStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
@@ -175,15 +175,15 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED2SampleEnd = "F752142C-5BFC-4274-9044-E81D3F2F274A"
     static private let kUUIDCharacteristicLED2SampleStart = "38644B85-3D2E-4D31-9679-06C9EB6BAC2D"
 
-    static let led2ADCConversionEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED2ADCConversionEnd)
-    static let led2ADCConversionStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED2ADCConversionStart)
-    static let led2ADCResetEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED2ADCResetEnd)
-    static let led2ADCResetStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED2ADCResetStart)
-    static let led2LightingEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED2LightingEnd)
-    static let led2LightingStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED2LightingStart)
-    static let led2CurrentCharacteristic = CBUUID(string: kUUIDCharacteristicLED2Current)
-    static let led2SampleEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED2SampleEnd)
-    static let led2SampleStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED2SampleStart)
+    static let led2ADCConversionEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCConversionEnd)
+    static let led2ADCConversionStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCConversionStart)
+    static let led2ADCResetEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCResetEnd)
+    static let led2ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCResetStart)
+    static let led2LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2LightingEnd)
+    static let led2LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2LightingStart)
+    static let led2CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2Current)
+    static let led2SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2SampleEnd)
+    static let led2SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2SampleStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
@@ -207,15 +207,15 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED3SampleEnd = "249782EC-004B-4A3D-9608-5143E69AB294"
     static private let kUUIDCharacteristicLED3SampleStart = "733C5AED-D3B3-4F65-8898-6EA37DA30F71"
 
-    static let led3ADCConversionEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED3ADCConversionEnd)
-    static let led3ADCConversionStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED3ADCConversionStart)
-    static let led3ADCResetEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED3ADCResetEnd)
-    static let led3ADCResetStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED3ADCResetStart)
-    static let led3LightingEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED3LightingEnd)
-    static let led3LightingStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED3LightingStart)
-    static let led3CurrentCharacteristic = CBUUID(string: kUUIDCharacteristicLED3Current)
-    static let led3SampleEndCharacteristic = CBUUID(string: kUUIDCharacteristicLED3SampleEnd)
-    static let led3SampleStartCharacteristic = CBUUID(string: kUUIDCharacteristicLED3SampleStart)
+    static let led3ADCConversionEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCConversionEnd)
+    static let led3ADCConversionStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCConversionStart)
+    static let led3ADCResetEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCResetEnd)
+    static let led3ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCResetStart)
+    static let led3LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3LightingEnd)
+    static let led3LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3LightingStart)
+    static let led3CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3Current)
+    static let led3SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3SampleEnd)
+    static let led3SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3SampleStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
@@ -231,8 +231,8 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicTIAResistor2 = "A3F694D1-C378-4124-BF56-468DFAFF14E6"
     static private let kUUIDCharacteristicTotalWindowLength = "B904BD23-6082-4507-8BD2-7333EF6A2726"
 
-    static let tiaCapacitor1Characteristic = CBUUID(string: kUUIDCharacteristicTIACapacitor1)
-    static let tiaCapacitor2Characteristic = CBUUID(string: kUUIDCharacteristicTIACapacitor2)
-    static let tiaResistor1Characteristic = CBUUID(string: kUUIDCharacteristicTIAResistor1)
-    static let tiaResistor2Characteristic = CBUUID(string: kUUIDCharacteristicTIAResistor2)
+    static let tiaCapacitor1CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIACapacitor1)
+    static let tiaCapacitor2CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIACapacitor2)
+    static let tiaResistor1CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor1)
+    static let tiaResistor2CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor2)
 }

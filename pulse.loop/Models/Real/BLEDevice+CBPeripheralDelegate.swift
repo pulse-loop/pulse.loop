@@ -16,7 +16,6 @@ extension BLEDevice: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         logger.debug("\(characteristic.value?.description ?? "Nothing") read from \(characteristic)")
         
-        // TODO: Manage notifications and indications!
         objectWillChange.send()
     }
     

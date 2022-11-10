@@ -31,6 +31,6 @@ class DeviceManager: NSObject, ObservableObject {
         
         self.logger.info("Starting scan.")
         
-        self.centralManager.scanForPeripherals(withServices: [CBUUIDs.pulseLoopIdentifierService])
+        self.centralManager.scanForPeripherals(withServices: [CBUUIDs.pulseLoopIdentifierServiceIdentifier])
     }
 }

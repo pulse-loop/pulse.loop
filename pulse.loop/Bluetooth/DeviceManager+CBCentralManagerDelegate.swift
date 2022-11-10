@@ -33,7 +33,7 @@ extension DeviceManager: CBCentralManagerDelegate {
         
         self.logger.info("Central manager discovered peripheral \"\(peripheral.description)\" (\(RSSI)), with advertisement data \(advertisementData.description).")
         
-        self.discoveredPeripherals.insert(BLEDevice(from: peripheral))
+        self.discoveredPeripherals.insert(try! BLEDevice(from: peripheral))
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

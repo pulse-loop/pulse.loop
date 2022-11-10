@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct OpticalTimingView: View {
-    @ObservedObject var opticalConfiguration: OpticalFrontendConfiguration
+struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
+    @ObservedObject var opticalConfiguration: OpticalConfiguration
     var ledColors: [Color] = [.blue.opacity(0.75), .red.opacity(0.75), .green.opacity(0.75), .yellow.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
@@ -176,8 +176,8 @@ struct OpticalTimingView: View {
 
 struct OpticalTimingView_Previews: PreviewProvider {
     static var previews: some View {
-        let conf = OpticalFrontendConfiguration(
-            ambientPhase: OpticalFrontendConfiguration.AmbientPhase(
+        let conf = FakeOpticalFrontendConfiguration(
+            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhase(
                 sample_st: TimeInterval(microseconds: 2225),
                 sample_end: TimeInterval(microseconds: 2299.75),
                 reset_st: TimeInterval(microseconds: 2600),
@@ -185,7 +185,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 2300),
                 conv_end: TimeInterval(microseconds: 2500)
             ),
-            LED1Phase: OpticalFrontendConfiguration.LEDPhase(
+            LED1Phase: FakeOpticalFrontendConfiguration.LEDPhase(
                 led_st: TimeInterval(microseconds: 1100),
                 led_end: TimeInterval(microseconds: 1400),
                 sample_st: TimeInterval(microseconds: 1225),
@@ -195,7 +195,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 1300),
                 conv_end: TimeInterval(microseconds: 1500)
             ),
-            LED2Phase: OpticalFrontendConfiguration.LEDPhase(
+            LED2Phase: FakeOpticalFrontendConfiguration.LEDPhase(
                 led_st: TimeInterval(microseconds: 100),
                 led_end: TimeInterval(microseconds: 400),
                 sample_st: TimeInterval(microseconds: 225),
@@ -205,7 +205,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 300),
                 conv_end: TimeInterval(microseconds: 500)
             ),
-            LED3Phase: OpticalFrontendConfiguration.LEDPhase(
+            LED3Phase: FakeOpticalFrontendConfiguration.LEDPhase(
                 led_st: TimeInterval(microseconds: 3100),
                 led_end: TimeInterval(microseconds: 3400),
                 sample_st: TimeInterval(microseconds: 3225),
@@ -216,7 +216,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_end: TimeInterval(microseconds: 3500)
             ),
             totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: OpticalFrontendConfiguration.DynamicPowerDownPhase(
+            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhase(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
             ),

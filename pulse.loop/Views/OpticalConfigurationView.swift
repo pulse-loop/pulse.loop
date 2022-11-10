@@ -24,64 +24,7 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
                 .frame(height: 300)
             }
             
-            Form {
-                Section("Transimpedance amplifier") {
-                    HStack {
-                        Picker(selection: $device.opticalFrontendConfiguration.tiaResistor1, label: Text("Resistor #1")) {
-                            ForEach(OpticalFrontendConfiguration.TIAResistor.allCases, id: \.rawValue) { r in
-                                Text(r.description).tag(r)
-                            }
-                        }
-                        .padding(.trailing, 12)
-                        
-                        Divider()
-                        
-                        Picker(selection: $device.opticalFrontendConfiguration.tiaResistor1, label: Text("Resistor #2")) {
-                            ForEach(OpticalFrontendConfiguration.TIAResistor.allCases, id: \.rawValue) { r in
-                                Text(r.description).tag(r)
-                            }
-                        }
-                        .padding(.leading, 8)
-                    }
-                    
-                    HStack {
-                        Picker(selection: $device.opticalFrontendConfiguration.tiaCapacitor1, label: Text("Capacitor #1")) {
-                            ForEach(OpticalFrontendConfiguration.TIACapacitor.allCases, id: \.rawValue) { r in
-                                Text(r.description).tag(r)
-                            }
-                        }
-                        .padding(.trailing, 12)
-                        
-                        Divider()
-                        
-                        Picker(selection: $device.opticalFrontendConfiguration.tiaCapacitor2, label: Text("Capacitor #2")) {
-                            ForEach(OpticalFrontendConfiguration.TIACapacitor.allCases, id: \.rawValue) { r in
-                                Text(r.description).tag(r)
-                            }
-                        }
-                        .padding(.leading, 8)
-                    }
-                }
-                
-                Section("Timing") {
-                    OpticalTimingView(opticalConfiguration: $device.opticalFrontendConfiguration.wrappedValue)
-                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    
-                    TextField("Window length",
-                              value: $device.opticalFrontendConfiguration.totalWindowLength,
-                              formatter: TimeInterval.microsecondsFormatter)
-                    
-                    SingleTimingView(name: "Dynamic PD",
-                                     start: $device.opticalFrontendConfiguration.dynamicPowerDown.start,
-                                     end: $device.opticalFrontendConfiguration.dynamicPowerDown.end)
-                    
-                    AmbientTimingConfigurationView(title: "Ambient", phase: $device.opticalFrontendConfiguration.ambientPhase)
-                    LEDTimingConfigurationView(title: "LED 1", phase: $device.opticalFrontendConfiguration.LED1Phase)
-                    LEDTimingConfigurationView(title: "LED 2", phase: $device.opticalFrontendConfiguration.LED2Phase)
-                    LEDTimingConfigurationView(title: "LED 3", phase: $device.opticalFrontendConfiguration.LED3Phase)
-                }
-            }
-            .formStyle(.grouped)
+            OpticalConfigurationForm(opticalConfiguration: $device.opticalFrontendConfiguration)
         }
     }
 }
@@ -93,9 +36,11 @@ struct OpticalConfigurationView_Previews: PreviewProvider {
     }
 }
 
-struct LEDTimingConfigurationView: View {
+// TODO: Generic view?
+
+struct LEDTimingConfigurationView<Phase: LEDPhaseProtocol>: View {
     var title: String
-    @Binding var phase: OpticalFrontendConfiguration.LEDPhase
+    @Binding var phase: Phase
     
     var body: some View {
         Section(header: Text(title).bold()) {
@@ -107,9 +52,9 @@ struct LEDTimingConfigurationView: View {
     }
 }
 
-struct AmbientTimingConfigurationView: View {
+struct AmbientTimingConfigurationView<Phase: AmbientPhaseProtocol>: View {
     var title: String
-    @Binding var phase: OpticalFrontendConfiguration.AmbientPhase
+    @Binding var phase: Phase
     
     var body: some View {
         Section(header: Text(title).bold()) {
@@ -161,5 +106,70 @@ struct SingleTimingView: View {
             .padding(.leading, 8)
         }
 #endif
+    }
+}
+
+struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
+    @Binding var opticalConfiguration: OpticalConfiguration
+    
+    var body: some View {
+    
+        Form {
+            Section("Transimpedance amplifier") {
+                HStack {
+                    Picker(selection: $opticalConfiguration.tiaResistor1, label: Text("Resistor #1")) {
+                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r)
+                        }
+                    }
+                    .padding(.trailing, 12)
+                    
+                    Divider()
+                    
+                    Picker(selection: $opticalConfiguration.tiaResistor1, label: Text("Resistor #2")) {
+                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r)
+                        }
+                    }
+                    .padding(.leading, 8)
+                }
+                
+                HStack {
+                    Picker(selection: $opticalConfiguration.tiaCapacitor1, label: Text("Capacitor #1")) {
+                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r)
+                        }
+                    }
+                    .padding(.trailing, 12)
+                    
+                    Divider()
+                    
+                    Picker(selection: $opticalConfiguration.tiaCapacitor2, label: Text("Capacitor #2")) {
+                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
+                            Text(r.description).tag(r)
+                        }
+                    }
+                    .padding(.leading, 8)
+                }
+            }
+            
+            Section("Timing") {
+                OpticalTimingView(opticalConfiguration: $opticalConfiguration.wrappedValue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+                TextField("Window length",
+                          value: $opticalConfiguration.totalWindowLength,
+                          formatter: TimeInterval.microsecondsFormatter)
+
+                SingleTimingView(name: "Dynamic PD",
+                                 start: $opticalConfiguration.dynamicPowerDown.start,
+                                 end: $opticalConfiguration.dynamicPowerDown.end)
+
+                AmbientTimingConfigurationView(title: "Ambient", phase: $opticalConfiguration.ambientPhase)
+                LEDTimingConfigurationView(title: "LED 1", phase: $opticalConfiguration.LED1Phase)
+                LEDTimingConfigurationView(title: "LED 2", phase: $opticalConfiguration.LED2Phase)
+                LEDTimingConfigurationView(title: "LED 3", phase: $opticalConfiguration.LED3Phase)
+            }
+        }
     }
 }
