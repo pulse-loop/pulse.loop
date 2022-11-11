@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1F230C291D383D00B9BF9F /* OpticalConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */; };
+		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
 		8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D68BC28E8F730003B191F /* DeviceManager.swift */; };
 		8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */; };
 		8B678B9128AFEC79009ECC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9028AFEC79009ECC97 /* Assets.xcassets */; };
@@ -26,11 +28,14 @@
 		8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */; };
 		8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
+		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */; };
 		8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationForm.swift; sourceTree = "<group>"; };
+		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
 		8B5D68BC28E8F730003B191F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		8B678B8928AFEC78009ECC97 /* pulse.loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulse.loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pulse_loopApp.swift; sourceTree = "<group>"; };
@@ -53,6 +58,7 @@
 		8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalSensorReading.swift; sourceTree = "<group>"; };
 		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
+		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeOpticalFrontendConfiguration.swift; sourceTree = "<group>"; };
 		8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalTimingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,10 +155,13 @@
 			isa = PBXGroup;
 			children = (
 				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
+				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
+				8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */,
 				8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */,
 				8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */,
 				8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */,
-				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
+				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
+				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */,
+				8B1F230C291D383D00B9BF9F /* OpticalConfigurationForm.swift in Sources */,
 				8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */,
 				8B6A15032916A1E4000FA821 /* TimeInterval+Microseconds.swift in Sources */,
 				8B6A15012916A162000FA821 /* TIA.swift in Sources */,
@@ -249,12 +259,14 @@
 				8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
+				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
 				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
 				8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */,
 				8B6A14FB291693A5000FA821 /* CBUUIDs.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
 				8B6A14F729168FD0000FA821 /* DeviceSelectionView.swift in Sources */,
 				8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */,
+				8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */,
 				8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */,
 				8B6A14FF2916A01B000FA821 /* OpticalFrontendConfigurationProtocol.swift in Sources */,
 				8B6A14F92916909E000FA821 /* BLEDevice.swift in Sources */,

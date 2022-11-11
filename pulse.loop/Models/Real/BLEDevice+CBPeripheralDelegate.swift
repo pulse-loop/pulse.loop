@@ -26,6 +26,8 @@ extension BLEDevice: CBPeripheralDelegate {
         for service in services {
             peripheral.discoverCharacteristics([], for: service)
         }
+        
+        self.status = .connected
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {

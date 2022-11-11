@@ -15,6 +15,11 @@ class FakeDevice: DeviceProtocol {
     @Published var rawOpticalLED3: [OpticalSensorReading] = []
     @Published var opticalFrontendConfiguration: FakeOpticalFrontendConfiguration
     @Published var apiVersion: Int = 1
+    
+    var name: String = "Fake Device"
+    var status: DeviceStatus = .connected
+    
+    private var updateTimer: Timer?
 
     init() {
         self.opticalFrontendConfiguration = FakeOpticalFrontendConfiguration(
@@ -66,13 +71,25 @@ class FakeDevice: DeviceProtocol {
             tiaResistor1: .R_100_kΩ,
             tiaResistor2: .R_1_MΩ
         )
-        
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+    }
+    
+    func connect() {
+        self.updateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { _ in
             self.rawOpticalAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED1MinusAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED1.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED2.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED3.append(OpticalSensorReading(Int32.random(in: 0...100)))
         })
+    }
+    
+    func disconnect() {
+        self.updateTimer?.invalidate()
+    }
+}
+
+extension FakeDevice: Equatable {
+    static func == (lhs: FakeDevice, rhs: FakeDevice) -> Bool {
+        true
     }
 }

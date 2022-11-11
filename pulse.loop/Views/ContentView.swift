@@ -9,14 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var columnVisibility = NavigationSplitViewVisibility.all
-    @State private var device = FakeDevice()
+    @State private var devicePopoverPresented: Bool = false
+    
+    @Binding var device: any DeviceProtocol
+    @EnvironmentObject var deviceManager: DeviceManager
+    
     var body: some View {
         NavigationSplitView(
             columnVisibility: $columnVisibility,
             sidebar: {
                 List {
                     NavigationLink(destination: {
-                        OpticalConfigurationView(device: device)
+                        if let device = device as? FakeDevice {
+                            OpticalConfigurationView(device: device)
+                        } else if let device = device as? BLEDevice {
+                            OpticalConfigurationView(device: device)
+                        }
                     }, label: {
                         Label("Optical configuration", systemImage: "lightbulb")
                     })
@@ -31,15 +39,13 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
-                            
+                            devicePopoverPresented.toggle()
                         } label: {
                             Label("Devices", systemImage: "antenna.radiowaves.left.and.right")
                         }
-                        .popover(isPresented: .constant(true)) {
-                            NavigationStack {
-                                DeviceSelectionView()
-                            }
-                            .frame(width: 360, height: 480)
+                        .popover(isPresented: $devicePopoverPresented) {
+                            DeviceSelectionView(manager: deviceManager, selectedDevice: $device)
+                                .frame(minWidth: 400, minHeight: 480)
                         }
                     }
                 }
@@ -54,6 +60,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(device: .constant(FakeDevice()))
     }
 }

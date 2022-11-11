@@ -9,15 +9,13 @@ import SwiftUI
 
 @main
 struct pulse_loopApp: App {
-    @StateObject var manager: DeviceManager = DeviceManager()
+    @StateObject var manager: DeviceManager = DeviceManager.shared
+    @State var device: any DeviceProtocol = FakeDevice()
     
     var body: some Scene {
         WindowGroup {
-            #if os(macOS)
-            ContentView()
-            #elseif os(iOS)
-            Text("No iOS app yet.")
-            #endif
+            ContentView(device: $device)
+                .environmentObject(manager)
         }
     }
 }
