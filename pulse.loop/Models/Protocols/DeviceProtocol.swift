@@ -23,7 +23,7 @@ enum DeviceStatus: CustomStringConvertible {
 
 protocol DeviceProtocol: ObservableObject, Equatable {
     
-    associatedtype OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol
+    associatedtype OpticalFrontendConfigurationType: OpticalFrontendConfigurationProtocol
     
     // MARK: Battery service.
     
@@ -40,7 +40,8 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    var opticalFrontendConfiguration: OpticalFrontendConfiguration { get set }
+    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType
+    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType)
     
     // MARK: Raw sensor data.
     var rawOpticalAmbient: [OpticalSensorReading] { get set }
@@ -57,6 +58,7 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     // MARK: Additional properties.
     var name: String { get }
     var status: DeviceStatus { get }
+    var dataWindowLength: TimeInterval { get set }
     
     // MARK: Control functions.
     func connect()

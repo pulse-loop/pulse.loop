@@ -31,7 +31,7 @@ class FakeOpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class AmbientPhase: AmbientPhaseProtocol {
+    class AmbientPhaseType: AmbientPhaseProtocol {
         @Published var sample_st: TimeInterval
         @Published var sample_end: TimeInterval
         @Published var reset_st: TimeInterval
@@ -49,7 +49,7 @@ class FakeOpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class DynamicPowerDownPhase: DynamicPowerDownPhaseProtocol {
+    class DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol {
         @Published var start: TimeInterval
         @Published var end: TimeInterval
         
@@ -59,18 +59,18 @@ class FakeOpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    @Published var ambientPhase: AmbientPhase
+    @Published var ambientPhase: AmbientPhaseType
     @Published var LED1Phase: LEDPhase
     @Published var LED2Phase: LEDPhase
     @Published var LED3Phase: LEDPhase
     @Published var totalWindowLength: TimeInterval
-    @Published var dynamicPowerDown: DynamicPowerDownPhase
+    @Published var dynamicPowerDown: DynamicPowerDownPhaseType
     @Published var tiaCapacitor1: TIACapacitor
     @Published var tiaCapacitor2: TIACapacitor
     @Published var tiaResistor1: TIAResistor
     @Published var tiaResistor2: TIAResistor
     
-    init(ambientPhase: AmbientPhase, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: TimeInterval, dynamicPowerDown: DynamicPowerDownPhase, tiaCapacitor1: TIACapacitor, tiaCapacitor2: TIACapacitor, tiaResistor1: TIAResistor, tiaResistor2: TIAResistor) {
+    init(ambientPhase: AmbientPhaseType, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: TimeInterval, dynamicPowerDown: DynamicPowerDownPhaseType, tiaCapacitor1: TIACapacitor, tiaCapacitor2: TIACapacitor, tiaResistor1: TIAResistor, tiaResistor2: TIAResistor) {
         self.ambientPhase = ambientPhase
         self.LED1Phase = LED1Phase
         self.LED2Phase = LED2Phase

@@ -10,7 +10,11 @@ import SwiftUI
 @main
 struct pulse_loopApp: App {
     @StateObject var manager: DeviceManager = DeviceManager.shared
-    @State var device: any DeviceProtocol = FakeDevice()
+    @State private var device: any DeviceProtocol = FakeDevice()
+    
+    init() {
+        self.device.connect()
+    }
     
     var body: some Scene {
         WindowGroup {

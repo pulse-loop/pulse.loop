@@ -13,23 +13,58 @@ class BLEDevice: NSObject, DeviceProtocol {
 
     internal var logger: Logger
     
-    // MARK: Public BLE interface.
-    var opticalFrontendConfiguration: FakeOpticalFrontendConfiguration = FakeDevice().opticalFrontendConfiguration
+    // MARK: Battery service.
+    
+    // MARK: Current time service.
+    
+    // MARK: Device information service.
+    
+    // MARK: Heart rate service.
+    
+    // MARK: Pulse oximeter service.
+    
+    // MARK: Firmware upgrade service.
+    
+    // MARK: Historic data.
+    
+    // MARK: Optical frontend configuration.
+    typealias OpticalFrontendConfigurationType = OpticalFrontendConfiguration
+    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType {
+        return OpticalFrontendConfiguration()
+    }
+    
+    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType) {
+        
+    }
+    
+    // MARK: Raw sensor data.
     @Published var rawOpticalAmbient: [OpticalSensorReading] = []
     @Published var rawOpticalLED1MinusAmbient: [OpticalSensorReading] = []
     @Published var rawOpticalLED1: [OpticalSensorReading] = []
     @Published var rawOpticalLED2: [OpticalSensorReading] = []
     @Published var rawOpticalLED3: [OpticalSensorReading] = []
-    var apiVersion: Int = 0
     
-    // MARK: Additional information.
+    // MARK: Settings.
+    
+    // MARK: pulse.loop identifier.
+    var apiVersion: Int = 0
+        
+    // MARK: Additional properties.
     var name: String {
         peripheral.name ?? "Unnamed device"
     }
     @Published var status: DeviceStatus = .disconnected
+    @Published var dataWindowLength: TimeInterval = 10
         
-    // MARK: Private BLE logic.
+    // MARK: Internal variables.
     var peripheral: CBPeripheral
+    let realTimeVariablesMap: [CBUUID: ReferenceWritableKeyPath<BLEDevice, [OpticalSensorReading]>] = [
+        CBUUIDs.ambientADCReadingCharacteristicIdentifier: \.rawOpticalAmbient,
+        CBUUIDs.led1MinusAmbientCharacteristicIdentifier: \.rawOpticalLED1MinusAmbient,
+        CBUUIDs.led1ADCReadingCharacteristicIdentifier: \.rawOpticalLED1,
+        CBUUIDs.led2ADCReadingCharacteristicIdentifier: \.rawOpticalLED2,
+        CBUUIDs.led3ADCReadingCharacteristicIdentifier: \.rawOpticalLED3
+    ]
     
     // MARK: Initialisers.
     init(from peripheral: CBPeripheral) {

@@ -177,7 +177,7 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
 struct OpticalTimingView_Previews: PreviewProvider {
     static var previews: some View {
         let conf = FakeOpticalFrontendConfiguration(
-            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhase(
+            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhaseType(
                 sample_st: TimeInterval(microseconds: 2225),
                 sample_end: TimeInterval(microseconds: 2299.75),
                 reset_st: TimeInterval(microseconds: 2600),
@@ -216,7 +216,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_end: TimeInterval(microseconds: 3500)
             ),
             totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhase(
+            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhaseType(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
             ),

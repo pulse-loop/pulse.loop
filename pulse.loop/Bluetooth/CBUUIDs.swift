@@ -73,13 +73,13 @@ struct CBUUIDs {
     // | LED2 ADC reading      | Read   | `A93B639D-8A8D-43EA-8A5A-8175D7C09E0B` |
     // | LED3 ADC reading      | Read   | `C0A12246-79E4-4BD7-8A4F-B841D5590F70` |
     
-    static private let kUUIDCharacteristicAmbientPhaseReading = "33EAF25F-7A5C-4327-A95B-B602DA54C443"
+    static private let kUUIDCharacteristicAmbientADCReading = "33EAF25F-7A5C-4327-A95B-B602DA54C443"
     static private let kUUIDCharacteristicLED1MinusAmbient = "CF66D344-584D-4E67-AC30-17D28B099A30"
     static private let kUUIDCharacteristicLED1ADCReading = "05500B81-516D-4BD9-95BA-C0B87C911DDB"
     static private let kUUIDCharacteristicLED2ADCReading = "A93B639D-8A8D-43EA-8A5A-8175D7C09E0B"
     static private let kUUIDCharacteristicLED3ADCReading = "C0A12246-79E4-4BD7-8A4F-B841D5590F70"
 
-    static let ambientPhaseReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientPhaseReading)
+    static let ambientADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCReading)
     static let led1MinusAmbientCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1MinusAmbient)
     static let led1ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCReading)
     static let led2ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCReading)

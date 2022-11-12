@@ -76,7 +76,7 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
 
 struct OpticalConfigurationForm_Previews: PreviewProvider {
     static var previews: some View {
-        OpticalConfigurationForm(opticalConfiguration: .constant(FakeDevice().opticalFrontendConfiguration))
+        OpticalConfigurationForm(opticalConfiguration: .constant(FakeDevice().getOpticalFrontendConfiguration()))
             .previewLayout(.fixed(width: 600, height: 1300))
     }
 }

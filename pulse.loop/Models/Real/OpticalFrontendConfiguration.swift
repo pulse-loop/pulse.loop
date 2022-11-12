@@ -9,7 +9,7 @@ import Foundation
 import CoreBluetooth
 
 class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
-    class LED1Phase: LEDPhaseProtocol {
+    class LED1PhaseType: LEDPhaseProtocol {
         var led_st: TimeInterval
         var led_end: TimeInterval
         var sample_st: TimeInterval
@@ -32,7 +32,7 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class LED2Phase: LEDPhaseProtocol {
+    class LED2PhaseType: LEDPhaseProtocol {
         var led_st: TimeInterval
         var led_end: TimeInterval
         var sample_st: TimeInterval
@@ -55,7 +55,7 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class LED3Phase: LEDPhaseProtocol {
+    class LED3PhaseType: LEDPhaseProtocol {
         var led_st: TimeInterval
         var led_end: TimeInterval
         var sample_st: TimeInterval
@@ -78,7 +78,7 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class AmbientPhase: AmbientPhaseProtocol {
+    class AmbientPhaseType: AmbientPhaseProtocol {
         var sample_st: TimeInterval
         var sample_end: TimeInterval
         var reset_st: TimeInterval
@@ -97,7 +97,7 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    class DynamicPowerDownPhase: DynamicPowerDownPhaseProtocol {
+    class DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol {
         var start: TimeInterval
         var end: TimeInterval
         
@@ -108,12 +108,12 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
         }
     }
     
-    var ambientPhase: AmbientPhase
-    var LED1Phase: LED1Phase
-    var LED2Phase: LED2Phase
-    var LED3Phase: LED3Phase
+    var ambientPhase: AmbientPhaseType
+    var LED1Phase: LED1PhaseType
+    var LED2Phase: LED2PhaseType
+    var LED3Phase: LED3PhaseType
     var totalWindowLength: TimeInterval
-    var dynamicPowerDown: DynamicPowerDownPhase
+    var dynamicPowerDown: DynamicPowerDownPhaseType
     var tiaCapacitor1: TIACapacitor
     var tiaCapacitor2: TIACapacitor
     var tiaResistor1: TIAResistor
@@ -121,12 +121,12 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol {
     
     init() {
         // TODO: Get data from characteristics.
-        ambientPhase = AmbientPhase()
-        self.LED1Phase = Self.LED1Phase()
-        self.LED2Phase = Self.LED2Phase()
-        self.LED3Phase = Self.LED3Phase()
+        ambientPhase = AmbientPhaseType()
+        self.LED1Phase = Self.LED1PhaseType()
+        self.LED2Phase = Self.LED2PhaseType()
+        self.LED3Phase = Self.LED3PhaseType()
         totalWindowLength = 0
-        dynamicPowerDown = DynamicPowerDownPhase()
+        dynamicPowerDown = DynamicPowerDownPhaseType()
         tiaCapacitor1 = .C_10_pF
         tiaCapacitor2 = .C_5_pF
         tiaResistor1 = .R_100_kΩ

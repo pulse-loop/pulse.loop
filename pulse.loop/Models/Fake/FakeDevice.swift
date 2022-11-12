@@ -8,22 +8,56 @@
 import Foundation
 
 class FakeDevice: DeviceProtocol {
-    @Published var rawOpticalAmbient: [OpticalSensorReading] = []
-    @Published var rawOpticalLED1MinusAmbient: [OpticalSensorReading] = []
-    @Published var rawOpticalLED1: [OpticalSensorReading] = []
-    @Published var rawOpticalLED2: [OpticalSensorReading] = []
-    @Published var rawOpticalLED3: [OpticalSensorReading] = []
-    @Published var opticalFrontendConfiguration: FakeOpticalFrontendConfiguration
+    // MARK: Battery service.
+    
+    // MARK: Current time service.
+    
+    // MARK: Device information service.
+    
+    // MARK: Heart rate service.
+    
+    // MARK: Pulse oximeter service.
+    
+    // MARK: Firmware upgrade service.
+    
+    // MARK: Historic data.
+    
+    // MARK: Optical frontend configuration.
+    typealias OpticalFrontendConfigurationType = FakeOpticalFrontendConfiguration
+    private var opticalFrontendConfiguration: OpticalFrontendConfigurationType
+    
+    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType {
+        return self.opticalFrontendConfiguration
+    }
+    
+    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType) {
+        self.opticalFrontendConfiguration = configuration
+    }
+    
+    // MARK: Raw sensor data.
+    var rawOpticalAmbient: [OpticalSensorReading] = []
+    var rawOpticalLED1MinusAmbient: [OpticalSensorReading] = []
+    var rawOpticalLED1: [OpticalSensorReading] = []
+    var rawOpticalLED2: [OpticalSensorReading] = []
+    var rawOpticalLED3: [OpticalSensorReading] = []
+    
+    // MARK: Settings.
+    
+    // MARK: pulse.loop identifier.
     @Published var apiVersion: Int = 1
     
+    // MARK: Additional properties.
     var name: String = "Fake Device"
     var status: DeviceStatus = .connected
+    @Published var dataWindowLength: TimeInterval = 10
     
-    private var updateTimer: Timer?
+    // MARK: Internal variables.
+    private var updateTimer: DispatchSourceTimer?
 
+    // MARK: Initialisers.
     init() {
         self.opticalFrontendConfiguration = FakeOpticalFrontendConfiguration(
-            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhase(
+            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhaseType(
                 sample_st: TimeInterval(microseconds: 2225),
                 sample_end: TimeInterval(microseconds: 2299.75),
                 reset_st: TimeInterval(microseconds: 2600),
@@ -62,7 +96,7 @@ class FakeDevice: DeviceProtocol {
                 conv_end: TimeInterval(microseconds: 3500)
             ),
             totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhase(
+            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhaseType(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
             ),
@@ -73,18 +107,36 @@ class FakeDevice: DeviceProtocol {
         )
     }
     
+    // MARK: Control functions.
     func connect() {
-        self.updateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { _ in
+        let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + "FakeDevice.timer")
+        self.updateTimer = DispatchSource.makeTimerSource(queue: queue)
+        self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(100))
+        self.updateTimer?.setEventHandler { [weak self] in
+            guard let self else { return }
             self.rawOpticalAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED1MinusAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED1.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED2.append(OpticalSensorReading(Int32.random(in: 0...100)))
             self.rawOpticalLED3.append(OpticalSensorReading(Int32.random(in: 0...100)))
-        })
+            
+            self.rawOpticalAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1MinusAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED2.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED3.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+        
+        self.updateTimer?.resume()
     }
     
     func disconnect() {
-        self.updateTimer?.invalidate()
+        self.updateTimer?.cancel()
+        self.updateTimer = nil
     }
 }
 

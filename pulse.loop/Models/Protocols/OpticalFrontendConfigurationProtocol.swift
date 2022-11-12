@@ -34,18 +34,18 @@ protocol DynamicPowerDownPhaseProtocol: ObservableObject {
 
 protocol OpticalFrontendConfigurationProtocol: ObservableObject {
     
-    associatedtype LED1Phase: LEDPhaseProtocol
-    associatedtype LED2Phase: LEDPhaseProtocol
-    associatedtype LED3Phase: LEDPhaseProtocol
-    associatedtype AmbientPhase: AmbientPhaseProtocol
-    associatedtype DynamicPowerDownPhase: DynamicPowerDownPhaseProtocol
+    associatedtype LED1PhaseType: LEDPhaseProtocol
+    associatedtype LED2PhaseType: LEDPhaseProtocol
+    associatedtype LED3PhaseType: LEDPhaseProtocol
+    associatedtype AmbientPhaseType: AmbientPhaseProtocol
+    associatedtype DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol
     
-    var ambientPhase: AmbientPhase { get set }
-    var LED1Phase: LED1Phase { get set }
-    var LED2Phase: LED2Phase { get set }
-    var LED3Phase: LED3Phase { get set }
+    var ambientPhase: AmbientPhaseType { get set }
+    var LED1Phase: LED1PhaseType { get set }
+    var LED2Phase: LED2PhaseType { get set }
+    var LED3Phase: LED3PhaseType { get set }
     var totalWindowLength: TimeInterval { get set }
-    var dynamicPowerDown: DynamicPowerDownPhase { get set }
+    var dynamicPowerDown: DynamicPowerDownPhaseType { get set }
     var tiaCapacitor1: TIACapacitor { get set }
     var tiaCapacitor2: TIACapacitor { get set }
     var tiaResistor1: TIAResistor { get set }

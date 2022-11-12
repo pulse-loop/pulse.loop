@@ -11,16 +11,13 @@ import Charts
 struct OpticalReadingChart: View {
     var title: String
     var color: Color = .blue
-    var timeInterval: TimeInterval = 10
     @Binding var data: [OpticalSensorReading]
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.largeTitle)
-            Chart(data.filter({ item in
-                (Date.now.advanced(by: -timeInterval)...Date.now).contains(item.date)
-            })) {
+            Chart(data) {
                 LineMark(
                     x: .value("Time", $0.date),
                     y: .value("Value", $0.value)
@@ -31,7 +28,6 @@ struct OpticalReadingChart: View {
         }
         .padding()
         .frame(minWidth: 300)
-        .drawingGroup()
     }
 }
 
