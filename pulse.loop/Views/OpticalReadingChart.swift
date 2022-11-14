@@ -11,32 +11,25 @@ import SwiftUICharts
 struct OpticalReadingChart: View {
     var title: String
     var color: Color = .blue
-    @Binding var data: [OpticalSensorReading]
-    var chartData: LineChartData {
-        let dataSet = LineDataSet(
-            dataPoints: data.map({
-                LineChartDataPoint(
-                    value: Double($0.value),
-                    date: $0.date
-                )
-            }),
-            style: LineStyle(lineColour: ColourStyle(colour: color))
-        )
+    var data: LineDataSet
+    private var chartData: LineChartData {
         
+        var data = self.data
         
-        let data = LineChartData(
-            dataSets: dataSet,
+        data.style = LineStyle(lineColour: ColourStyle(colour: color), strokeStyle: Stroke(lineWidth: 2))
+
+        return LineChartData(
+            dataSets: data,
             metadata: ChartMetadata(
                 title: title,
                 titleFont: .largeTitle
             ),
             chartStyle: LineChartStyle(
                 xAxisGridStyle: GridStyle(numberOfLines: 5),
-                yAxisLabelColour: .gray
+                yAxisLabelColour: .gray,
+                globalAnimation: .default
             )
         )
-        
-        return data
     }
     
     var body: some View {
@@ -52,7 +45,13 @@ struct OpticalReadingChart: View {
 
 struct OpticalReadingChart_Previews: PreviewProvider {
     static var previews: some View {
-        OpticalReadingChart(title: "Title", color: .green, data: .constant([.init(300), .init(150), .init(200)]))
+        let dataSet = LineDataSet(dataPoints: [
+            .init(value: 100),
+            .init(value: 40),
+            .init(value: 160)
+        ])
+        
+        return OpticalReadingChart(title: "Title", color: .green, data: dataSet)
             .previewLayout(.sizeThatFits)
     }
 }
