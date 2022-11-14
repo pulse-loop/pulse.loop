@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICharts
 
 class FakeDevice: DeviceProtocol {
     // MARK: Battery service.
@@ -35,11 +36,11 @@ class FakeDevice: DeviceProtocol {
     }
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: [OpticalSensorReading] = []
-    var rawOpticalLED1MinusAmbient: [OpticalSensorReading] = []
-    var rawOpticalLED1: [OpticalSensorReading] = []
-    var rawOpticalLED2: [OpticalSensorReading] = []
-    var rawOpticalLED3: [OpticalSensorReading] = []
+    var rawOpticalAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED1MinusAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED1: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED2: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED3: LineDataSet = LineDataSet(dataPoints: [])
     
     // MARK: Settings.
     
@@ -49,7 +50,7 @@ class FakeDevice: DeviceProtocol {
     // MARK: Additional properties.
     var name: String = "Fake Device"
     var status: DeviceStatus = .connected
-    @Published var dataWindowLength: TimeInterval = 10
+    @Published var dataWindowLength: TimeInterval = 5
     
     // MARK: Internal variables.
     private var updateTimer: DispatchSourceTimer?
@@ -114,21 +115,20 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(100))
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
-            self.rawOpticalAmbient.append(OpticalSensorReading(Float32.random(in: 0...100)))
-            self.rawOpticalLED1MinusAmbient.append(OpticalSensorReading(Float32.random(in: 0...100)))
-            self.rawOpticalLED1.append(OpticalSensorReading(Float32.random(in: 0...100)))
-            self.rawOpticalLED2.append(OpticalSensorReading(Float32.random(in: 0...100)))
-            self.rawOpticalLED3.append(OpticalSensorReading(Float32.random(in: 0...100)))
             
-            self.rawOpticalAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1MinusAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED2.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED3.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalAmbient.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
+            self.rawOpticalLED1MinusAmbient.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
+            self.rawOpticalLED1.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
+            self.rawOpticalLED2.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
+            self.rawOpticalLED3.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
             
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
+            self.rawOpticalAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1MinusAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED2.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED3.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            
+            // Do not notify. Frequency is too high!
         }
         
         self.updateTimer?.resume()
@@ -139,6 +139,15 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer = nil
     }
 }
+
+//@propertyWrapper
+//struct LimitedTimeframe {
+//    let duration: TimeInterval
+//
+//    var wrappedValue {
+//
+//    }
+//}
 
 extension FakeDevice: Equatable {
     static func == (lhs: FakeDevice, rhs: FakeDevice) -> Bool {

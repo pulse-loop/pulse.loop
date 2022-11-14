@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import SwiftUICharts
 import OSLog
 
 class BLEDevice: NSObject, DeviceProtocol {
@@ -38,11 +39,11 @@ class BLEDevice: NSObject, DeviceProtocol {
     }
     
     // MARK: Raw sensor data.
-    @Published var rawOpticalAmbient: [OpticalSensorReading] = []
-    @Published var rawOpticalLED1MinusAmbient: [OpticalSensorReading] = []
-    @Published var rawOpticalLED1: [OpticalSensorReading] = []
-    @Published var rawOpticalLED2: [OpticalSensorReading] = []
-    @Published var rawOpticalLED3: [OpticalSensorReading] = []
+    @Published var rawOpticalAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    @Published var rawOpticalLED1MinusAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    @Published var rawOpticalLED1: LineDataSet = LineDataSet(dataPoints: [])
+    @Published var rawOpticalLED2: LineDataSet = LineDataSet(dataPoints: [])
+    @Published var rawOpticalLED3: LineDataSet = LineDataSet(dataPoints: [])
     
     // MARK: Settings.
     
@@ -54,11 +55,11 @@ class BLEDevice: NSObject, DeviceProtocol {
         peripheral.name ?? "Unnamed device"
     }
     @Published var status: DeviceStatus = .disconnected
-    @Published var dataWindowLength: TimeInterval = 10
+    @Published var dataWindowLength: TimeInterval = 5
         
     // MARK: Internal variables.
     var peripheral: CBPeripheral
-    let realTimeVariablesMap: [CBUUID: ReferenceWritableKeyPath<BLEDevice, [OpticalSensorReading]>] = [
+    let realTimeVariablesMap: [CBUUID: ReferenceWritableKeyPath<BLEDevice, LineDataSet>] = [
         CBUUIDs.ambientADCReadingCharacteristicIdentifier: \.rawOpticalAmbient,
         CBUUIDs.led1MinusAmbientCharacteristicIdentifier: \.rawOpticalLED1MinusAmbient,
         CBUUIDs.led1ADCReadingCharacteristicIdentifier: \.rawOpticalLED1,

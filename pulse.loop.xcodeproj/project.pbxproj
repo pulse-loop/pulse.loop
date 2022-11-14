@@ -25,12 +25,12 @@
 		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
-		8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */; };
 		8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */; };
 		8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */; };
+		8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE4BFFC29225591008FCAA0 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,6 @@
 		8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "pulse-loop-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
-		8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalSensorReading.swift; sourceTree = "<group>"; };
 		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
 		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +172,6 @@
 				8B6A15062916A35E000FA821 /* Real */,
 				8B6A14FD29169FF2000FA821 /* Protocols */,
 				8B6A14FC29169FB0000FA821 /* Fake */,
-				8BB68ADD2906BC2B00AD753B /* OpticalSensorReading.swift */,
 				8B6A15002916A161000FA821 /* TIA.swift */,
 				8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */,
 			);
@@ -195,6 +194,9 @@
 			dependencies = (
 			);
 			name = pulse.loop;
+			packageProductDependencies = (
+				8BE4BFFC29225591008FCAA0 /* SwiftUICharts */,
+			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 8B678B8028AFEC78009ECC97;
+			packageReferences = (
+				8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+			);
 			productRefGroup = 8B678B8A28AFEC78009ECC97 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,7 +266,6 @@
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
 				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
-				8BB68ADE2906BC2B00AD753B /* OpticalSensorReading.swift in Sources */,
 				8B6A14FB291693A5000FA821 /* CBUUIDs.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
 				8B6A14F729168FD0000FA821 /* DeviceSelectionView.swift in Sources */,
@@ -418,7 +422,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -463,7 +467,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -500,6 +504,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts#Line-Chart";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BE4BFFC29225591008FCAA0 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B678B8128AFEC78009ECC97 /* Project object */;
 }

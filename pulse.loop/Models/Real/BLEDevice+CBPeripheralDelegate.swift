@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICharts
 import CoreBluetooth
 
 extension BLEDevice: CBPeripheralDelegate {
@@ -18,10 +19,17 @@ extension BLEDevice: CBPeripheralDelegate {
         
         if let keyPath = self.realTimeVariablesMap[characteristic.uuid],
            let data = characteristic.value {
-            self[keyPath: keyPath].append(OpticalSensorReading(data.withUnsafeBytes( {$0.load(as: Float32.self)} )))
+            self[keyPath: keyPath].dataPoints.append(
+                LineChartDataPoint(
+                    value: Double(data.withUnsafeBytes( {$0.load(as: Float32.self)} )),
+                    date: Date.now
+                )
+            )
+            
+            self[keyPath: keyPath].dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
         }
         
-        objectWillChange.send()
+        // Do not notify, frequency might be too high, causing lags in SwiftUI.
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {

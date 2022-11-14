@@ -69,10 +69,38 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
                 LEDTimingConfigurationView(title: "LED 3", phase: $opticalConfiguration.LED3Phase)
             }
         }
+        #if os(macOS)
         .formStyle(.grouped)
+        #endif
     }
 }
 
+struct LEDTimingConfigurationView<Phase: LEDPhaseProtocol>: View {
+    var title: String
+    @Binding var phase: Phase
+    
+    var body: some View {
+        Section(header: Text(title).bold()) {
+            SingleTimingView(name: "Lighting", start: $phase.led_st, end: $phase.led_end)
+            SingleTimingView(name: "Sample", start: $phase.sample_st, end: $phase.sample_end)
+            SingleTimingView(name: "Conversion", start: $phase.conv_st, end: $phase.conv_end)
+            SingleTimingView(name: "Reset", start: $phase.reset_st, end: $phase.reset_end)
+        }
+    }
+}
+
+struct AmbientTimingConfigurationView<Phase: AmbientPhaseProtocol>: View {
+    var title: String
+    @Binding var phase: Phase
+    
+    var body: some View {
+        Section(header: Text(title).bold()) {
+            SingleTimingView(name: "Sample", start: $phase.sample_st, end: $phase.sample_end)
+            SingleTimingView(name: "Conversion", start: $phase.conv_st, end: $phase.conv_end)
+            SingleTimingView(name: "Reset", start: $phase.reset_st, end: $phase.reset_end)
+        }
+    }
+}
 
 struct OpticalConfigurationForm_Previews: PreviewProvider {
     static var previews: some View {

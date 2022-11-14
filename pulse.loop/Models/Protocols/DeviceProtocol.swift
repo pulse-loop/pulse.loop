@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICharts
 
 enum DeviceStatus: CustomStringConvertible {
     case disconnected
@@ -44,11 +45,11 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType)
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: [OpticalSensorReading] { get set }
-    var rawOpticalLED1MinusAmbient: [OpticalSensorReading] { get set }
-    var rawOpticalLED1: [OpticalSensorReading] { get set }
-    var rawOpticalLED2: [OpticalSensorReading] { get set }
-    var rawOpticalLED3: [OpticalSensorReading] { get set }
+    var rawOpticalAmbient: LineDataSet { get set }
+    var rawOpticalLED1MinusAmbient: LineDataSet { get set }
+    var rawOpticalLED1: LineDataSet { get set }
+    var rawOpticalLED2: LineDataSet { get set }
+    var rawOpticalLED3: LineDataSet { get set }
     
     // MARK: Settings.
     
