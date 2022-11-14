@@ -19,7 +19,9 @@ struct DeviceSelectionView: View {
             
             DeviceListItem(device: FakeDevice(), selectedDevice: $selectedDevice)
         }
+        #if os(macOS)
         .listStyle(.inset(alternatesRowBackgrounds: true))
+        #endif
         .onAppear {
             manager.scan()
         }

@@ -9,13 +9,13 @@ import Foundation
 
 struct OpticalSensorReading: Identifiable {
     var date: Date
-    var value: Int32
+    var value: Float32
     
     var id: Date {
         return date
     }
 
-    init(_ value: Int32) {
+    init(_ value: Float32) {
         self.value = value
         self.date = Date.now
     }

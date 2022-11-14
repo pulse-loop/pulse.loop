@@ -114,11 +114,11 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(100))
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
-            self.rawOpticalAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
-            self.rawOpticalLED1MinusAmbient.append(OpticalSensorReading(Int32.random(in: 0...100)))
-            self.rawOpticalLED1.append(OpticalSensorReading(Int32.random(in: 0...100)))
-            self.rawOpticalLED2.append(OpticalSensorReading(Int32.random(in: 0...100)))
-            self.rawOpticalLED3.append(OpticalSensorReading(Int32.random(in: 0...100)))
+            self.rawOpticalAmbient.append(OpticalSensorReading(Float32.random(in: 0...100)))
+            self.rawOpticalLED1MinusAmbient.append(OpticalSensorReading(Float32.random(in: 0...100)))
+            self.rawOpticalLED1.append(OpticalSensorReading(Float32.random(in: 0...100)))
+            self.rawOpticalLED2.append(OpticalSensorReading(Float32.random(in: 0...100)))
+            self.rawOpticalLED3.append(OpticalSensorReading(Float32.random(in: 0...100)))
             
             self.rawOpticalAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
             self.rawOpticalLED1MinusAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
