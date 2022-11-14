@@ -126,9 +126,10 @@ class FakeDevice: DeviceProtocol {
             self.rawOpticalLED2.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
             self.rawOpticalLED3.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
             
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
+            // Do not notify. Frequency is too high!
+//            DispatchQueue.main.async {
+//                self.objectWillChange.send()
+//            }
         }
         
         self.updateTimer?.resume()

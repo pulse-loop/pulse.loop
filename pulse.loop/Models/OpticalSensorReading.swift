@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICharts
 
 struct OpticalSensorReading: Identifiable {
     var date: Date

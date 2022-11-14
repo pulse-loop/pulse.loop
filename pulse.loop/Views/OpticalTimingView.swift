@@ -140,7 +140,7 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                     .labelStyle(.iconOnly)
                     .padding(4)
                     .background(in: RoundedRectangle(cornerRadius: 4, style: .continuous))
-                    .backgroundStyle(.thinMaterial)
+                    //.backgroundStyle(.thinMaterial)
                     .padding(4)
 
                 }
