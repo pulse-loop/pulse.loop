@@ -21,17 +21,16 @@ class DeviceManager: NSObject, ObservableObject {
     internal let logger: Logger
     
     @Published var discoveredDevices: [UUID: BLEDeviceDiscovery]
-    private let centralManager: CBCentralManager
+    private let centralManager: CBCentralManager!
     
     static let shared: DeviceManager = DeviceManager()
     
     // MARK: Initialiser.
     private override init() {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Manager")
-        self.centralManager = CBCentralManager()
         self.discoveredDevices = [:]
+        self.centralManager = CBCentralManager(delegate: nil, queue: DispatchQueue(label: "CBCentralManager", qos: .userInteractive))
         super.init()
-        self.centralManager.delegate = self
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             

@@ -120,6 +120,7 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         }
                     }
                     .frame(width: geometry.size.width * scale)
+                    .drawingGroup()
                 }
                 .overlay(alignment: .topTrailing) {
                     HStack {

@@ -36,7 +36,7 @@ struct DeviceListItem<Device: DeviceProtocol>: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            if selected {
+            if selected && device.status != .disconnected {
                 HStack(spacing: 8) {
                     if device.status != .connected {
                         ProgressView()

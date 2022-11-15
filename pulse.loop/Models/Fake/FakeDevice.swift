@@ -110,17 +110,19 @@ class FakeDevice: DeviceProtocol {
     
     // MARK: Control functions.
     func connect() {
-        let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + "FakeDevice.timer")
+        let queue = DispatchQueue(label: "FakeDevice", qos: .userInteractive)
         self.updateTimer = DispatchSource.makeTimerSource(queue: queue)
         self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(100))
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
-            self.rawOpticalAmbient.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
-            self.rawOpticalLED1MinusAmbient.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
-            self.rawOpticalLED1.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
-            self.rawOpticalLED2.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
-            self.rawOpticalLED3.dataPoints.append(LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now))
+            let new = LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now)
+            
+            self.rawOpticalAmbient.dataPoints.append(new)
+            self.rawOpticalLED1MinusAmbient.dataPoints.append(new)
+            self.rawOpticalLED1.dataPoints.append(new)
+            self.rawOpticalLED2.dataPoints.append(new)
+            self.rawOpticalLED3.dataPoints.append(new)
             
             self.rawOpticalAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
             self.rawOpticalLED1MinusAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
@@ -140,16 +142,7 @@ class FakeDevice: DeviceProtocol {
     }
 }
 
-//@propertyWrapper
-//struct LimitedTimeframe {
-//    let duration: TimeInterval
-//
-//    var wrappedValue {
-//
-//    }
-//}
-
-extension FakeDevice: Equatable {
+extension FakeDevice {
     static func == (lhs: FakeDevice, rhs: FakeDevice) -> Bool {
         true
     }

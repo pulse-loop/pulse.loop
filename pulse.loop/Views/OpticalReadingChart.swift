@@ -16,7 +16,7 @@ struct OpticalReadingChart: View {
         
         var data = self.data
         
-        data.style = LineStyle(lineColour: ColourStyle(colour: color), strokeStyle: Stroke(lineWidth: 2))
+        data.style = LineStyle(lineColour: ColourStyle(colour: color), lineType: .line, strokeStyle: Stroke(lineWidth: 2))
 
         return LineChartData(
             dataSets: data,

@@ -14,41 +14,34 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
     
         Form {
             Section("Transimpedance amplifier") {
-                HStack {
+
                     Picker(selection: $opticalConfiguration.tiaResistor1, label: Text("Resistor #1")) {
                         ForEach(TIAResistor.allCases, id: \.rawValue) { r in
                             Text(r.description).tag(r)
                         }
                     }
-                    .padding(.trailing, 12)
                     
-                    Divider()
                     
                     Picker(selection: $opticalConfiguration.tiaResistor1, label: Text("Resistor #2")) {
                         ForEach(TIAResistor.allCases, id: \.rawValue) { r in
                             Text(r.description).tag(r)
                         }
                     }
-                    .padding(.leading, 8)
-                }
+
                 
-                HStack {
                     Picker(selection: $opticalConfiguration.tiaCapacitor1, label: Text("Capacitor #1")) {
                         ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
                             Text(r.description).tag(r)
                         }
                     }
-                    .padding(.trailing, 12)
                     
-                    Divider()
                     
                     Picker(selection: $opticalConfiguration.tiaCapacitor2, label: Text("Capacitor #2")) {
                         ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
                             Text(r.description).tag(r)
                         }
                     }
-                    .padding(.leading, 8)
-                }
+
             }
             
             Section("Timing") {

@@ -31,6 +31,7 @@
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */; };
 		8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */; };
 		8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE4BFFC29225591008FCAA0 /* SwiftUICharts */; };
+		8BE66D032922E816000A76AA /* Runtime in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE66D022922E816000A76AA /* Runtime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */,
+				8BE66D032922E816000A76AA /* Runtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +198,7 @@
 			name = pulse.loop;
 			packageProductDependencies = (
 				8BE4BFFC29225591008FCAA0 /* SwiftUICharts */,
+				8BE66D022922E816000A76AA /* Runtime */,
 			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
@@ -227,6 +230,7 @@
 			mainGroup = 8B678B8028AFEC78009ECC97;
 			packageReferences = (
 				8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */,
 			);
 			productRefGroup = 8B678B8A28AFEC78009ECC97 /* Products */;
 			projectDirPath = "";
@@ -514,6 +518,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wickwirew/Runtime.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -521,6 +533,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
+		};
+		8BE66D022922E816000A76AA /* Runtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */;
+			productName = Runtime;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
