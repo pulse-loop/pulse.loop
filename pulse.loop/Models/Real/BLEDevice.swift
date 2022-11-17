@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreBluetooth
-import SwiftUICharts
 import OSLog
 
 class BLEDevice: DeviceProtocol {
@@ -51,15 +50,15 @@ class BLEDevice: DeviceProtocol {
     
     // MARK: Raw sensor data.
     @NotifyingCharacteristic(uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
-    var rawOpticalAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalAmbient: [OpticalFrontendReading] = []
     @NotifyingCharacteristic(uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
-    var rawOpticalLED1MinusAmbient: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED1MinusAmbient: [OpticalFrontendReading] = []
     @NotifyingCharacteristic(uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED1: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED1: [OpticalFrontendReading] = []
     @NotifyingCharacteristic(uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED2: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED2: [OpticalFrontendReading] = []
     @NotifyingCharacteristic(uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED3: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalLED3: [OpticalFrontendReading] = []
     
     // MARK: Settings.
     

@@ -10,13 +10,14 @@ import Charts
 
 struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
     @ObservedObject var device: Device
-
+    
     var body: some View {
         let opticalConfiguration: Binding<Device.OpticalFrontendConfigurationType> = Binding {
             self.device.getOpticalFrontendConfiguration()
         } set: { value, transaction in
             self.device.setOpticalFrontendConfiguration(value)
         }
+        
         
         return VStack {
             ScrollView(.horizontal) {
@@ -28,12 +29,13 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
                         OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
                         OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
                     }
-                    .frame(height: 300)
+                    .frame(height: 200)
                     .drawingGroup()
                 }
             }
             
             OpticalConfigurationForm(opticalConfiguration: opticalConfiguration)
+                .navigationTitle("Optical configuration")
         }
     }
 }

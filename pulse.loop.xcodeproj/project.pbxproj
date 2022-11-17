@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B05ADBC2923D61C00D688EF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 8B05ADBB2923D61C00D688EF /* SwiftUICharts */; };
+		8B05ADBE2923D63500D688EF /* OpticalFrontendReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05ADBD2923D63500D688EF /* OpticalFrontendReading.swift */; };
 		8B1F230C291D383D00B9BF9F /* OpticalConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */; };
 		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
 		8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D68BC28E8F730003B191F /* DeviceManager.swift */; };
@@ -30,11 +32,11 @@
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */; };
 		8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */; };
-		8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE4BFFC29225591008FCAA0 /* SwiftUICharts */; };
 		8BE66D032922E816000A76AA /* Runtime in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE66D022922E816000A76AA /* Runtime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B05ADBD2923D63500D688EF /* OpticalFrontendReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalFrontendReading.swift; sourceTree = "<group>"; };
 		8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationForm.swift; sourceTree = "<group>"; };
 		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
 		8B5D68BC28E8F730003B191F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
@@ -68,8 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BE4BFFD29225591008FCAA0 /* SwiftUICharts in Frameworks */,
 				8BE66D032922E816000A76AA /* Runtime in Frameworks */,
+				8B05ADBC2923D61C00D688EF /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +83,7 @@
 			children = (
 				8B678B8B28AFEC78009ECC97 /* pulse.loop */,
 				8B678B8A28AFEC78009ECC97 /* Products */,
+				8BE96D702923D5BE00C6932E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,10 +177,18 @@
 				8B6A15062916A35E000FA821 /* Real */,
 				8B6A14FD29169FF2000FA821 /* Protocols */,
 				8B6A14FC29169FB0000FA821 /* Fake */,
+				8B05ADBD2923D63500D688EF /* OpticalFrontendReading.swift */,
 				8B6A15002916A161000FA821 /* TIA.swift */,
 				8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8BE96D702923D5BE00C6932E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +208,8 @@
 			);
 			name = pulse.loop;
 			packageProductDependencies = (
-				8BE4BFFC29225591008FCAA0 /* SwiftUICharts */,
 				8BE66D022922E816000A76AA /* Runtime */,
+				8B05ADBB2923D61C00D688EF /* SwiftUICharts */,
 			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
@@ -229,8 +240,8 @@
 			);
 			mainGroup = 8B678B8028AFEC78009ECC97;
 			packageReferences = (
-				8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */,
+				8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 8B678B8A28AFEC78009ECC97 /* Products */;
 			projectDirPath = "";
@@ -267,6 +278,7 @@
 				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
 				8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */,
+				8B05ADBE2923D63500D688EF /* OpticalFrontendReading.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
 				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
@@ -510,12 +522,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+		8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/willdale/SwiftUICharts#Line-Chart";
+			repositoryURL = "https://github.com/mecid/SwiftUICharts";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */ = {
@@ -529,9 +541,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8BE4BFFC29225591008FCAA0 /* SwiftUICharts */ = {
+		8B05ADBB2923D61C00D688EF /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BE4BFFB29225591008FCAA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			package = 8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 		8BE66D022922E816000A76AA /* Runtime */ = {

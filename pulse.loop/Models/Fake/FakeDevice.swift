@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUICharts
 
 class FakeDevice: DeviceProtocol {
     // MARK: Battery service.
@@ -36,11 +35,11 @@ class FakeDevice: DeviceProtocol {
     }
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: LineDataSet = LineDataSet(dataPoints: [])
-    var rawOpticalLED1MinusAmbient: LineDataSet = LineDataSet(dataPoints: [])
-    var rawOpticalLED1: LineDataSet = LineDataSet(dataPoints: [])
-    var rawOpticalLED2: LineDataSet = LineDataSet(dataPoints: [])
-    var rawOpticalLED3: LineDataSet = LineDataSet(dataPoints: [])
+    var rawOpticalAmbient: [OpticalFrontendReading] = []
+    var rawOpticalLED1MinusAmbient: [OpticalFrontendReading] = []
+    var rawOpticalLED1: [OpticalFrontendReading] = []
+    var rawOpticalLED2: [OpticalFrontendReading] = []
+    var rawOpticalLED3: [OpticalFrontendReading] = []
     
     // MARK: Settings.
     
@@ -116,19 +115,19 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
-            let new = LineChartDataPoint(value: Double.random(in: 0...1000), date: Date.now)
+            let new = OpticalFrontendReading(value: Double.random(in: 0...100), date: Date.now)
             
-            self.rawOpticalAmbient.dataPoints.append(new)
-            self.rawOpticalLED1MinusAmbient.dataPoints.append(new)
-            self.rawOpticalLED1.dataPoints.append(new)
-            self.rawOpticalLED2.dataPoints.append(new)
-            self.rawOpticalLED3.dataPoints.append(new)
+            self.rawOpticalAmbient.append(new)
+            self.rawOpticalLED1MinusAmbient.append(new)
+            self.rawOpticalLED1.append(new)
+            self.rawOpticalLED2.append(new)
+            self.rawOpticalLED3.append(new)
             
-            self.rawOpticalAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1MinusAmbient.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED2.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED3.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1MinusAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED1.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED2.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalLED3.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
             
             // Do not notify. Frequency is too high!
         }

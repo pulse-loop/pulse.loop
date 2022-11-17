@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUICharts
 import Runtime
 import CoreBluetooth
 import os
@@ -44,15 +43,12 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
         if let propertyInfo = notifyingCharacteristicsMap[characteristic.uuid],
            let data = characteristic.value {
             
-            guard var value = (try? propertyInfo.get(from: self.device)) as? NotifyingCharacteristic<LineDataSet> else { return }
-            value.wrappedValue.dataPoints.append(
-                LineChartDataPoint(
-                    value: Double(data.withUnsafeBytes( {$0.load(as: Float32.self)} )),
-                    date: Date.now
-                )
+            guard var value = (try? propertyInfo.get(from: self.device)) as? NotifyingCharacteristic<[OpticalFrontendReading]> else { return }
+            value.wrappedValue.append(
+                OpticalFrontendReading(value: data.withUnsafeBytes({ $0.load(as: Double.self)}))
             )
             
-            value.wrappedValue.dataPoints.removeAll(where: {$0.date!.addingTimeInterval(self.device.dataWindowLength) < Date.now})
+            value.wrappedValue.removeAll(where: {$0.date.addingTimeInterval(self.device.dataWindowLength) < Date.now})
             
             try! propertyInfo.set(value: value, on: &self.device)
             
@@ -77,9 +73,9 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
         guard let characteristics = service.characteristics else { return }
         
 //        let chartingCharacteristicsMap: [CBUUID: String] = Mirror(reflecting: self).children
-//            .filter({$0.value is NotifyingCharacteristic<LineDataSet>})
+//            .filter({$0.value is NotifyingCharacteristic<[OpticalFrontendReading]>})
 //            .reduce(into: [CBUUID: String](), { partialResult, val in
-//                let nc = val.value as! NotifyingCharacteristic<LineDataSet>
+//                let nc = val.value as! NotifyingCharacteristic<[OpticalFrontendReading]>
 //                partialResult[nc.uuid] = val.label!
 //            })
         

@@ -9,47 +9,36 @@ import SwiftUI
 import SwiftUICharts
 
 struct OpticalReadingChart: View {
-    var title: String
+    var title: LocalizedStringKey
     var color: Color = .blue
-    var data: LineDataSet
-    private var chartData: LineChartData {
-        
-        var data = self.data
-        
-        data.style = LineStyle(lineColour: ColourStyle(colour: color), lineType: .line, strokeStyle: Stroke(lineWidth: 2))
-
-        return LineChartData(
-            dataSets: data,
-            metadata: ChartMetadata(
-                title: title,
-                titleFont: .largeTitle
-            ),
-            chartStyle: LineChartStyle(
-                xAxisGridStyle: GridStyle(numberOfLines: 5),
-                yAxisLabelColour: .gray,
-                globalAnimation: .default
-            )
-        )
+    var data: [OpticalFrontendReading]
+    private var chartData: [DataPoint] {
+        let legend = Legend(color: color, label: title)
+        return data.map({
+            DataPoint(value: $0.value, label: "", legend: legend)
+        })
     }
     
     var body: some View {
-        LineChart(chartData: chartData)
-            .xAxisGrid(chartData: chartData)
-            .yAxisGrid(chartData: chartData)
-            .yAxisLabels(chartData: chartData)
-            .headerBox(chartData: chartData)
-            .padding()
-            .frame(minWidth: 300)
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.title)
+                .padding()
+            LineChartView(dataPoints: self.chartData)
+                .chartStyle(LineChartStyle(showLegends: false))
+                .padding()
+            .frame(width: 400)
+        }
     }
 }
 
 struct OpticalReadingChart_Previews: PreviewProvider {
     static var previews: some View {
-        let dataSet = LineDataSet(dataPoints: [
+        let dataSet: [OpticalFrontendReading] = [
             .init(value: 100),
-            .init(value: 40),
-            .init(value: 160)
-        ])
+            .init(value: 50),
+            .init(value: 350)
+        ]
         
         return OpticalReadingChart(title: "Title", color: .green, data: dataSet)
             .previewLayout(.sizeThatFits)
