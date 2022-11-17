@@ -115,7 +115,7 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
-            let new = OpticalFrontendReading(value: Double.random(in: 0...100), date: Date.now)
+            let new = OpticalFrontendReading(value: Float32.random(in: 0...100), date: Date.now)
             
             self.rawOpticalAmbient.append(new)
             self.rawOpticalLED1MinusAmbient.append(new)

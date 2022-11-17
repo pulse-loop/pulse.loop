@@ -32,13 +32,17 @@ class DeviceManager: NSObject, ObservableObject {
         self.centralManager = CBCentralManager(delegate: nil, queue: DispatchQueue(label: "CBCentralManager", qos: .userInteractive))
         super.init()
         
+        self.centralManager.delegate = self
+        
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
             // Clean up peripherals that haven't been seen for a while.
             for discovery in self.discoveredDevices {
                 let delta = discovery.value.lastSeen.timeIntervalSince(Date.now)
                 if abs(delta) > 3.0 && discovery.value.device.status == .disconnected {
-                    self.discoveredDevices.removeValue(forKey: discovery.key)
+                    DispatchQueue.main.async {
+                        self.discoveredDevices.removeValue(forKey: discovery.key)
+                    }
                 }
             }
         }
@@ -54,7 +58,8 @@ class DeviceManager: NSObject, ObservableObject {
         
         self.logger.info("Starting scan.")
         
-        self.centralManager.scanForPeripherals(withServices: [CBUUIDs.pulseLoopIdentifierServiceIdentifier])
+        self.centralManager.scanForPeripherals(withServices: [CBUUIDs.pulseLoopIdentifierServiceIdentifier],
+                                               options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
     
     func connect(to device: BLEDevice) {

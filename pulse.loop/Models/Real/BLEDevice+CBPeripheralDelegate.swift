@@ -45,7 +45,7 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
             
             guard var value = (try? propertyInfo.get(from: self.device)) as? NotifyingCharacteristic<[OpticalFrontendReading]> else { return }
             value.wrappedValue.append(
-                OpticalFrontendReading(value: data.withUnsafeBytes({ $0.load(as: Double.self)}))
+                OpticalFrontendReading(value: data.withUnsafeBytes({ $0.load(as: Float32.self)}))
             )
             
             value.wrappedValue.removeAll(where: {$0.date.addingTimeInterval(self.device.dataWindowLength) < Date.now})
@@ -64,7 +64,9 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
             peripheral.discoverCharacteristics([], for: service)
         }
         
-        self.device.status = .connected
+        DispatchQueue.main.async {
+            self.device.status = .connected
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
