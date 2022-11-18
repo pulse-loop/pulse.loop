@@ -69,8 +69,8 @@ class BLEDevice: DeviceProtocol {
     
     // MARK: Additional properties.
     var name: String { peripheral.name ?? "Unnamed device" }
-    @Published var status: DeviceStatus = .disconnected
-    @Published var dataWindowLength: TimeInterval = 5
+    var status: DeviceStatus = .disconnected
+    var dataWindowLength: TimeInterval = 5
     
     // MARK: Internal variables.
     var peripheral: CBPeripheral!

@@ -8,6 +8,14 @@
 import SwiftUI
 import Charts
 
+struct ChartView<Device: DeviceProtocol>: View {
+    @ObservedObject var value: Device.RawOpticalType
+    
+    var body: some View {
+        Text(value.value.description)
+    }
+}
+
 struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
     @ObservedObject var device: Device
     
@@ -21,25 +29,27 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
         
         return VStack {
             ScrollView(.horizontal) {
-                TimelineView(.animation) { _ in
-                    HStack {
-                        Text("\(device.rawOpticalAmbient.value)")
-                        Text("\(device.rawOpticalLED1MinusAmbient.value)")
-                        Text("\(device.rawOpticalLED1.value)")
-                        Text("\(device.rawOpticalLED2.value)")
-                        Text("\(device.rawOpticalLED3.value)")
-//                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
-//                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
-//                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)
-//                        OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
-//                        OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
-                    }
-                    .drawingGroup()
+                HStack {
+                    ChartView<Device>(value: device.rawOpticalAmbient)
+                    ChartView<Device>(value: device.rawOpticalLED1MinusAmbient)
+                    ChartView<Device>(value: device.rawOpticalLED1)
+                    ChartView<Device>(value: device.rawOpticalLED2)
+                    ChartView<Device>(value: device.rawOpticalLED3)
+                    //                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
+                    //                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
+                    //                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)
+                    //                        OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
+                    //                        OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
                 }
             }
             
-            OpticalConfigurationForm(opticalConfiguration: opticalConfiguration)
-                .navigationTitle("Optical configuration")
+            ScrollView(.vertical) {
+                LazyVStack {
+                    OpticalConfigurationForm(opticalConfiguration: opticalConfiguration)
+                        .navigationTitle("Optical configuration")
+                }
+                .padding()
+            }
         }
     }
 }
@@ -50,6 +60,6 @@ struct OpticalConfigurationView_Previews: PreviewProvider {
         device.connect()
         
         return OpticalConfigurationView(device: device)
-            .previewLayout(.fixed(width: 600, height: 2200))
+            .previewLayout(.fixed(width: 600, height: 1000))
     }
 }

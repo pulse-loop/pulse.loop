@@ -19,14 +19,12 @@ struct SingleTimingView: View {
             TextField("\(name) start",
                       value: $start,
                       formatter: TimeInterval.microsecondsFormatter)
-            .padding(-8)
             
             Divider()
             
             TextField("\(name) end",
                       value: $end,
                       formatter: TimeInterval.microsecondsFormatter)
-            .padding(-8)
         }
 #elseif os(iOS)
         HStack {

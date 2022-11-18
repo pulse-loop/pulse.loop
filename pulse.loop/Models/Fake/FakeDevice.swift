@@ -36,11 +36,11 @@ class FakeDevice: DeviceProtocol {
     }
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
-    var rawOpticalLED1MinusAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
-    var rawOpticalLED1: FakeCharacteristic<Float32> = .init(constant: 0)
-    var rawOpticalLED2: FakeCharacteristic<Float32> = .init(constant: 0)
-    var rawOpticalLED3: FakeCharacteristic<Float32> = .init(constant: 0)
+    @Published var rawOpticalAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
+    @Published var rawOpticalLED1MinusAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
+    @Published var rawOpticalLED1: FakeCharacteristic<Float32> = .init(constant: 0)
+    @Published var rawOpticalLED2: FakeCharacteristic<Float32> = .init(constant: 0)
+    @Published var rawOpticalLED3: FakeCharacteristic<Float32> = .init(constant: 0)
     
     // MARK: Settings.
     
@@ -118,13 +118,13 @@ class FakeDevice: DeviceProtocol {
             
             let new = Float32.random(in: 0...100)
             
-            self.rawOpticalAmbient.value = new
-            self.rawOpticalLED1MinusAmbient.value = new
-            self.rawOpticalLED1.value = new
-            self.rawOpticalLED2.value = new
-            self.rawOpticalLED3.value = new
-            
-            // Do not notify. Frequency is too high!
+            DispatchQueue.main.async {
+                self.rawOpticalAmbient.value = new
+                self.rawOpticalLED1MinusAmbient.value = new
+                self.rawOpticalLED1.value = new
+                self.rawOpticalLED2.value = new
+                self.rawOpticalLED3.value = new
+            }
         }
         
         self.updateTimer?.resume()

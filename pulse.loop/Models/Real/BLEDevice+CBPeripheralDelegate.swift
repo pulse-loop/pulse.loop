@@ -20,16 +20,16 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.debug("\(characteristic.value?.description ?? "Nothing") written to \(characteristic)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") written to \(characteristic)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.debug("\(characteristic.value?.description ?? "Nothing") read from \(characteristic)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic)")
 
-        let mirror = Mirror(reflecting: BLEDevice.self)
+        let info = try! typeInfo(of: BLEDevice.self)
         if let data = characteristic.value {
-            for child in mirror.children {
-                if let variable = child.value as? Characteristic<Any> {
+            for property in info.properties {
+                if let variable = try? property.get(from: self.device) as? any CharacteristicProtocol {
                     variable.setLocalValue(value: data)
                 }
             }
