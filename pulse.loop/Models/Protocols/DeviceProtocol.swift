@@ -24,6 +24,7 @@ enum DeviceStatus: CustomStringConvertible {
 protocol DeviceProtocol: ObservableObject, Equatable {
     
     associatedtype OpticalFrontendConfigurationType: OpticalFrontendConfigurationProtocol
+    associatedtype RawOpticalType: CharacteristicProtocol<Float32>
     
     // MARK: Battery service.
     
@@ -44,11 +45,11 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType)
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: [OpticalFrontendReading] { get set }
-    var rawOpticalLED1MinusAmbient: [OpticalFrontendReading] { get set }
-    var rawOpticalLED1: [OpticalFrontendReading] { get set }
-    var rawOpticalLED2: [OpticalFrontendReading] { get set }
-    var rawOpticalLED3: [OpticalFrontendReading] { get set }
+    var rawOpticalAmbient: RawOpticalType { get set }
+    var rawOpticalLED1MinusAmbient: RawOpticalType { get set }
+    var rawOpticalLED1: RawOpticalType { get set }
+    var rawOpticalLED2: RawOpticalType { get set }
+    var rawOpticalLED3: RawOpticalType { get set }
     
     // MARK: Settings.
     

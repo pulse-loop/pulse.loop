@@ -8,6 +8,7 @@
 import Foundation
 
 class FakeDevice: DeviceProtocol {
+    
     // MARK: Battery service.
     
     // MARK: Current time service.
@@ -35,11 +36,11 @@ class FakeDevice: DeviceProtocol {
     }
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: [OpticalFrontendReading] = []
-    var rawOpticalLED1MinusAmbient: [OpticalFrontendReading] = []
-    var rawOpticalLED1: [OpticalFrontendReading] = []
-    var rawOpticalLED2: [OpticalFrontendReading] = []
-    var rawOpticalLED3: [OpticalFrontendReading] = []
+    var rawOpticalAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
+    var rawOpticalLED1MinusAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
+    var rawOpticalLED1: FakeCharacteristic<Float32> = .init(constant: 0)
+    var rawOpticalLED2: FakeCharacteristic<Float32> = .init(constant: 0)
+    var rawOpticalLED3: FakeCharacteristic<Float32> = .init(constant: 0)
     
     // MARK: Settings.
     
@@ -115,19 +116,13 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
-            let new = OpticalFrontendReading(value: Float32.random(in: 0...100), date: Date.now)
+            let new = Float32.random(in: 0...100)
             
-            self.rawOpticalAmbient.append(new)
-            self.rawOpticalLED1MinusAmbient.append(new)
-            self.rawOpticalLED1.append(new)
-            self.rawOpticalLED2.append(new)
-            self.rawOpticalLED3.append(new)
-            
-            self.rawOpticalAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1MinusAmbient.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED1.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED2.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
-            self.rawOpticalLED3.removeAll(where: {$0.date.addingTimeInterval(self.dataWindowLength) < Date.now})
+            self.rawOpticalAmbient.value = new
+            self.rawOpticalLED1MinusAmbient.value = new
+            self.rawOpticalLED1.value = new
+            self.rawOpticalLED2.value = new
+            self.rawOpticalLED3.value = new
             
             // Do not notify. Frequency is too high!
         }

@@ -25,7 +25,13 @@ struct OpticalReadingChart: View {
                 .font(.title)
                 .padding()
             LineChartView(dataPoints: self.chartData)
-                .chartStyle(LineChartStyle(showLegends: false))
+                .chartStyle(
+                    LineChartStyle(
+                        lineMinHeight: 200,
+                        showLegends: false,
+                        drawing: .stroke(width: 2)
+                    )
+                )
                 .padding()
             .frame(width: 400)
         }

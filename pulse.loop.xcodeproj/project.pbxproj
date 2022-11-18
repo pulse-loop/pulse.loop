@@ -24,6 +24,7 @@
 		8B6A15052916A358000FA821 /* OpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15042916A358000FA821 /* OpticalFrontendConfiguration.swift */; };
 		8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15072916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift */; };
 		8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */; };
+		8B86AF1C29279D0A001E3DEC /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B86AF1B29279D0A001E3DEC /* Characteristic.swift */; };
 		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
@@ -56,6 +57,7 @@
 		8B6A15072916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BLEDevice+CBPeripheralDelegate.swift"; sourceTree = "<group>"; };
 		8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceManager+CBCentralManagerDelegate.swift"; sourceTree = "<group>"; };
 		8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "pulse-loop-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8B86AF1B29279D0A001E3DEC /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
 		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		8B7E66C02901B8EF00DA1C3D /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				8B86AF1B29279D0A001E3DEC /* Characteristic.swift */,
 				8B5D68BC28E8F730003B191F /* DeviceManager.swift */,
 				8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */,
 				8B6A14FA291693A5000FA821 /* CBUUIDs.swift */,
@@ -291,6 +294,7 @@
 				8B6A14FF2916A01B000FA821 /* OpticalFrontendConfigurationProtocol.swift in Sources */,
 				8B6A14F92916909E000FA821 /* BLEDevice.swift in Sources */,
 				8B6A15052916A358000FA821 /* OpticalFrontendConfiguration.swift in Sources */,
+				8B86AF1C29279D0A001E3DEC /* Characteristic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

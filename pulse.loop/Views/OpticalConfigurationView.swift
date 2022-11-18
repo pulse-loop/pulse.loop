@@ -23,13 +23,17 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
             ScrollView(.horizontal) {
                 TimelineView(.animation) { _ in
                     HStack {
-                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
-                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
-                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)
-                        OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
-                        OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
+                        Text("\(device.rawOpticalAmbient.value)")
+                        Text("\(device.rawOpticalLED1MinusAmbient.value)")
+                        Text("\(device.rawOpticalLED1.value)")
+                        Text("\(device.rawOpticalLED2.value)")
+                        Text("\(device.rawOpticalLED3.value)")
+//                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
+//                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
+//                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)
+//                        OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
+//                        OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
                     }
-                    .frame(height: 200)
                     .drawingGroup()
                 }
             }

@@ -10,7 +10,7 @@ import CoreBluetooth
 import OSLog
 
 class BLEDevice: DeviceProtocol {
-    
+
     internal var logger: Logger
     
     // MARK: Initialisers.
@@ -19,8 +19,16 @@ class BLEDevice: DeviceProtocol {
         logger.info("Initialising a new device from CoreBluetooth peripheral \"\(peripheral)\".")
         
         self.peripheral = peripheral
+        
+        // Characteristic initialization.
+        self.rawOpticalAmbient = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
+        self.rawOpticalLED1MinusAmbient = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
+        self.rawOpticalLED1 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
+        self.rawOpticalLED2 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
+        self.rawOpticalLED3 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
+        
+        // Delegate.
         self.deviceDelegate = BLEDeviceDelegate(device: self)
-                
         peripheral.delegate = self.deviceDelegate
     }
     
@@ -48,17 +56,11 @@ class BLEDevice: DeviceProtocol {
         
     }
     
-    // MARK: Raw sensor data.
-    @NotifyingCharacteristic(uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
-    var rawOpticalAmbient: [OpticalFrontendReading] = []
-    @NotifyingCharacteristic(uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
-    var rawOpticalLED1MinusAmbient: [OpticalFrontendReading] = []
-    @NotifyingCharacteristic(uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED1: [OpticalFrontendReading] = []
-    @NotifyingCharacteristic(uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED2: [OpticalFrontendReading] = []
-    @NotifyingCharacteristic(uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
-    var rawOpticalLED3: [OpticalFrontendReading] = []
+    var rawOpticalAmbient: Characteristic<Float32>
+    var rawOpticalLED1MinusAmbient: Characteristic<Float32>
+    var rawOpticalLED1: Characteristic<Float32>
+    var rawOpticalLED2: Characteristic<Float32>
+    var rawOpticalLED3: Characteristic<Float32>
     
     // MARK: Settings.
     
@@ -81,31 +83,6 @@ class BLEDevice: DeviceProtocol {
     
     func disconnect() {
         DeviceManager.shared.disconnect(from: self)
-    }
-}
-
-protocol CharacteristicWrapper {
-    var uuid: CBUUID { get }
-}
-
-@propertyWrapper
-struct NotifyingCharacteristic<T>: CharacteristicWrapper {
-    let uuid: CBUUID
-    var wrappedValue: T
-    
-    init(wrappedValue: T, uuid: CBUUID) {
-        self.uuid = uuid
-        self.wrappedValue = wrappedValue
-    }
-}
-
-struct PollingCharacteristic<T>: CharacteristicWrapper {
-    let uuid: CBUUID
-    var wrappedValue: T
-    
-    init(wrappedValue: T, uuid: CBUUID) {
-        self.uuid = uuid
-        self.wrappedValue = wrappedValue
     }
 }
 
