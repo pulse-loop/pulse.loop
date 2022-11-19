@@ -54,6 +54,7 @@ class FakeDevice: DeviceProtocol {
     
     // MARK: Internal variables.
     private var updateTimer: DispatchSourceTimer?
+    private var counter: Float = 0
     
     // MARK: Initialisers.
     init() {
@@ -116,7 +117,8 @@ class FakeDevice: DeviceProtocol {
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
-            let new = Float32.random(in: 0...100)
+            let new = sinf(self.counter) * 100
+            self.counter += 0.1
             
             self.rawOpticalAmbient.setLocalValue(value: new)
             self.rawOpticalLED1MinusAmbient.setLocalValue(value: new)

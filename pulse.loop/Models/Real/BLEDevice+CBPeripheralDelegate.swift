@@ -20,11 +20,11 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.trace("\(characteristic.value?.description ?? "Nothing") written to \(characteristic)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") written to \(characteristic.uuid)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic.uuid)")
 
         let info = try! typeInfo(of: BLEDevice.self)
         if let data = characteristic.value {

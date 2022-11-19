@@ -25,11 +25,15 @@ struct DeviceSelectionView: View {
         .onAppear {
             manager.scan()
         }
+        .navigationTitle("Devices")
     }
 }
 
 struct DeviceSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        DeviceSelectionView(manager: DeviceManager.shared, selectedDevice: .constant(FakeDevice()))
+        Text("AAA")
+            .popover(isPresented: .constant(true)) {
+                DeviceSelectionView(manager: DeviceManager.shared, selectedDevice: .constant(FakeDevice()))
+            }
     }
 }

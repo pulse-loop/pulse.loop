@@ -28,7 +28,6 @@
 		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8BB68AD92906B3D200AD753B /* OpticalConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
-		8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */; };
@@ -61,7 +60,6 @@
 		8B86AF1B29279D0A001E3DEC /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
-		8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalReadingChart.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
 		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeOpticalFrontendConfiguration.swift; sourceTree = "<group>"; };
@@ -163,14 +161,13 @@
 			isa = PBXGroup;
 			children = (
 				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
+				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
 				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
 				8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */,
 				8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */,
-				8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */,
 				8B5830B52927E823006DADA3 /* ChartView.swift */,
 				8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */,
 				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
-				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 				8B5830B62927E823006DADA3 /* ChartView.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
-				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
 				8B6A14FB291693A5000FA821 /* CBUUIDs.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
 				8B6A14F729168FD0000FA821 /* DeviceSelectionView.swift in Sources */,

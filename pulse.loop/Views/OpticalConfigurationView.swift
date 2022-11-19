@@ -22,17 +22,22 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
         return VStack {
             ScrollView(.horizontal) {
                 HStack {
-                    ChartView(value: device.rawOpticalAmbient)
-                    ChartView(value: device.rawOpticalLED1MinusAmbient)
-                    ChartView(value: device.rawOpticalLED1)
-                    ChartView(value: device.rawOpticalLED2)
-                    ChartView(value: device.rawOpticalLED3)
-                    //                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
-                    //                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
-                    //                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)
-                    //                        OpticalReadingChart(title: "LED2", color: .green, data: device.rawOpticalLED2)
-                    //                        OpticalReadingChart(title: "LED3", color: .yellow, data: device.rawOpticalLED3)
+                    ChartView(value: device.rawOpticalAmbient, title: "Ambient", lineColor: .blue, smooth: true)
+                        .frame(width: 300, height: 320)
+                    
+                    ChartView(value: device.rawOpticalLED1MinusAmbient, title: "LED1 - Ambient", lineColor: .yellow, smooth: true)
+                        .frame(width: 300, height: 320)
+
+                    ChartView(value: device.rawOpticalLED1, title: "LED1", lineColor: .red, smooth: true)
+                        .frame(width: 300, height: 320)
+
+                    ChartView(value: device.rawOpticalLED2, title: "LED2", lineColor: .green, smooth: true)
+                        .frame(width: 300, height: 320)
+
+                    ChartView(value: device.rawOpticalLED3, title: "LED3", lineColor: .gray, smooth: true)
+                        .frame(width: 300, height: 320)
                 }
+                .padding()
             }
             
             ScrollView(.vertical) {

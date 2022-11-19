@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
     @ObservedObject var opticalConfiguration: OpticalConfiguration
-    var ledColors: [Color] = [.blue.opacity(0.75), .red.opacity(0.75), .green.opacity(0.75), .yellow.opacity(0.75)]
+    var ledColors: [Color] = [.blue.opacity(0.75), .red.opacity(0.75), .green.opacity(0.75), .gray.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
     @State var scale: CGFloat = 1
