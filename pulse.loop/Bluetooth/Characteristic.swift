@@ -8,14 +8,15 @@
 import Foundation
 import CoreBluetooth
 
-protocol CharacteristicProtocol<T>: ObservableObject {
-    associatedtype T
+protocol CharacteristicProtocol<T>: ObservableObject, Equatable {
+    associatedtype T: Equatable
     
-    var value: T { get set }
+    var value: T { get }
     var uuid: CBUUID { get }
     var type: Any.Type { get }
     
-    func setLocalValue(value: Data)
+    func setLocalValue(data: Data)
+    func setLocalValue(value: T)
 }
 
 extension CharacteristicProtocol {
@@ -24,21 +25,36 @@ extension CharacteristicProtocol {
     }
 }
 
-class FakeCharacteristic<T>: CharacteristicProtocol {
-    @Published var value: T
+class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
+    var value: T
     let uuid: CBUUID = CBUUID()
     
     init(constant: T) {
         self.value = constant
     }
     
-    func setLocalValue(value: Data) {
-        self.value = value.withUnsafeBytes({$0.load(as: T.self)})
-        self.objectWillChange.send()
+    func setLocalValue(data: Data) {
+        self.value = data.withUnsafeBytes({$0.load(as: T.self)})
+        
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+    
+    func setLocalValue(value: T) {
+        self.value = value
+        
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+    
+    static func == (lhs: FakeCharacteristic<T>, rhs: FakeCharacteristic<T>) -> Bool {
+        return lhs.value == rhs.value
     }
 }
 
-class Characteristic<T>: CharacteristicProtocol {
+class Characteristic<T: Equatable>: CharacteristicProtocol {
     private var internalValue: T
     private let peripheral: CBPeripheral
     private var characteristic: CBCharacteristic?
@@ -76,8 +92,24 @@ class Characteristic<T>: CharacteristicProtocol {
         }
     }
     
-    func setLocalValue(value: Data) {
-        self.internalValue = value.withUnsafeBytes({$0.load(as: T.self)})
+    static func == (lhs: Characteristic<T>, rhs: Characteristic<T>) -> Bool {
+        return lhs.value == rhs.value
+    }
+    
+    func setLocalValue(data: Data) {
+        // Padding.
+        let requiredPadding = MemoryLayout<T>.size - data.count
+        var paddedData = Data(count: requiredPadding)
+        paddedData.append(data)
+        self.internalValue = paddedData.withUnsafeBytes({$0.load(as: T.self)})
+        
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+    
+    func setLocalValue(value: T) {
+        self.value = value
         
         DispatchQueue.main.async {
             self.objectWillChange.send()

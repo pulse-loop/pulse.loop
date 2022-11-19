@@ -29,8 +29,9 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
         let info = try! typeInfo(of: BLEDevice.self)
         if let data = characteristic.value {
             for property in info.properties {
-                if let variable = try? property.get(from: self.device) as? any CharacteristicProtocol {
-                    variable.setLocalValue(value: data)
+                if let variable = try? property.get(from: self.device) as? any CharacteristicProtocol,
+                   variable.uuid == characteristic.uuid {
+                    variable.setLocalValue(data: data)
                 }
             }
         }

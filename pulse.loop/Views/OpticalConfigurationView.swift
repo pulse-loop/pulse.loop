@@ -8,14 +8,6 @@
 import SwiftUI
 import Charts
 
-struct ChartView<Device: DeviceProtocol>: View {
-    @ObservedObject var value: Device.RawOpticalType
-    
-    var body: some View {
-        Text(value.value.description)
-    }
-}
-
 struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
     @ObservedObject var device: Device
     
@@ -30,11 +22,11 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
         return VStack {
             ScrollView(.horizontal) {
                 HStack {
-                    ChartView<Device>(value: device.rawOpticalAmbient)
-                    ChartView<Device>(value: device.rawOpticalLED1MinusAmbient)
-                    ChartView<Device>(value: device.rawOpticalLED1)
-                    ChartView<Device>(value: device.rawOpticalLED2)
-                    ChartView<Device>(value: device.rawOpticalLED3)
+                    ChartView(value: device.rawOpticalAmbient)
+                    ChartView(value: device.rawOpticalLED1MinusAmbient)
+                    ChartView(value: device.rawOpticalLED1)
+                    ChartView(value: device.rawOpticalLED2)
+                    ChartView(value: device.rawOpticalLED3)
                     //                        OpticalReadingChart(title: "Ambient", color: .blue, data: device.rawOpticalAmbient)
                     //                        OpticalReadingChart(title: "LED1 - Ambient", color: .secondary, data: device.rawOpticalLED1MinusAmbient)
                     //                        OpticalReadingChart(title: "LED1", color: .red, data: device.rawOpticalLED1)

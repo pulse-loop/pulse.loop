@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B05ADBC2923D61C00D688EF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 8B05ADBB2923D61C00D688EF /* SwiftUICharts */; };
 		8B05ADBE2923D63500D688EF /* OpticalFrontendReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05ADBD2923D63500D688EF /* OpticalFrontendReading.swift */; };
 		8B1F230C291D383D00B9BF9F /* OpticalConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */; };
 		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
+		8B5830B62927E823006DADA3 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5830B52927E823006DADA3 /* ChartView.swift */; };
 		8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D68BC28E8F730003B191F /* DeviceManager.swift */; };
 		8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */; };
 		8B678B9128AFEC79009ECC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9028AFEC79009ECC97 /* Assets.xcassets */; };
@@ -40,6 +40,7 @@
 		8B05ADBD2923D63500D688EF /* OpticalFrontendReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalFrontendReading.swift; sourceTree = "<group>"; };
 		8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalConfigurationForm.swift; sourceTree = "<group>"; };
 		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
+		8B5830B52927E823006DADA3 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8B5D68BC28E8F730003B191F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		8B678B8928AFEC78009ECC97 /* pulse.loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulse.loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pulse_loopApp.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BE66D032922E816000A76AA /* Runtime in Frameworks */,
-				8B05ADBC2923D61C00D688EF /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +167,7 @@
 				8B1F230B291D383D00B9BF9F /* OpticalConfigurationForm.swift */,
 				8BB68AD82906B3D200AD753B /* OpticalConfigurationView.swift */,
 				8BB68ADF2906C19900AD753B /* OpticalReadingChart.swift */,
+				8B5830B52927E823006DADA3 /* ChartView.swift */,
 				8BE12B6F2914132400AD2FF9 /* OpticalTimingView.swift */,
 				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
 				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
@@ -212,7 +213,6 @@
 			name = pulse.loop;
 			packageProductDependencies = (
 				8BE66D022922E816000A76AA /* Runtime */,
-				8B05ADBB2923D61C00D688EF /* SwiftUICharts */,
 			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
@@ -244,7 +244,6 @@
 			mainGroup = 8B678B8028AFEC78009ECC97;
 			packageReferences = (
 				8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */,
-				8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 8B678B8A28AFEC78009ECC97 /* Products */;
 			projectDirPath = "";
@@ -282,6 +281,7 @@
 				8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* OpticalTimingView.swift in Sources */,
 				8B05ADBE2923D63500D688EF /* OpticalFrontendReading.swift in Sources */,
+				8B5830B62927E823006DADA3 /* ChartView.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
 				8BB68AE02906C19900AD753B /* OpticalReadingChart.swift in Sources */,
@@ -526,14 +526,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mecid/SwiftUICharts";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/wickwirew/Runtime.git";
@@ -545,11 +537,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8B05ADBB2923D61C00D688EF /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B05ADBA2923D61C00D688EF /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
 		8BE66D022922E816000A76AA /* Runtime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */;
