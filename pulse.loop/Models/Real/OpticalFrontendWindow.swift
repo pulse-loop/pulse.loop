@@ -1,5 +1,5 @@
 //
-//  OpticalFrontendConfiguration.swift
+//  OpticalFrontendWindow.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 05/11/22.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol, CharacteristicContainer {
+class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContainer {
     class LED1PhaseType: LEDPhaseProtocol, CharacteristicContainer {
         var led_st: Characteristic<TimeInterval>
         var led_end: Characteristic<TimeInterval>
@@ -109,10 +109,6 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol, Charac
     var LED3Phase: LED3PhaseType
     var totalWindowLength: Characteristic<TimeInterval>
     var dynamicPowerDown: DynamicPowerDownPhaseType
-    var tiaCapacitor1: Characteristic<TIACapacitor>
-    var tiaCapacitor2: Characteristic<TIACapacitor>
-    var tiaResistor1: Characteristic<TIAResistor>
-    var tiaResistor2: Characteristic<TIAResistor>
     
     init(peripheral: CBPeripheral) {
         ambientPhase = AmbientPhaseType(peripheral: peripheral)
@@ -121,9 +117,5 @@ class OpticalFrontendConfiguration: OpticalFrontendConfigurationProtocol, Charac
         self.LED3Phase = Self.LED3PhaseType(peripheral: peripheral)
         totalWindowLength = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.totalWindowLengthCharacteristicIdentifier)
         dynamicPowerDown = DynamicPowerDownPhaseType(peripheral: peripheral)
-        tiaCapacitor1 = .init(initialValue: .C_5_pF, peripheral: peripheral, uuid: CBUUIDs.tiaCapacitor1CharacteristicIdentifier)
-        tiaCapacitor2 = .init(initialValue: .C_5_pF, peripheral: peripheral, uuid: CBUUIDs.tiaCapacitor2CharacteristicIdentifier)
-        tiaResistor1 = .init(initialValue: .R_10_kΩ, peripheral: peripheral, uuid: CBUUIDs.tiaResistor1CharacteristicIdentifier)
-        tiaResistor2 = .init(initialValue: .R_10_kΩ, peripheral: peripheral, uuid: CBUUIDs.tiaResistor2CharacteristicIdentifier)
     }
 }

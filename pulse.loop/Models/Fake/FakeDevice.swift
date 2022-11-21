@@ -24,17 +24,9 @@ class FakeDevice: DeviceProtocol {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    typealias OpticalFrontendConfigurationType = FakeOpticalFrontendConfiguration
-    var opticalFrontendConfiguration: OpticalFrontendConfigurationType
-    
-    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType {
-        return self.opticalFrontendConfiguration
-    }
-    
-    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType) {
-        self.opticalFrontendConfiguration = configuration
-    }
-    
+    typealias OpticalFrontendWindowType = FakeOpticalFrontendWindow
+    var opticalFrontendWindow: OpticalFrontendWindowType
+        
     // MARK: Raw sensor data.
     var rawOpticalAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
     var rawOpticalLED1MinusAmbient: FakeCharacteristic<Float32> = .init(constant: 0)
@@ -58,8 +50,8 @@ class FakeDevice: DeviceProtocol {
     
     // MARK: Initialisers.
     init() {
-        self.opticalFrontendConfiguration = FakeOpticalFrontendConfiguration(
-            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhaseType(
+        self.opticalFrontendWindow = FakeOpticalFrontendWindow(
+            ambientPhase: FakeOpticalFrontendWindow.AmbientPhaseType(
                 sample_st: TimeInterval(microseconds: 2225),
                 sample_end: TimeInterval(microseconds: 2299.75),
                 reset_st: TimeInterval(microseconds: 2600),
@@ -67,7 +59,7 @@ class FakeDevice: DeviceProtocol {
                 conv_st: TimeInterval(microseconds: 2300),
                 conv_end: TimeInterval(microseconds: 2500)
             ),
-            LED1Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED1Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 1100),
                 led_end: TimeInterval(microseconds: 1400),
                 sample_st: TimeInterval(microseconds: 1225),
@@ -77,7 +69,7 @@ class FakeDevice: DeviceProtocol {
                 conv_st: TimeInterval(microseconds: 1300),
                 conv_end: TimeInterval(microseconds: 1500)
             ),
-            LED2Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED2Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 100),
                 led_end: TimeInterval(microseconds: 400),
                 sample_st: TimeInterval(microseconds: 225),
@@ -87,7 +79,7 @@ class FakeDevice: DeviceProtocol {
                 conv_st: TimeInterval(microseconds: 300),
                 conv_end: TimeInterval(microseconds: 500)
             ),
-            LED3Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED3Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 3100),
                 led_end: TimeInterval(microseconds: 3400),
                 sample_st: TimeInterval(microseconds: 3225),
@@ -98,7 +90,7 @@ class FakeDevice: DeviceProtocol {
                 conv_end: TimeInterval(microseconds: 3500)
             ),
             totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhaseType(
+            dynamicPowerDown: FakeOpticalFrontendWindow.DynamicPowerDownPhaseType(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
             ),

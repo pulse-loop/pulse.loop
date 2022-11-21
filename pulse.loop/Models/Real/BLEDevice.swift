@@ -27,7 +27,7 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
         self.rawOpticalLED2 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
         self.rawOpticalLED3 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
         
-        self.opticalFrontendConfiguration = OpticalFrontendConfiguration(peripheral: peripheral)
+        self.opticalFrontendWindow = OpticalFrontendWindow(peripheral: peripheral)
         
         // Delegate.
         self.deviceDelegate = BLEDeviceDelegate(device: self)
@@ -49,7 +49,7 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    var opticalFrontendConfiguration: OpticalFrontendConfiguration
+    var opticalFrontendWindow: OpticalFrontendWindow
     
     // MARK: Raw sensor data.
     var rawOpticalAmbient: Characteristic<Float32>

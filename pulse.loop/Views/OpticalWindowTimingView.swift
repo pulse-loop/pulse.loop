@@ -1,5 +1,5 @@
 //
-//  OpticalTimingView.swift
+//  OpticalWindowTimingView.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 03/11/22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
-    @ObservedObject var opticalConfiguration: OpticalConfiguration
+struct OpticalWindowTimingView<OpticalWindowConfiguration: OpticalFrontendWindowProtocol>: View {
+    @ObservedObject var windowConfiguration: OpticalWindowConfiguration
     var ledColors: [Color] = [.blue.opacity(0.75), .green.opacity(0.75), .red.opacity(0.75), .gray.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
@@ -20,15 +20,15 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                 ScrollView(.horizontal) {
                     Canvas { context, size in
                         func rectangleForInterval(from start: TimeInterval, to end: TimeInterval) -> Path {
-                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength.value)
+                            let xStart = size.width * (start/windowConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * (end/windowConfiguration.totalWindowLength.value)
                             let rect = CGRect(x: xStart, y: 0, width: xEnd - xStart, height: size.height)
                             return Path(rect)
                         }
                         
                         func rectangleForInterval(from start: TimeInterval, to end: TimeInterval, band: Int) -> Path {
-                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength.value)
+                            let xStart = size.width * (start/windowConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * (end/windowConfiguration.totalWindowLength.value)
                             
                             let bandHeight = size.height / 4
                             let yStart = CGFloat(band) * bandHeight
@@ -38,8 +38,8 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         }
                         
                         // Fill dynamic power down
-                        let dynamicPowerDownPath = rectangleForInterval(from: opticalConfiguration.dynamicPowerDown.start.value,
-                                                                        to: opticalConfiguration.dynamicPowerDown.end.value)
+                        let dynamicPowerDownPath = rectangleForInterval(from: windowConfiguration.dynamicPowerDown.start.value,
+                                                                        to: windowConfiguration.dynamicPowerDown.end.value)
                         context.fill(dynamicPowerDownPath, with: .linearGradient(
                             .init(stops: [
                                 .init(color: .primary.opacity(0.1), location: 0),
@@ -55,16 +55,16 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         let colors: [Color] = [.clear, .primary.opacity(0.1), .clear, .primary.opacity(0.1)]
                         
                         for i in 0..<4 {
-                            let band = rectangleForInterval(from: .zero, to: opticalConfiguration.dynamicPowerDown.start.value, band: i)
+                            let band = rectangleForInterval(from: .zero, to: windowConfiguration.dynamicPowerDown.start.value, band: i)
                             context.fill(band, with: .color(colors[i]))
                         }
                         
                         // Overlay indicators: lighting
                         let lightingTuples = [
                             (0, 0),
-                            (opticalConfiguration.LED1Phase.led_st.value, opticalConfiguration.LED1Phase.led_end.value),
-                            (opticalConfiguration.LED2Phase.led_st.value, opticalConfiguration.LED2Phase.led_end.value),
-                            (opticalConfiguration.LED3Phase.led_st.value, opticalConfiguration.LED3Phase.led_end.value)
+                            (windowConfiguration.LED1Phase.led_st.value, windowConfiguration.LED1Phase.led_end.value),
+                            (windowConfiguration.LED2Phase.led_st.value, windowConfiguration.LED2Phase.led_end.value),
+                            (windowConfiguration.LED3Phase.led_st.value, windowConfiguration.LED3Phase.led_end.value)
                         ]
                         
                         for tuple in lightingTuples.enumerated() {
@@ -74,10 +74,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: sampling
                         let samplingTuples = [
-                            (opticalConfiguration.ambientPhase.sample_st.value, opticalConfiguration.ambientPhase.sample_end.value),
-                            (opticalConfiguration.LED1Phase.sample_st.value, opticalConfiguration.LED1Phase.sample_end.value),
-                            (opticalConfiguration.LED2Phase.sample_st.value, opticalConfiguration.LED2Phase.sample_end.value),
-                            (opticalConfiguration.LED3Phase.sample_st.value, opticalConfiguration.LED3Phase.sample_end.value)
+                            (windowConfiguration.ambientPhase.sample_st.value, windowConfiguration.ambientPhase.sample_end.value),
+                            (windowConfiguration.LED1Phase.sample_st.value, windowConfiguration.LED1Phase.sample_end.value),
+                            (windowConfiguration.LED2Phase.sample_st.value, windowConfiguration.LED2Phase.sample_end.value),
+                            (windowConfiguration.LED3Phase.sample_st.value, windowConfiguration.LED3Phase.sample_end.value)
                         ]
                         
                         for tuple in samplingTuples.enumerated() {
@@ -87,10 +87,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: conversion
                         let conversionTuples = [
-                            (opticalConfiguration.ambientPhase.conv_st.value, opticalConfiguration.ambientPhase.conv_end.value),
-                            (opticalConfiguration.LED1Phase.conv_st.value, opticalConfiguration.LED1Phase.conv_end.value),
-                            (opticalConfiguration.LED2Phase.conv_st.value, opticalConfiguration.LED2Phase.conv_end.value),
-                            (opticalConfiguration.LED3Phase.conv_st.value, opticalConfiguration.LED3Phase.conv_end.value)
+                            (windowConfiguration.ambientPhase.conv_st.value, windowConfiguration.ambientPhase.conv_end.value),
+                            (windowConfiguration.LED1Phase.conv_st.value, windowConfiguration.LED1Phase.conv_end.value),
+                            (windowConfiguration.LED2Phase.conv_st.value, windowConfiguration.LED2Phase.conv_end.value),
+                            (windowConfiguration.LED3Phase.conv_st.value, windowConfiguration.LED3Phase.conv_end.value)
                         ]
                         
                         for tuple in conversionTuples.enumerated() {
@@ -100,10 +100,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: reset
                         let resetTuples = [
-                            (opticalConfiguration.ambientPhase.reset_st.value, opticalConfiguration.ambientPhase.reset_end.value),
-                            (opticalConfiguration.LED1Phase.reset_st.value, opticalConfiguration.LED1Phase.reset_end.value),
-                            (opticalConfiguration.LED2Phase.reset_st.value, opticalConfiguration.LED2Phase.reset_end.value),
-                            (opticalConfiguration.LED3Phase.reset_st.value, opticalConfiguration.LED3Phase.reset_end.value)
+                            (windowConfiguration.ambientPhase.reset_st.value, windowConfiguration.ambientPhase.reset_end.value),
+                            (windowConfiguration.LED1Phase.reset_st.value, windowConfiguration.LED1Phase.reset_end.value),
+                            (windowConfiguration.LED2Phase.reset_st.value, windowConfiguration.LED2Phase.reset_end.value),
+                            (windowConfiguration.LED3Phase.reset_st.value, windowConfiguration.LED3Phase.reset_end.value)
                         ]
                         
                         for tuple in resetTuples.enumerated() {
@@ -175,10 +175,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
     }
 }
 
-struct OpticalTimingView_Previews: PreviewProvider {
+struct OpticalWindowTimingView_Previews: PreviewProvider {
     static var previews: some View {
-        let conf = FakeOpticalFrontendConfiguration(
-            ambientPhase: FakeOpticalFrontendConfiguration.AmbientPhaseType(
+        let conf = FakeOpticalFrontendWindow(
+            ambientPhase: FakeOpticalFrontendWindow.AmbientPhaseType(
                 sample_st: TimeInterval(microseconds: 2225),
                 sample_end: TimeInterval(microseconds: 2299.75),
                 reset_st: TimeInterval(microseconds: 2600),
@@ -186,7 +186,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 2300),
                 conv_end: TimeInterval(microseconds: 2500)
             ),
-            LED1Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED1Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 1100),
                 led_end: TimeInterval(microseconds: 1400),
                 sample_st: TimeInterval(microseconds: 1225),
@@ -196,7 +196,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 1300),
                 conv_end: TimeInterval(microseconds: 1500)
             ),
-            LED2Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED2Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 100),
                 led_end: TimeInterval(microseconds: 400),
                 sample_st: TimeInterval(microseconds: 225),
@@ -206,7 +206,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_st: TimeInterval(microseconds: 300),
                 conv_end: TimeInterval(microseconds: 500)
             ),
-            LED3Phase: FakeOpticalFrontendConfiguration.LEDPhase(
+            LED3Phase: FakeOpticalFrontendWindow.LEDPhase(
                 led_st: TimeInterval(microseconds: 3100),
                 led_end: TimeInterval(microseconds: 3400),
                 sample_st: TimeInterval(microseconds: 3225),
@@ -217,7 +217,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
                 conv_end: TimeInterval(microseconds: 3500)
             ),
             totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: FakeOpticalFrontendConfiguration.DynamicPowerDownPhaseType(
+            dynamicPowerDown: FakeOpticalFrontendWindow.DynamicPowerDownPhaseType(
                 start: TimeInterval(microseconds: 5000),
                 end: TimeInterval(microseconds: 10000)
             ),
@@ -227,7 +227,7 @@ struct OpticalTimingView_Previews: PreviewProvider {
             tiaResistor2: .R_25_kΩ
         )
         
-        OpticalTimingView(opticalConfiguration: conf)
+        OpticalWindowTimingView(windowConfiguration: conf)
             .previewLayout(.sizeThatFits)
     }
 }

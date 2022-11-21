@@ -1,5 +1,5 @@
 //
-//  OpticalConfigurationForm.swift
+//  OpticalWindowConfigurationForm.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 10/11/22.
@@ -7,82 +7,83 @@
 
 import SwiftUI
 
-enum GNAH: Int, CaseIterable, Equatable, CustomStringConvertible {
-    case ambient
-    case led1
-    case led2
-    case led3
+struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFrontendWindowProtocol>: View {
     
-    var description: String {
-        switch self {
-        case .ambient: return "Ambient"
-        case .led1: return "LED 1"
-        case .led2: return "LED 2"
-        case .led3: return "LED 3"
+    enum FormSection: Int, CaseIterable, Equatable, CustomStringConvertible {
+        case ambient
+        case led1
+        case led2
+        case led3
+        
+        var description: String {
+            switch self {
+            case .ambient: return "Ambient"
+            case .led1: return "LED 1"
+            case .led2: return "LED 2"
+            case .led3: return "LED 3"
+            }
         }
     }
-}
 
-struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
     
-    @State var currentSection: GNAH = .ambient
-    @Binding var opticalConfiguration: OpticalConfiguration
+    @State var currentSection: FormSection = .ambient
+    @Binding var windowConfiguration: OpticalWindowConfiguration
     
     var body: some View {
         Form {
-            Section("Transimpedance amplifier") {
-                
-                Group {
-                    Picker(selection: $opticalConfiguration.tiaResistor1.value, label: Text("Resistor #1")) {
-                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
-                            Text(r.description).tag(r)
-                        }
-                    }
-                    
-                    
-                    Picker(selection: $opticalConfiguration.tiaResistor2.value, label: Text("Resistor #2")) {
-                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
-                            Text(r.description).tag(r)
-                        }
-                    }
-                    
-                    
-                    Picker(selection: $opticalConfiguration.tiaCapacitor1.value, label: Text("Capacitor #1")) {
-                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
-                            Text(r.description).tag(r)
-                        }
-                    }
-                    
-                    
-                    Picker(selection: $opticalConfiguration.tiaCapacitor2.value, label: Text("Capacitor #2")) {
-                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
-                            Text(r.description).tag(r)
-                        }
-                    }
-                }
-            }
+//            Section("Transimpedance amplifier") {
+//                
+//                Group {
+//                    Picker(selection: $windowConfiguration.tiaResistor1.value, label: Text("Resistor #1")) {
+//                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
+//                            Text(r.description).tag(r)
+//                        }
+//                    }
+//                    
+//                    
+//                    Picker(selection: $windowConfiguration.tiaResistor2.value, label: Text("Resistor #2")) {
+//                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
+//                            Text(r.description).tag(r)
+//                        }
+//                    }
+//                    
+//                    
+//                    Picker(selection: $windowConfiguration.tiaCapacitor1.value, label: Text("Capacitor #1")) {
+//                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
+//                            Text(r.description).tag(r)
+//                        }
+//                    }
+//                    
+//                    
+//                    Picker(selection: $windowConfiguration.tiaCapacitor2.value, label: Text("Capacitor #2")) {
+//                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
+//                            Text(r.description).tag(r)
+//                        }
+//                    }
+//                }
+//            }
 #if os(iOS)
             .pickerStyle(.segmented)
 #endif
             
             Section("Timing") {
                 Group {
-                    OpticalTimingView(opticalConfiguration: opticalConfiguration)
+                    OpticalWindowTimingView(windowConfiguration: windowConfiguration)
                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                     TextField("Window length",
-                              value: $opticalConfiguration.totalWindowLength.value,
+                              value: $windowConfiguration.totalWindowLength.value,
                               formatter: TimeInterval.microsecondsFormatter)
 
                     SingleTimingView(name: "Dynamic PD",
-                                     start: $opticalConfiguration.dynamicPowerDown.start.value,
-                                     end: $opticalConfiguration.dynamicPowerDown.end.value)
+                                     start: $windowConfiguration.dynamicPowerDown.start.value,
+                                     end: $windowConfiguration.dynamicPowerDown.end.value)
                 }
                 
 #if os(macOS)
                 TabView {
                     Form {
-                        AmbientTimingConfigurationView(title: "Ambient", phase: $opticalConfiguration.ambientPhase)
+                        AmbientTimingConfigurationView(title: "Ambient", phase: $windowConfiguration.ambientPhase)
                     }
                     .tabItem {
                         Label {
@@ -93,7 +94,7 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
                     }
 
                     Form {
-                        LEDTimingConfigurationView(title: "LED 1", phase: $opticalConfiguration.LED1Phase)
+                        LEDTimingConfigurationView(title: "LED 1", phase: $windowConfiguration.LED1Phase)
                     }
                     .tabItem {
                         Label {
@@ -104,7 +105,7 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
                     }
 
                     Form {
-                        LEDTimingConfigurationView(title: "LED 2", phase: $opticalConfiguration.LED2Phase)
+                        LEDTimingConfigurationView(title: "LED 2", phase: $windowConfiguration.LED2Phase)
                     }
                     .tabItem {
                         Label {
@@ -115,7 +116,7 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
                     }
 
                     Form {
-                        LEDTimingConfigurationView(title: "LED 3", phase: $opticalConfiguration.LED3Phase)
+                        LEDTimingConfigurationView(title: "LED 3", phase: $windowConfiguration.LED3Phase)
                     }
                     .tabItem {
                         Label {
@@ -135,13 +136,13 @@ struct OpticalConfigurationForm<OpticalConfiguration: OpticalFrontendConfigurati
 
                 switch currentSection {
                 case .ambient:
-                    AmbientTimingConfigurationView(title: "Ambient", phase: $opticalConfiguration.ambientPhase)
+                    AmbientTimingConfigurationView(title: "Ambient", phase: $windowConfiguration.ambientPhase)
                 case .led1:
-                    LEDTimingConfigurationView(title: "LED 1", phase: $opticalConfiguration.LED1Phase)
+                    LEDTimingConfigurationView(title: "LED 1", phase: $windowConfiguration.LED1Phase)
                 case .led2:
-                    LEDTimingConfigurationView(title: "LED 2", phase: $opticalConfiguration.LED2Phase)
+                    LEDTimingConfigurationView(title: "LED 2", phase: $windowConfiguration.LED2Phase)
                 case .led3:
-                    LEDTimingConfigurationView(title: "LED 3", phase: $opticalConfiguration.LED3Phase)
+                    LEDTimingConfigurationView(title: "LED 3", phase: $windowConfiguration.LED3Phase)
                 }
 #endif
             }
@@ -179,11 +180,11 @@ struct AmbientTimingConfigurationView<Phase: AmbientPhaseProtocol>: View {
     }
 }
 
-struct OpticalConfigurationForm_Previews: PreviewProvider {
+struct OpticalWindowConfigurationForm_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(.vertical) {
             LazyVStack {
-                OpticalConfigurationForm(opticalConfiguration: .constant(FakeDevice().getOpticalFrontendConfiguration()))
+                OpticalWindowConfigurationForm(windowConfiguration: .constant(FakeDevice().opticalFrontendWindow))
             }
             .padding()
         }

@@ -1,5 +1,5 @@
 //
-//  OpticalConfigurationView.swift
+//  OpticalWindowConfigurationView.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 24/10/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
+struct OpticalWindowConfigurationView<Device>: View where Device: DeviceProtocol {
     @ObservedObject var device: Device
     
     var body: some View {
@@ -34,18 +34,18 @@ struct OpticalConfigurationView<Device>: View where Device: DeviceProtocol {
                 .padding()
             }
             
-              OpticalConfigurationForm(opticalConfiguration: $device.opticalFrontendConfiguration)
-                    .navigationTitle("Optical configuration")
+              OpticalWindowConfigurationForm(windowConfiguration: $device.opticalFrontendWindow)
         }
+        .navigationTitle("Window configuration")
     }
 }
 
-struct OpticalConfigurationView_Previews: PreviewProvider {
+struct OpticalWindowConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         let device = FakeDevice()
         device.connect()
         
-        return OpticalConfigurationView(device: device)
+        return OpticalWindowConfigurationView(device: device)
             .previewLayout(.fixed(width: 600, height: 1000))
     }
 }

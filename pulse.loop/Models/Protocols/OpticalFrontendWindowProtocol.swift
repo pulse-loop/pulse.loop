@@ -1,5 +1,5 @@
 //
-//  OpticalFrontendConfigurationProtocol.swift
+//  OpticalFrontendWindowProtocol.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 05/11/22.
@@ -38,7 +38,7 @@ protocol DynamicPowerDownPhaseProtocol: ObservableObject {
     var end: TimeIntervalType { get set }
 }
 
-protocol OpticalFrontendConfigurationProtocol: ObservableObject {
+protocol OpticalFrontendWindowProtocol: ObservableObject {
     
     associatedtype LED1PhaseType: LEDPhaseProtocol
     associatedtype LED2PhaseType: LEDPhaseProtocol
@@ -46,17 +46,11 @@ protocol OpticalFrontendConfigurationProtocol: ObservableObject {
     associatedtype AmbientPhaseType: AmbientPhaseProtocol
     associatedtype DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol
     associatedtype TimeIntervalType: CharacteristicProtocol<TimeInterval>
-    associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor>
-    associatedtype TIACapacitorType: CharacteristicProtocol<TIACapacitor>
-    
+
     var ambientPhase: AmbientPhaseType { get set }
     var LED1Phase: LED1PhaseType { get set }
     var LED2Phase: LED2PhaseType { get set }
     var LED3Phase: LED3PhaseType { get set }
     var totalWindowLength: TimeIntervalType { get set }
     var dynamicPowerDown: DynamicPowerDownPhaseType { get set }
-    var tiaCapacitor1: TIACapacitorType { get set }
-    var tiaCapacitor2: TIACapacitorType { get set }
-    var tiaResistor1: TIAResistorType { get set }
-    var tiaResistor2: TIAResistorType { get set }
 }

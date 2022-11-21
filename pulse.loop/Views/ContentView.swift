@@ -18,19 +18,19 @@ struct ContentView: View {
             List {
                 NavigationLink(destination: {
                     if let device = device as? FakeDevice {
-                        OpticalConfigurationView(device: device)
+                        OpticalWindowConfigurationView(device: device)
                     } else if let device = device as? BLEDevice {
-                        OpticalConfigurationView(device: device)
+                        OpticalWindowConfigurationView(device: device)
                     }
                 }, label: {
-                    Label("Optical configuration", systemImage: "lightbulb")
+                    Label("Window configuration", systemImage: "timeline.selection")
                 })
                 
-                NavigationLink(destination: {
-                    EmptyView()
-                }, label: {
-                    Label("Processing configuration", systemImage: "dial.min")
-                })
+//                NavigationLink(destination: {
+//                    EmptyView()
+//                }, label: {
+//                    Label("Processing configuration", systemImage: "dial.min")
+//                })
             }
             .navigationTitle("pulse.loop")
             .toolbar {
