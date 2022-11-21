@@ -8,28 +8,34 @@
 import Foundation
 
 protocol LEDPhaseProtocol: ObservableObject {
-    var led_st: TimeInterval { get set }
-    var led_end: TimeInterval { get set }
-    var sample_st: TimeInterval { get set }
-    var sample_end: TimeInterval { get set }
-    var reset_st: TimeInterval { get set }
-    var reset_end: TimeInterval { get set }
-    var conv_st: TimeInterval { get set }
-    var conv_end: TimeInterval { get set }
+    associatedtype TimeIntervalType: CharacteristicProtocol<TimeInterval>
+    
+    var led_st: TimeIntervalType { get set }
+    var led_end: TimeIntervalType { get set }
+    var sample_st: TimeIntervalType { get set }
+    var sample_end: TimeIntervalType { get set }
+    var reset_st: TimeIntervalType { get set }
+    var reset_end: TimeIntervalType { get set }
+    var conv_st: TimeIntervalType { get set }
+    var conv_end: TimeIntervalType { get set }
 }
 
 protocol AmbientPhaseProtocol: ObservableObject {
-    var sample_st: TimeInterval {get set }
-    var sample_end: TimeInterval {get set }
-    var reset_st: TimeInterval {get set }
-    var reset_end: TimeInterval {get set }
-    var conv_st: TimeInterval {get set }
-    var conv_end: TimeInterval {get set }
+    associatedtype TimeIntervalType: CharacteristicProtocol<TimeInterval>
+
+    var sample_st: TimeIntervalType { get set }
+    var sample_end: TimeIntervalType { get set }
+    var reset_st: TimeIntervalType { get set }
+    var reset_end: TimeIntervalType { get set }
+    var conv_st: TimeIntervalType { get set }
+    var conv_end: TimeIntervalType { get set }
 }
 
 protocol DynamicPowerDownPhaseProtocol: ObservableObject {
-    var start: TimeInterval { get set }
-    var end: TimeInterval { get set }
+    associatedtype TimeIntervalType: CharacteristicProtocol<TimeInterval>
+
+    var start: TimeIntervalType { get set }
+    var end: TimeIntervalType { get set }
 }
 
 protocol OpticalFrontendConfigurationProtocol: ObservableObject {
@@ -39,15 +45,18 @@ protocol OpticalFrontendConfigurationProtocol: ObservableObject {
     associatedtype LED3PhaseType: LEDPhaseProtocol
     associatedtype AmbientPhaseType: AmbientPhaseProtocol
     associatedtype DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol
+    associatedtype TimeIntervalType: CharacteristicProtocol<TimeInterval>
+    associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor>
+    associatedtype TIACapacitorType: CharacteristicProtocol<TIACapacitor>
     
     var ambientPhase: AmbientPhaseType { get set }
     var LED1Phase: LED1PhaseType { get set }
     var LED2Phase: LED2PhaseType { get set }
     var LED3Phase: LED3PhaseType { get set }
-    var totalWindowLength: TimeInterval { get set }
+    var totalWindowLength: TimeIntervalType { get set }
     var dynamicPowerDown: DynamicPowerDownPhaseType { get set }
-    var tiaCapacitor1: TIACapacitor { get set }
-    var tiaCapacitor2: TIACapacitor { get set }
-    var tiaResistor1: TIAResistor { get set }
-    var tiaResistor2: TIAResistor { get set }
+    var tiaCapacitor1: TIACapacitorType { get set }
+    var tiaCapacitor2: TIACapacitorType { get set }
+    var tiaResistor1: TIAResistorType { get set }
+    var tiaResistor2: TIAResistorType { get set }
 }

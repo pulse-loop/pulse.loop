@@ -25,7 +25,7 @@ class FakeDevice: DeviceProtocol {
     
     // MARK: Optical frontend configuration.
     typealias OpticalFrontendConfigurationType = FakeOpticalFrontendConfiguration
-    private var opticalFrontendConfiguration: OpticalFrontendConfigurationType
+    var opticalFrontendConfiguration: OpticalFrontendConfigurationType
     
     func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType {
         return self.opticalFrontendConfiguration

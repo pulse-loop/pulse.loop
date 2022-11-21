@@ -15,12 +15,11 @@ struct SingleTimingView: View {
     
     var body: some View {
 #if os(macOS)
-        HStack {
+        Group {
             TextField("\(name) start",
                       value: $start,
                       formatter: TimeInterval.microsecondsFormatter)
             
-            Divider()
             
             TextField("\(name) end",
                       value: $end,
@@ -28,23 +27,17 @@ struct SingleTimingView: View {
         }
 #elseif os(iOS)
         HStack {
-            HStack {
-                Text("\(name) start")
-                TextField(name, value: $start, formatter: TimeInterval.microsecondsFormatter)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(.gray)
-            }
-            .padding(.trailing, 12)
-            
-            Divider()
-            
-            HStack {
-                Text("\(name) end")
-                TextField(name, value: $end, formatter: TimeInterval.microsecondsFormatter)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(.gray)
-            }
-            .padding(.leading, 8)
+            Text("\(name) start")
+            TextField(name, value: $start, formatter: TimeInterval.microsecondsFormatter)
+                .multilineTextAlignment(.trailing)
+                .foregroundColor(.gray)
+        }
+        
+        HStack {
+            Text("\(name) end")
+            TextField(name, value: $end, formatter: TimeInterval.microsecondsFormatter)
+                .multilineTextAlignment(.trailing)
+                .foregroundColor(.gray)
         }
 #endif
     }

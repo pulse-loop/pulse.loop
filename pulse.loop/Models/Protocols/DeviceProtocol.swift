@@ -41,8 +41,7 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType
-    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType)
+    var opticalFrontendConfiguration: OpticalFrontendConfigurationType { get set }
     
     // MARK: Raw sensor data.
     var rawOpticalAmbient: RawOpticalType { get set }

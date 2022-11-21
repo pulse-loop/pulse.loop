@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProtocol>: View {
     @ObservedObject var opticalConfiguration: OpticalConfiguration
-    var ledColors: [Color] = [.blue.opacity(0.75), .red.opacity(0.75), .green.opacity(0.75), .gray.opacity(0.75)]
+    var ledColors: [Color] = [.blue.opacity(0.75), .green.opacity(0.75), .red.opacity(0.75), .gray.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
     @State var scale: CGFloat = 1
@@ -20,15 +20,15 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                 ScrollView(.horizontal) {
                     Canvas { context, size in
                         func rectangleForInterval(from start: TimeInterval, to end: TimeInterval) -> Path {
-                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength)
-                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength)
+                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength.value)
                             let rect = CGRect(x: xStart, y: 0, width: xEnd - xStart, height: size.height)
                             return Path(rect)
                         }
                         
                         func rectangleForInterval(from start: TimeInterval, to end: TimeInterval, band: Int) -> Path {
-                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength)
-                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength)
+                            let xStart = size.width * (start/opticalConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * (end/opticalConfiguration.totalWindowLength.value)
                             
                             let bandHeight = size.height / 4
                             let yStart = CGFloat(band) * bandHeight
@@ -38,8 +38,8 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         }
                         
                         // Fill dynamic power down
-                        let dynamicPowerDownPath = rectangleForInterval(from: opticalConfiguration.dynamicPowerDown.start,
-                                                                        to: opticalConfiguration.dynamicPowerDown.end)
+                        let dynamicPowerDownPath = rectangleForInterval(from: opticalConfiguration.dynamicPowerDown.start.value,
+                                                                        to: opticalConfiguration.dynamicPowerDown.end.value)
                         context.fill(dynamicPowerDownPath, with: .linearGradient(
                             .init(stops: [
                                 .init(color: .primary.opacity(0.1), location: 0),
@@ -55,16 +55,16 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         let colors: [Color] = [.clear, .primary.opacity(0.1), .clear, .primary.opacity(0.1)]
                         
                         for i in 0..<4 {
-                            let band = rectangleForInterval(from: .zero, to: opticalConfiguration.dynamicPowerDown.start, band: i)
+                            let band = rectangleForInterval(from: .zero, to: opticalConfiguration.dynamicPowerDown.start.value, band: i)
                             context.fill(band, with: .color(colors[i]))
                         }
                         
                         // Overlay indicators: lighting
                         let lightingTuples = [
                             (0, 0),
-                            (opticalConfiguration.LED1Phase.led_st, opticalConfiguration.LED1Phase.led_end),
-                            (opticalConfiguration.LED2Phase.led_st, opticalConfiguration.LED2Phase.led_end),
-                            (opticalConfiguration.LED3Phase.led_st, opticalConfiguration.LED3Phase.led_end)
+                            (opticalConfiguration.LED1Phase.led_st.value, opticalConfiguration.LED1Phase.led_end.value),
+                            (opticalConfiguration.LED2Phase.led_st.value, opticalConfiguration.LED2Phase.led_end.value),
+                            (opticalConfiguration.LED3Phase.led_st.value, opticalConfiguration.LED3Phase.led_end.value)
                         ]
                         
                         for tuple in lightingTuples.enumerated() {
@@ -74,10 +74,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: sampling
                         let samplingTuples = [
-                            (opticalConfiguration.ambientPhase.sample_st, opticalConfiguration.ambientPhase.sample_end),
-                            (opticalConfiguration.LED1Phase.sample_st, opticalConfiguration.LED1Phase.sample_end),
-                            (opticalConfiguration.LED2Phase.sample_st, opticalConfiguration.LED2Phase.sample_end),
-                            (opticalConfiguration.LED3Phase.sample_st, opticalConfiguration.LED3Phase.sample_end)
+                            (opticalConfiguration.ambientPhase.sample_st.value, opticalConfiguration.ambientPhase.sample_end.value),
+                            (opticalConfiguration.LED1Phase.sample_st.value, opticalConfiguration.LED1Phase.sample_end.value),
+                            (opticalConfiguration.LED2Phase.sample_st.value, opticalConfiguration.LED2Phase.sample_end.value),
+                            (opticalConfiguration.LED3Phase.sample_st.value, opticalConfiguration.LED3Phase.sample_end.value)
                         ]
                         
                         for tuple in samplingTuples.enumerated() {
@@ -87,10 +87,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: conversion
                         let conversionTuples = [
-                            (opticalConfiguration.ambientPhase.conv_st, opticalConfiguration.ambientPhase.conv_end),
-                            (opticalConfiguration.LED1Phase.conv_st, opticalConfiguration.LED1Phase.conv_end),
-                            (opticalConfiguration.LED2Phase.conv_st, opticalConfiguration.LED2Phase.conv_end),
-                            (opticalConfiguration.LED3Phase.conv_st, opticalConfiguration.LED3Phase.conv_end)
+                            (opticalConfiguration.ambientPhase.conv_st.value, opticalConfiguration.ambientPhase.conv_end.value),
+                            (opticalConfiguration.LED1Phase.conv_st.value, opticalConfiguration.LED1Phase.conv_end.value),
+                            (opticalConfiguration.LED2Phase.conv_st.value, opticalConfiguration.LED2Phase.conv_end.value),
+                            (opticalConfiguration.LED3Phase.conv_st.value, opticalConfiguration.LED3Phase.conv_end.value)
                         ]
                         
                         for tuple in conversionTuples.enumerated() {
@@ -100,10 +100,10 @@ struct OpticalTimingView<OpticalConfiguration: OpticalFrontendConfigurationProto
                         
                         // Overlay indicators: reset
                         let resetTuples = [
-                            (opticalConfiguration.ambientPhase.reset_st, opticalConfiguration.ambientPhase.reset_end),
-                            (opticalConfiguration.LED1Phase.reset_st, opticalConfiguration.LED1Phase.reset_end),
-                            (opticalConfiguration.LED2Phase.reset_st, opticalConfiguration.LED2Phase.reset_end),
-                            (opticalConfiguration.LED3Phase.reset_st, opticalConfiguration.LED3Phase.reset_end)
+                            (opticalConfiguration.ambientPhase.reset_st.value, opticalConfiguration.ambientPhase.reset_end.value),
+                            (opticalConfiguration.LED1Phase.reset_st.value, opticalConfiguration.LED1Phase.reset_end.value),
+                            (opticalConfiguration.LED2Phase.reset_st.value, opticalConfiguration.LED2Phase.reset_end.value),
+                            (opticalConfiguration.LED3Phase.reset_st.value, opticalConfiguration.LED3Phase.reset_end.value)
                         ]
                         
                         for tuple in resetTuples.enumerated() {

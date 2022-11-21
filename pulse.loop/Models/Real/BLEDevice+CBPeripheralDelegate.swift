@@ -14,9 +14,15 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
     internal var logger: Logger
     private var device: BLEDevice
     
+    private var variableMap: [CBUUID: any CharacteristicProtocol] = [:]
+    
     init(device: BLEDevice) {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Delegate")
         self.device = device
+        
+        variableMap = self.device.getCharacteristics()
+        
+        logger.info("Characteristic mapping complete: \(self.variableMap)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -26,14 +32,9 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic.uuid)")
 
-        let info = try! typeInfo(of: BLEDevice.self)
-        if let data = characteristic.value {
-            for property in info.properties {
-                if let variable = try? property.get(from: self.device) as? any CharacteristicProtocol,
-                   variable.uuid == characteristic.uuid {
-                    variable.setLocalValue(data: data)
-                }
-            }
+        if let data = characteristic.value,
+           let variable = self.variableMap[characteristic.uuid] {
+            variable.setLocalValue(data: data)
         }
     }
     

@@ -94,6 +94,7 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
     
     private func buildPath(in size: CGSize) {
         var path = Path()
+        path.move(to: getCoordinates(for: data.first ?? (0, Date.now), in: size))
         for point in data {
             let coordinate = getCoordinates(for: point, in: size)
             path.addLine(to: coordinate)

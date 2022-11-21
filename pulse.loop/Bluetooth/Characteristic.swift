@@ -7,11 +7,32 @@
 
 import Foundation
 import CoreBluetooth
+import Runtime
+
+protocol CharacteristicContainer {}
+
+extension CharacteristicContainer {
+    func getCharacteristics() -> [CBUUID: any CharacteristicProtocol] {
+        var variableMap: [CBUUID: any CharacteristicProtocol] = [:]
+        let info = try! typeInfo(of: Self.self)
+        for property in info.properties {
+            if let variable = try? property.get(from: self) as? any CharacteristicProtocol {
+                variableMap[variable.uuid] = variable
+            } else if let variable = try? property.get(from: self) as? any CharacteristicContainer {
+                variableMap.merge(variable.getCharacteristics(), uniquingKeysWith: { (current, _) in
+                    current
+                })
+            }
+        }
+        
+        return variableMap
+    }
+}
 
 protocol CharacteristicProtocol<T>: ObservableObject, Equatable {
     associatedtype T: Equatable
     
-    var value: T { get }
+    var value: T { get set }
     var uuid: CBUUID { get }
     var type: Any.Type { get }
     
@@ -26,7 +47,7 @@ extension CharacteristicProtocol {
 }
 
 class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
-    var value: T
+    @Published var value: T
     let uuid: CBUUID = CBUUID()
     
     init(constant: T) {
@@ -34,18 +55,14 @@ class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
     }
     
     func setLocalValue(data: Data) {
-        self.value = data.withUnsafeBytes({$0.load(as: T.self)})
-        
         DispatchQueue.main.async {
-            self.objectWillChange.send()
+            self.value = data.withUnsafeBytes({$0.load(as: T.self)})
         }
     }
     
     func setLocalValue(value: T) {
-        self.value = value
-        
         DispatchQueue.main.async {
-            self.objectWillChange.send()
+            self.value = value
         }
     }
     
@@ -122,7 +139,9 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
 
     var value: T {
         get {
-            requestRead()
+            if !notifying {
+                requestRead()
+            }
             return internalValue
         }
         set {

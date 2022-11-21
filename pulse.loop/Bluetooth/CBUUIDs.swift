@@ -235,4 +235,5 @@ struct CBUUIDs {
     static let tiaCapacitor2CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIACapacitor2)
     static let tiaResistor1CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor1)
     static let tiaResistor2CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor2)
+    static let totalWindowLengthCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTotalWindowLength)
 }

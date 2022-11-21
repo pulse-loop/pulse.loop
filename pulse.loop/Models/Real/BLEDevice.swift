@@ -9,10 +9,10 @@ import Foundation
 import CoreBluetooth
 import OSLog
 
-class BLEDevice: DeviceProtocol {
+class BLEDevice: DeviceProtocol, CharacteristicContainer {
 
     internal var logger: Logger
-    
+        
     // MARK: Initialisers.
     init(from peripheral: CBPeripheral) {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Model")
@@ -26,6 +26,8 @@ class BLEDevice: DeviceProtocol {
         self.rawOpticalLED1 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
         self.rawOpticalLED2 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
         self.rawOpticalLED3 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
+        
+        self.opticalFrontendConfiguration = OpticalFrontendConfiguration(peripheral: peripheral)
         
         // Delegate.
         self.deviceDelegate = BLEDeviceDelegate(device: self)
@@ -47,15 +49,9 @@ class BLEDevice: DeviceProtocol {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    typealias OpticalFrontendConfigurationType = OpticalFrontendConfiguration
-    func getOpticalFrontendConfiguration() -> OpticalFrontendConfigurationType {
-        return OpticalFrontendConfiguration()
-    }
+    var opticalFrontendConfiguration: OpticalFrontendConfiguration
     
-    func setOpticalFrontendConfiguration(_ configuration: OpticalFrontendConfigurationType) {
-        
-    }
-    
+    // MARK: Raw sensor data.
     var rawOpticalAmbient: Characteristic<Float32>
     var rawOpticalLED1MinusAmbient: Characteristic<Float32>
     var rawOpticalLED1: Characteristic<Float32>
