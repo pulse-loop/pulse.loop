@@ -19,15 +19,10 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
         logger.info("Initialising a new device from CoreBluetooth peripheral \"\(peripheral)\".")
         
         self.peripheral = peripheral
-        
-        // Characteristic initialization.
-        self.rawOpticalAmbient = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
-        self.rawOpticalLED1MinusAmbient = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
-        self.rawOpticalLED1 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
-        self.rawOpticalLED2 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
-        self.rawOpticalLED3 = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
-        
-        self.opticalFrontendWindow = OpticalFrontendWindow(peripheral: peripheral)
+                
+        // Characteristic container structs.
+        self.opticalFrontendWindow = OpticalFrontendWindow(for: peripheral)
+        self.rawData = OpticalFrontendRawSensorData(for: peripheral)
         
         // Delegate.
         self.deviceDelegate = BLEDeviceDelegate(device: self)
@@ -49,14 +44,12 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
-    var opticalFrontendWindow: OpticalFrontendWindow
+    typealias OpticalFrontendWindowType = OpticalFrontendWindow
+    var opticalFrontendWindow: OpticalFrontendWindowType
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: Characteristic<Float32>
-    var rawOpticalLED1MinusAmbient: Characteristic<Float32>
-    var rawOpticalLED1: Characteristic<Float32>
-    var rawOpticalLED2: Characteristic<Float32>
-    var rawOpticalLED3: Characteristic<Float32>
+    typealias OpticalFrontendRawSensorDataType = OpticalFrontendRawSensorData
+    var rawData: OpticalFrontendRawSensorDataType
     
     // MARK: Settings.
     

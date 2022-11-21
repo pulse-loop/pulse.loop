@@ -22,15 +22,15 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
         
         variableMap = self.device.getCharacteristics()
         
-        logger.info("Characteristic mapping complete: \(self.variableMap)")
+        logger.info("Characteristic mapping complete: \(self.variableMap.count) characteristics mapped.")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.trace("\(characteristic.value?.description ?? "Nothing") written to \(characteristic.uuid)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") written to \(characteristic.uuid).")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic.uuid)")
+        logger.trace("\(characteristic.value?.description ?? "Nothing") read from \(characteristic.uuid).")
 
         if let data = characteristic.value,
            let variable = self.variableMap[characteristic.uuid] {

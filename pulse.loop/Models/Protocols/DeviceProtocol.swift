@@ -22,10 +22,7 @@ enum DeviceStatus: CustomStringConvertible {
 }
 
 protocol DeviceProtocol: ObservableObject, Equatable {
-    
-    associatedtype OpticalFrontendWindowType: OpticalFrontendWindowProtocol
-    associatedtype RawOpticalType: CharacteristicProtocol<Float32>
-    
+        
     // MARK: Battery service.
     
     // MARK: Current time service.
@@ -41,14 +38,12 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     // MARK: Historic data.
     
     // MARK: Optical frontend configuration.
+    associatedtype OpticalFrontendWindowType: OpticalFrontendWindowProtocol
     var opticalFrontendWindow: OpticalFrontendWindowType { get set }
     
     // MARK: Raw sensor data.
-    var rawOpticalAmbient: RawOpticalType { get set }
-    var rawOpticalLED1MinusAmbient: RawOpticalType { get set }
-    var rawOpticalLED1: RawOpticalType { get set }
-    var rawOpticalLED2: RawOpticalType { get set }
-    var rawOpticalLED3: RawOpticalType { get set }
+    associatedtype OpticalFrontendRawSensorDataType: OpticalFrontendRawSensorDataProtocol
+    var rawData: OpticalFrontendRawSensorDataType { get }
     
     // MARK: Settings.
     

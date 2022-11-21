@@ -177,55 +177,7 @@ struct OpticalWindowTimingView<OpticalWindowConfiguration: OpticalFrontendWindow
 
 struct OpticalWindowTimingView_Previews: PreviewProvider {
     static var previews: some View {
-        let conf = FakeOpticalFrontendWindow(
-            ambientPhase: FakeOpticalFrontendWindow.AmbientPhaseType(
-                sample_st: TimeInterval(microseconds: 2225),
-                sample_end: TimeInterval(microseconds: 2299.75),
-                reset_st: TimeInterval(microseconds: 2600),
-                reset_end: TimeInterval(microseconds: 2610),
-                conv_st: TimeInterval(microseconds: 2300),
-                conv_end: TimeInterval(microseconds: 2500)
-            ),
-            LED1Phase: FakeOpticalFrontendWindow.LEDPhase(
-                led_st: TimeInterval(microseconds: 1100),
-                led_end: TimeInterval(microseconds: 1400),
-                sample_st: TimeInterval(microseconds: 1225),
-                sample_end: TimeInterval(microseconds: 1299.75),
-                reset_st: TimeInterval(microseconds: 1600),
-                reset_end: TimeInterval(microseconds: 1605),
-                conv_st: TimeInterval(microseconds: 1300),
-                conv_end: TimeInterval(microseconds: 1500)
-            ),
-            LED2Phase: FakeOpticalFrontendWindow.LEDPhase(
-                led_st: TimeInterval(microseconds: 100),
-                led_end: TimeInterval(microseconds: 400),
-                sample_st: TimeInterval(microseconds: 225),
-                sample_end: TimeInterval(microseconds: 299.75),
-                reset_st: TimeInterval(microseconds: 600),
-                reset_end: TimeInterval(microseconds: 601),
-                conv_st: TimeInterval(microseconds: 300),
-                conv_end: TimeInterval(microseconds: 500)
-            ),
-            LED3Phase: FakeOpticalFrontendWindow.LEDPhase(
-                led_st: TimeInterval(microseconds: 3100),
-                led_end: TimeInterval(microseconds: 3400),
-                sample_st: TimeInterval(microseconds: 3225),
-                sample_end: TimeInterval(microseconds: 3299.75),
-                reset_st: TimeInterval(microseconds: 3600),
-                reset_end: TimeInterval(microseconds: 3630),
-                conv_st: TimeInterval(microseconds: 3300),
-                conv_end: TimeInterval(microseconds: 3500)
-            ),
-            totalWindowLength: TimeInterval(microseconds: 10000),
-            dynamicPowerDown: FakeOpticalFrontendWindow.DynamicPowerDownPhaseType(
-                start: TimeInterval(microseconds: 5000),
-                end: TimeInterval(microseconds: 10000)
-            ),
-            tiaCapacitor1: .C_17_5_pF,
-            tiaCapacitor2: .C_10_pF,
-            tiaResistor1: .R_1_MΩ,
-            tiaResistor2: .R_25_kΩ
-        )
+        let conf = FakeOpticalFrontendWindow()
         
         OpticalWindowTimingView(windowConfiguration: conf)
             .previewLayout(.sizeThatFits)

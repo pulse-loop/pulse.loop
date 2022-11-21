@@ -66,12 +66,60 @@ class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
     @Published var totalWindowLength: FakeCharacteristic<TimeInterval>
     @Published var dynamicPowerDown: DynamicPowerDownPhaseType
     
-    init(ambientPhase: AmbientPhaseType, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: TimeInterval, dynamicPowerDown: DynamicPowerDownPhaseType, tiaCapacitor1: TIACapacitor, tiaCapacitor2: TIACapacitor, tiaResistor1: TIAResistor, tiaResistor2: TIAResistor) {
+    init(ambientPhase: AmbientPhaseType, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: TimeInterval, dynamicPowerDown: DynamicPowerDownPhaseType) {
         self.ambientPhase = ambientPhase
         self.LED1Phase = LED1Phase
         self.LED2Phase = LED2Phase
         self.LED3Phase = LED3Phase
         self.totalWindowLength = .init(constant: totalWindowLength)
         self.dynamicPowerDown = dynamicPowerDown
+    }
+    
+    convenience init() {
+        self.init(
+            ambientPhase: FakeOpticalFrontendWindow.AmbientPhaseType(
+                sample_st: TimeInterval(microseconds: 2225),
+                sample_end: TimeInterval(microseconds: 2299.75),
+                reset_st: TimeInterval(microseconds: 2600),
+                reset_end: TimeInterval(microseconds: 2610),
+                conv_st: TimeInterval(microseconds: 2300),
+                conv_end: TimeInterval(microseconds: 2500)
+            ),
+            LED1Phase: FakeOpticalFrontendWindow.LEDPhase(
+                led_st: TimeInterval(microseconds: 1100),
+                led_end: TimeInterval(microseconds: 1400),
+                sample_st: TimeInterval(microseconds: 1225),
+                sample_end: TimeInterval(microseconds: 1299.75),
+                reset_st: TimeInterval(microseconds: 1600),
+                reset_end: TimeInterval(microseconds: 1605),
+                conv_st: TimeInterval(microseconds: 1300),
+                conv_end: TimeInterval(microseconds: 1500)
+            ),
+            LED2Phase: FakeOpticalFrontendWindow.LEDPhase(
+                led_st: TimeInterval(microseconds: 100),
+                led_end: TimeInterval(microseconds: 400),
+                sample_st: TimeInterval(microseconds: 225),
+                sample_end: TimeInterval(microseconds: 299.75),
+                reset_st: TimeInterval(microseconds: 600),
+                reset_end: TimeInterval(microseconds: 601),
+                conv_st: TimeInterval(microseconds: 300),
+                conv_end: TimeInterval(microseconds: 500)
+            ),
+            LED3Phase: FakeOpticalFrontendWindow.LEDPhase(
+                led_st: TimeInterval(microseconds: 3100),
+                led_end: TimeInterval(microseconds: 3400),
+                sample_st: TimeInterval(microseconds: 3225),
+                sample_end: TimeInterval(microseconds: 3299.75),
+                reset_st: TimeInterval(microseconds: 3600),
+                reset_end: TimeInterval(microseconds: 3630),
+                conv_st: TimeInterval(microseconds: 3300),
+                conv_end: TimeInterval(microseconds: 3500)
+            ),
+            totalWindowLength: TimeInterval(microseconds: 10000),
+            dynamicPowerDown: FakeOpticalFrontendWindow.DynamicPowerDownPhaseType(
+                start: TimeInterval(microseconds: 5000),
+                end: TimeInterval(microseconds: 10000)
+            )
+        )
     }
 }

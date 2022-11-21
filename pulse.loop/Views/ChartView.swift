@@ -181,7 +181,7 @@ struct ChartView_Previews: PreviewProvider {
         device.connect()
         
         return TimelineView(.animation) { _ in
-            ChartView(value: device.rawOpticalAmbient, title: "Chart", smooth: true)
+            ChartView(value: device.rawData.ambient, title: "Chart", smooth: true)
                 .padding()
         }
         .previewLayout(.fixed(width: 600, height: 400))

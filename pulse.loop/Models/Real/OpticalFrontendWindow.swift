@@ -19,7 +19,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<TimeInterval>
         var conv_end: Characteristic<TimeInterval>
         
-        init(peripheral: CBPeripheral) {
+        init(for peripheral: CBPeripheral) {
             led_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1LightingStartCharacteristicIdentifier)
             led_end = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1LightingEndCharacteristicIdentifier)
             sample_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1SampleStartCharacteristicIdentifier)
@@ -41,7 +41,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<TimeInterval>
         var conv_end: Characteristic<TimeInterval>
         
-        init(peripheral: CBPeripheral) {
+        init(for peripheral: CBPeripheral) {
             led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2LightingStartCharacteristicIdentifier)
             led_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2LightingEndCharacteristicIdentifier)
             sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2SampleStartCharacteristicIdentifier)
@@ -63,7 +63,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<TimeInterval>
         var conv_end: Characteristic<TimeInterval>
         
-        init(peripheral: CBPeripheral) {
+        init(for peripheral: CBPeripheral) {
             led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3LightingStartCharacteristicIdentifier)
             led_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3LightingEndCharacteristicIdentifier)
             sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3SampleStartCharacteristicIdentifier)
@@ -83,7 +83,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<TimeInterval>
         var conv_end: Characteristic<TimeInterval>
         
-        init(peripheral: CBPeripheral) {
+        init(for peripheral: CBPeripheral) {
             sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientSampleStartCharacteristicIdentifier)
             sample_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientSampleEndCharacteristicIdentifier)
             reset_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCResetStartCharacteristicIdentifier)
@@ -97,7 +97,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var start: Characteristic<TimeInterval>
         var end: Characteristic<TimeInterval>
         
-        init(peripheral: CBPeripheral) {
+        init(for peripheral: CBPeripheral) {
             start = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.dynamicPowerDownStartCharacteristicIdentifier)
             end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.dynamicPowerDownEndCharacteristicIdentifier)
         }
@@ -110,12 +110,12 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     var totalWindowLength: Characteristic<TimeInterval>
     var dynamicPowerDown: DynamicPowerDownPhaseType
     
-    init(peripheral: CBPeripheral) {
-        ambientPhase = AmbientPhaseType(peripheral: peripheral)
-        self.LED1Phase = Self.LED1PhaseType(peripheral: peripheral)
-        self.LED2Phase = Self.LED2PhaseType(peripheral: peripheral)
-        self.LED3Phase = Self.LED3PhaseType(peripheral: peripheral)
+    init(for peripheral: CBPeripheral) {
+        ambientPhase = AmbientPhaseType(for: peripheral)
+        self.LED1Phase = Self.LED1PhaseType(for: peripheral)
+        self.LED2Phase = Self.LED2PhaseType(for: peripheral)
+        self.LED3Phase = Self.LED3PhaseType(for: peripheral)
         totalWindowLength = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.totalWindowLengthCharacteristicIdentifier)
-        dynamicPowerDown = DynamicPowerDownPhaseType(peripheral: peripheral)
+        dynamicPowerDown = DynamicPowerDownPhaseType(for: peripheral)
     }
 }

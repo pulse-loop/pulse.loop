@@ -19,18 +19,21 @@ struct ContentView: View {
                 NavigationLink(destination: {
                     if let device = device as? FakeDevice {
                         OpticalWindowConfigurationView(device: device)
+                            .navigationTitle("Window configuration")
                     } else if let device = device as? BLEDevice {
                         OpticalWindowConfigurationView(device: device)
+                            .navigationTitle("Window configuration")
                     }
                 }, label: {
                     Label("Window configuration", systemImage: "timeline.selection")
                 })
                 
-//                NavigationLink(destination: {
-//                    EmptyView()
-//                }, label: {
-//                    Label("Processing configuration", systemImage: "dial.min")
-//                })
+                NavigationLink(destination: {
+                    EmptyView()
+                        .navigationTitle("Electric configuration")
+                }, label: {
+                    Label("Electric configuration", systemImage: "alternatingcurrent")
+                })
             }
             .navigationTitle("pulse.loop")
             .toolbar {
