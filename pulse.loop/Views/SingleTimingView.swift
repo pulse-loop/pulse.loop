@@ -10,20 +10,20 @@ import SwiftUI
 
 struct SingleTimingView: View {
     var name: String
-    @Binding var start: TimeInterval
-    @Binding var end: TimeInterval
+    @Binding var start: Float32
+    @Binding var end: Float32
     
     var body: some View {
 #if os(macOS)
         Group {
             TextField("\(name) start",
                       value: $start,
-                      formatter: TimeInterval.microsecondsFormatter)
+                      formatter: Float32.microsecondsFormatter)
             
             
             TextField("\(name) end",
                       value: $end,
-                      formatter: TimeInterval.microsecondsFormatter)
+                      formatter: Float32.microsecondsFormatter)
         }
 #elseif os(iOS)
         HStack {

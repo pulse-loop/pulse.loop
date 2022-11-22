@@ -63,7 +63,7 @@ struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFronten
 //                }
 //            }
 #if os(iOS)
-            .pickerStyle(.segmented)
+//            .pickerStyle(.segmented)
 #endif
             
             Section("Timing") {
@@ -73,7 +73,7 @@ struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFronten
 
                     TextField("Window length",
                               value: $windowConfiguration.totalWindowLength.value,
-                              formatter: TimeInterval.microsecondsFormatter)
+                              formatter: Float32.microsecondsFormatter)
 
                     SingleTimingView(name: "Dynamic PD",
                                      start: $windowConfiguration.dynamicPowerDown.start.value,
@@ -128,7 +128,7 @@ struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFronten
                 }
 #elseif os(iOS)
                 Picker(selection: $currentSection, label: Text("Section")) {
-                    ForEach(GNAH.allCases, id: \.rawValue) { r in
+                    ForEach(FormSection.allCases, id: \.rawValue) { r in
                         Text(r.description).tag(r)
                     }
                 }

@@ -30,9 +30,16 @@ struct ContentView: View {
                 
                 NavigationLink(destination: {
                     EmptyView()
-                        .navigationTitle("Electric configuration")
+                        .navigationTitle("Electric calibration")
                 }, label: {
-                    Label("Electric configuration", systemImage: "alternatingcurrent")
+                    Label("Electric calibration", systemImage: "alternatingcurrent")
+                })
+                
+                NavigationLink(destination: {
+                    EmptyView()
+                        .navigationTitle("Algorithm configuration")
+                }, label: {
+                    Label("Algorithm configuration", systemImage: "function")
                 })
             }
             .navigationTitle("pulse.loop")

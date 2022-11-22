@@ -10,14 +10,14 @@ import CoreBluetooth
 
 class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContainer {
     class LED1PhaseType: LEDPhaseProtocol, CharacteristicContainer {
-        var led_st: Characteristic<TimeInterval>
-        var led_end: Characteristic<TimeInterval>
-        var sample_st: Characteristic<TimeInterval>
-        var sample_end: Characteristic<TimeInterval>
-        var reset_st: Characteristic<TimeInterval>
-        var reset_end: Characteristic<TimeInterval>
-        var conv_st: Characteristic<TimeInterval>
-        var conv_end: Characteristic<TimeInterval>
+        var led_st: Characteristic<Float32>
+        var led_end: Characteristic<Float32>
+        var sample_st: Characteristic<Float32>
+        var sample_end: Characteristic<Float32>
+        var reset_st: Characteristic<Float32>
+        var reset_end: Characteristic<Float32>
+        var conv_st: Characteristic<Float32>
+        var conv_end: Characteristic<Float32>
         
         init(for peripheral: CBPeripheral) {
             led_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1LightingStartCharacteristicIdentifier)
@@ -32,14 +32,14 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     }
     
     class LED2PhaseType: LEDPhaseProtocol, CharacteristicContainer {
-        var led_st: Characteristic<TimeInterval>
-        var led_end: Characteristic<TimeInterval>
-        var sample_st: Characteristic<TimeInterval>
-        var sample_end: Characteristic<TimeInterval>
-        var reset_st: Characteristic<TimeInterval>
-        var reset_end: Characteristic<TimeInterval>
-        var conv_st: Characteristic<TimeInterval>
-        var conv_end: Characteristic<TimeInterval>
+        var led_st: Characteristic<Float32>
+        var led_end: Characteristic<Float32>
+        var sample_st: Characteristic<Float32>
+        var sample_end: Characteristic<Float32>
+        var reset_st: Characteristic<Float32>
+        var reset_end: Characteristic<Float32>
+        var conv_st: Characteristic<Float32>
+        var conv_end: Characteristic<Float32>
         
         init(for peripheral: CBPeripheral) {
             led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2LightingStartCharacteristicIdentifier)
@@ -54,14 +54,14 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     }
     
     class LED3PhaseType: LEDPhaseProtocol, CharacteristicContainer {
-        var led_st: Characteristic<TimeInterval>
-        var led_end: Characteristic<TimeInterval>
-        var sample_st: Characteristic<TimeInterval>
-        var sample_end: Characteristic<TimeInterval>
-        var reset_st: Characteristic<TimeInterval>
-        var reset_end: Characteristic<TimeInterval>
-        var conv_st: Characteristic<TimeInterval>
-        var conv_end: Characteristic<TimeInterval>
+        var led_st: Characteristic<Float32>
+        var led_end: Characteristic<Float32>
+        var sample_st: Characteristic<Float32>
+        var sample_end: Characteristic<Float32>
+        var reset_st: Characteristic<Float32>
+        var reset_end: Characteristic<Float32>
+        var conv_st: Characteristic<Float32>
+        var conv_end: Characteristic<Float32>
         
         init(for peripheral: CBPeripheral) {
             led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3LightingStartCharacteristicIdentifier)
@@ -76,12 +76,12 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     }
     
     class AmbientPhaseType: AmbientPhaseProtocol, CharacteristicContainer {
-        var sample_st: Characteristic<TimeInterval>
-        var sample_end: Characteristic<TimeInterval>
-        var reset_st: Characteristic<TimeInterval>
-        var reset_end: Characteristic<TimeInterval>
-        var conv_st: Characteristic<TimeInterval>
-        var conv_end: Characteristic<TimeInterval>
+        var sample_st: Characteristic<Float32>
+        var sample_end: Characteristic<Float32>
+        var reset_st: Characteristic<Float32>
+        var reset_end: Characteristic<Float32>
+        var conv_st: Characteristic<Float32>
+        var conv_end: Characteristic<Float32>
         
         init(for peripheral: CBPeripheral) {
             sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientSampleStartCharacteristicIdentifier)
@@ -94,8 +94,8 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     }
     
     class DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol, CharacteristicContainer {
-        var start: Characteristic<TimeInterval>
-        var end: Characteristic<TimeInterval>
+        var start: Characteristic<Float32>
+        var end: Characteristic<Float32>
         
         init(for peripheral: CBPeripheral) {
             start = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.dynamicPowerDownStartCharacteristicIdentifier)
@@ -107,7 +107,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     var LED1Phase: LED1PhaseType
     var LED2Phase: LED2PhaseType
     var LED3Phase: LED3PhaseType
-    var totalWindowLength: Characteristic<TimeInterval>
+    var totalWindowLength: Characteristic<Float32>
     var dynamicPowerDown: DynamicPowerDownPhaseType
     
     init(for peripheral: CBPeripheral) {

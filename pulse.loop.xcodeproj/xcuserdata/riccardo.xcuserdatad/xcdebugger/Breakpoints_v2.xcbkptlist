@@ -7,48 +7,18 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "53165F22-4D78-4B5D-B8B8-0D1FAFE70B59"
+            uuid = "E3F59237-5B47-4BE7-8AA7-1FC8E8F6B04D"
             shouldBeEnabled = "No"
+            nameForDebugger = "CharacteristicLocalValueSetFromData"
+            condition = "self.uuid == CBUUID(string: &quot;0B68331C-B628-4D81-BBDB-47B79EA2430E&quot;)"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "pulse.loop/Bluetooth/Characteristic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "requestRead()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AB25659F-BEE8-4136-8AD7-3CE4F130905B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "pulse.loop/Bluetooth/Characteristic.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "requestWrite(value:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2B99A29B-7457-4454-98F6-F70AD3681123"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "pulse.loop/Bluetooth/Characteristic.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "requestRead()"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "setLocalValue(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

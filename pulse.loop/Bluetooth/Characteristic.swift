@@ -8,6 +8,7 @@
 import Foundation
 import CoreBluetooth
 import Runtime
+import os
 
 protocol CharacteristicContainer {}
 
@@ -76,12 +77,18 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
     private let peripheral: CBPeripheral
     private var characteristic: CBCharacteristic?
     let uuid: CBUUID
+    
+    private let logger: Logger
 
     init(initialValue: T, peripheral: CBPeripheral, uuid: CBUUID) {
         self.internalValue = initialValue
         self.peripheral = peripheral
         self.uuid = uuid
         self.characteristic = Self.discoverCharacteristic(from: uuid, on: peripheral)
+        
+        self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Characteristic \(uuid)")
+        
+        self.requestRead()
     }
     
     private static func discoverCharacteristic(from uuid: CBUUID, on peripheral: CBPeripheral) -> CBCharacteristic? {
@@ -93,6 +100,7 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
     }
 
     private func requestRead() {
+        logger.trace("Read request.")
         if let characteristic {
             peripheral.readValue(for: characteristic)
         } else {
@@ -101,9 +109,16 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
     }
 
     private func requestWrite(value: T) {
+        if let csc = value as? CustomStringConvertible {
+            logger.trace("Write request for value \(csc.description)")
+        } else {
+            logger.trace("Write request.")
+        }
+        
         if let characteristic {
-            self.internalValue = value
-            peripheral.writeValue(Data(bytes: &self.internalValue, count: 1), for: characteristic, type: .withResponse)
+            var newValue = value
+            let size = MemoryLayout.size(ofValue: newValue)
+            peripheral.writeValue(Data(bytes: &newValue, count: size), for: characteristic, type: .withResponse)
         } else {
             self.characteristic = Self.discoverCharacteristic(from: self.uuid, on: self.peripheral)
         }
@@ -120,13 +135,25 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         paddedData.append(data)
         self.internalValue = paddedData.withUnsafeBytes({$0.load(as: T.self)})
         
+        if let csc = self.internalValue as? CustomStringConvertible {
+            logger.trace("Local value set to \(csc.description)")
+        } else {
+            logger.trace("Local value set.")
+        }
+        
         DispatchQueue.main.async {
             self.objectWillChange.send()
         }
     }
     
     func setLocalValue(value: T) {
-        self.value = value
+        self.internalValue = value
+        
+        if let csc = self.internalValue as? CustomStringConvertible {
+            logger.trace("Local value set to \(csc.description)")
+        } else {
+            logger.trace("Local value set.")
+        }
         
         DispatchQueue.main.async {
             self.objectWillChange.send()

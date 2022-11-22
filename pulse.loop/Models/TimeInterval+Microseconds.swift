@@ -7,19 +7,19 @@
 
 import Foundation
 
-extension TimeInterval {
+extension Float32 {
     init(microseconds: Double) {
-        self = Double(microseconds) / 1_000_000
+        self = Float(microseconds)
     }
     
     init(milliseconds: Double) {
-        self = Double(milliseconds) / 1000
+        self = Float(milliseconds) * 1_000
     }
     
     static let microsecondsFormatter: NumberFormatter = {
         let f = NumberFormatter()
         f.minimumSignificantDigits = 6
-        f.multiplier = 1_000_000
+        f.multiplier = 1
         
         // MEH...
         f.numberStyle = .percent

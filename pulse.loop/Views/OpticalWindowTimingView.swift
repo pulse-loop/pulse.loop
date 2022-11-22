@@ -19,16 +19,16 @@ struct OpticalWindowTimingView<OpticalWindowConfiguration: OpticalFrontendWindow
             GeometryReader { geometry in
                 ScrollView(.horizontal) {
                     Canvas { context, size in
-                        func rectangleForInterval(from start: TimeInterval, to end: TimeInterval) -> Path {
-                            let xStart = size.width * (start/windowConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * (end/windowConfiguration.totalWindowLength.value)
+                        func rectangleForInterval(from start: Float32, to end: Float32) -> Path {
+                            let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
                             let rect = CGRect(x: xStart, y: 0, width: xEnd - xStart, height: size.height)
                             return Path(rect)
                         }
                         
-                        func rectangleForInterval(from start: TimeInterval, to end: TimeInterval, band: Int) -> Path {
-                            let xStart = size.width * (start/windowConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * (end/windowConfiguration.totalWindowLength.value)
+                        func rectangleForInterval(from start: Float32, to end: Float32, band: Int) -> Path {
+                            let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
+                            let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
                             
                             let bandHeight = size.height / 4
                             let yStart = CGFloat(band) * bandHeight
