@@ -16,8 +16,8 @@
             filePath = "pulse.loop/Bluetooth/Characteristic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "setLocalValue(data:)"
             landmarkType = "7">
          </BreakpointContent>

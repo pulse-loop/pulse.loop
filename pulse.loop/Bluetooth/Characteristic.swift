@@ -73,10 +73,19 @@ class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
 }
 
 class Characteristic<T: Equatable>: CharacteristicProtocol {
+    enum InternalValueStatus {
+        case initial
+        case requested
+        case received
+        case consumed
+    }
+    
     private var internalValue: T
     private let peripheral: CBPeripheral
     private var characteristic: CBCharacteristic?
     let uuid: CBUUID
+    let maximumPollingInterval: TimeInterval = 1
+    var lastReadingTime: Date
     
     private let logger: Logger
 
@@ -85,6 +94,7 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         self.peripheral = peripheral
         self.uuid = uuid
         self.characteristic = Self.discoverCharacteristic(from: uuid, on: peripheral)
+        self.lastReadingTime = Date.now
         
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Characteristic \(uuid)")
         
@@ -116,9 +126,9 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         }
         
         if let characteristic {
-            var newValue = value
-            let size = MemoryLayout.size(ofValue: newValue)
-            peripheral.writeValue(Data(bytes: &newValue, count: size), for: characteristic, type: .withResponse)
+            self.internalValue = value
+            let size = MemoryLayout.size(ofValue: self.internalValue)
+            peripheral.writeValue(Data(bytes: &self.internalValue, count: size), for: characteristic, type: .withResponse)
         } else {
             self.characteristic = Self.discoverCharacteristic(from: self.uuid, on: self.peripheral)
         }
@@ -140,7 +150,7 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         } else {
             logger.trace("Local value set.")
         }
-        
+                
         DispatchQueue.main.async {
             self.objectWillChange.send()
         }
@@ -166,13 +176,16 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
 
     var value: T {
         get {
-            if !notifying {
+            if !notifying && abs(lastReadingTime.timeIntervalSinceNow) > self.maximumPollingInterval {
+                lastReadingTime = Date.now
                 requestRead()
             }
             return internalValue
         }
         set {
-            requestWrite(value: newValue)
+            if self.internalValue != newValue {
+                requestWrite(value: newValue)
+            }
         }
     }
 }
