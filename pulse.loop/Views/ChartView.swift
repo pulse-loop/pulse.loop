@@ -53,7 +53,7 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
                         self.range.1 = data.map({$0.0}).max() ?? -.infinity
                     }
                 } else {
-                    // Break early, the array is implicitly sorted...
+                    // Break early, as the array is implicitly sorted...
                     break
                 }
             }

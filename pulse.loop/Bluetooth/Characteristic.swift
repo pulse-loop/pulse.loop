@@ -37,6 +37,7 @@ protocol CharacteristicProtocol<T>: ObservableObject, Equatable {
     var uuid: CBUUID { get }
     var type: Any.Type { get }
     
+    func refreshValue()
     func setLocalValue(data: Data)
     func setLocalValue(value: T)
 }
@@ -54,6 +55,8 @@ class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
     init(constant: T) {
         self.value = constant
     }
+    
+    func refreshValue() {}
     
     func setLocalValue(data: Data) {
         DispatchQueue.main.async {
@@ -73,13 +76,6 @@ class FakeCharacteristic<T: Equatable>: CharacteristicProtocol {
 }
 
 class Characteristic<T: Equatable>: CharacteristicProtocol {
-    enum InternalValueStatus {
-        case initial
-        case requested
-        case received
-        case consumed
-    }
-    
     private var internalValue: T
     private let peripheral: CBPeripheral
     private var characteristic: CBCharacteristic?
@@ -98,7 +94,7 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Characteristic \(uuid)")
         
-        self.requestRead()
+        self.refreshValue()
     }
     
     private static func discoverCharacteristic(from uuid: CBUUID, on peripheral: CBPeripheral) -> CBCharacteristic? {
@@ -109,16 +105,21 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         }).first)
     }
 
-    private func requestRead() {
+    func refreshValue() {
         logger.trace("Read request.")
         if let characteristic {
             peripheral.readValue(for: characteristic)
         } else {
             self.characteristic = Self.discoverCharacteristic(from: self.uuid, on: self.peripheral)
+            
+            // Retry at most another time.
+            if let characteristic {
+                peripheral.readValue(for: characteristic)
+            }
         }
     }
 
-    private func requestWrite(value: T) {
+    private func write(value: T) {
         if let csc = value as? CustomStringConvertible {
             logger.trace("Write request for value \(csc.description)")
         } else {
@@ -178,13 +179,13 @@ class Characteristic<T: Equatable>: CharacteristicProtocol {
         get {
             if !notifying && abs(lastReadingTime.timeIntervalSinceNow) > self.maximumPollingInterval {
                 lastReadingTime = Date.now
-                requestRead()
+                refreshValue()
             }
             return internalValue
         }
         set {
             if self.internalValue != newValue {
-                requestWrite(value: newValue)
+                write(value: newValue)
             }
         }
     }

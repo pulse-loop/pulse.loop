@@ -7,18 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E3F59237-5B47-4BE7-8AA7-1FC8E8F6B04D"
+            uuid = "5986D62B-7567-45CE-B8B8-21E7E8E16737"
             shouldBeEnabled = "No"
-            nameForDebugger = "CharacteristicLocalValueSetFromData"
-            condition = "self.uuid == CBUUID(string: &quot;0B68331C-B628-4D81-BBDB-47B79EA2430E&quot;)"
+            condition = "characteristic.uuid == CBUUID(string: &quot;0B68331C-B628-4D81-BBDB-47B79EA2430E&quot;)"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pulse.loop/Models/Real/BLEDevice+CBPeripheralDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76F76F5F-D125-45FD-947D-2CF250B8EEF9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "pulse.loop/Bluetooth/Characteristic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "setLocalValue(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D56FEDDE-3CE3-4FBF-AF3C-B287449223B4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pulse.loop/Bluetooth/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "refreshValue()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

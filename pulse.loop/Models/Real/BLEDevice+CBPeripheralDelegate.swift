@@ -60,6 +60,11 @@ class BLEDeviceDelegate: NSObject, CBPeripheralDelegate {
             if characteristic.properties.contains(.notify) || characteristic.properties.contains(.indicate) {
                 peripheral.setNotifyValue(true, for: characteristic)
             }
+            
+            // Request an initial reading...
+            if let variable = self.variableMap[characteristic.uuid] {
+                variable.refreshValue()
+            }
         }
     }
     
