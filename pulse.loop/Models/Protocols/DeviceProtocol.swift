@@ -6,22 +6,9 @@
 //
 
 import Foundation
+import CharacteristicKit
 
-enum DeviceStatus: CustomStringConvertible {
-    case disconnected
-    case connecting
-    case connected
-    
-    var description: String {
-        switch self {
-        case .connected: return "connected"
-        case .connecting: return "connecting"
-        case .disconnected: return "disconnected"
-        }
-    }
-}
-
-protocol DeviceProtocol: ObservableObject, Equatable {
+protocol DeviceProtocol: DeviceModel, ObservableObject, Equatable {
         
     // MARK: Battery service.
     
@@ -52,7 +39,7 @@ protocol DeviceProtocol: ObservableObject, Equatable {
     
     // MARK: Additional properties.
     var name: String { get }
-    var status: DeviceStatus { get }
+    var status: DeviceStatus { get set }
     var dataWindowLength: TimeInterval { get set }
     
     // MARK: Control functions.

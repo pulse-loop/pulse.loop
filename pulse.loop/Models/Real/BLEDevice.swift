@@ -8,8 +8,10 @@
 import Foundation
 import CoreBluetooth
 import OSLog
+import CharacteristicKit
 
-class BLEDevice: DeviceProtocol, CharacteristicContainer {
+final class BLEDevice: DeviceProtocol {
+    
 
     internal var logger: Logger
         
@@ -22,11 +24,12 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
                 
         // Characteristic container structs.
         self.opticalFrontendWindow = OpticalFrontendWindow(for: peripheral)
-        self.rawData = OpticalFrontendRawSensorData(for: peripheral)
+        self.rawData = OpticalFrontendRawSensorData()
         
         // Delegate.
-        self.deviceDelegate = BLEDeviceDelegate(device: self)
-        peripheral.delegate = self.deviceDelegate
+        self.delegate = PeripheralDelegate(device: self)
+        // TODO: Remove peripheral!!!
+        peripheral.delegate = self.delegate
     }
     
     // MARK: Battery service.
@@ -62,8 +65,9 @@ class BLEDevice: DeviceProtocol, CharacteristicContainer {
     var dataWindowLength: TimeInterval = 5
     
     // MARK: Internal variables.
+    // TODO: REMOVE!!!
     var peripheral: CBPeripheral!
-    private var deviceDelegate: CBPeripheralDelegate!
+    var delegate: PeripheralDelegate<BLEDevice>?
     
     // MARK: Control functions.
     func connect() {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CharacteristicKit
 
 class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
         
@@ -20,14 +21,14 @@ class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
         @Published var conv_end: FakeCharacteristic<Float32>
         
         init(led_st: Float32, led_end: Float32, sample_st: Float32, sample_end: Float32, reset_st: Float32, reset_end: Float32, conv_st: Float32, conv_end: Float32) {
-            self.led_st = .init(constant: led_st)
-            self.led_end = .init(constant: led_end)
-            self.sample_st = .init(constant: sample_st)
-            self.sample_end = .init(constant: sample_end)
-            self.reset_st = .init(constant: reset_st)
-            self.reset_end = .init(constant: reset_end)
-            self.conv_st = .init(constant: conv_st)
-            self.conv_end = .init(constant: conv_end)
+            self.led_st = FakeCharacteristic(constant: led_st)
+            self.led_end = FakeCharacteristic(constant: led_end)
+            self.sample_st = FakeCharacteristic(constant: sample_st)
+            self.sample_end = FakeCharacteristic(constant: sample_end)
+            self.reset_st = FakeCharacteristic(constant: reset_st)
+            self.reset_end = FakeCharacteristic(constant: reset_end)
+            self.conv_st = FakeCharacteristic(constant: conv_st)
+            self.conv_end = FakeCharacteristic(constant: conv_end)
         }
     }
     

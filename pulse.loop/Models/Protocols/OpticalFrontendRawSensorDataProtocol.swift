@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CharacteristicKit
 
 protocol OpticalFrontendRawSensorDataProtocol {
     associatedtype RawOpticalType: CharacteristicProtocol<Float32>

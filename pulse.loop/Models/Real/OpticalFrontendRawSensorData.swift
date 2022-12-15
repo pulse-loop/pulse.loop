@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import CharacteristicKit
 
 class OpticalFrontendRawSensorData: OpticalFrontendRawSensorDataProtocol, CharacteristicContainer {
     var ambient: Characteristic<Float32>
@@ -15,11 +16,11 @@ class OpticalFrontendRawSensorData: OpticalFrontendRawSensorDataProtocol, Charac
     var led2: Characteristic<Float32>
     var led3: Characteristic<Float32>
     
-    init(for peripheral: CBPeripheral) {
-        self.ambient = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
-        self.led1MinusAmbient = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
-        self.led1 = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
-        self.led2 = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
-        self.led3 = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
+    init() {
+        self.ambient = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientADCReadingCharacteristicIdentifier)
+        self.led1MinusAmbient = Characteristic(initialValue: 0, uuid: CBUUIDs.led1MinusAmbientCharacteristicIdentifier)
+        self.led1 = Characteristic(initialValue: 0, uuid: CBUUIDs.led1ADCReadingCharacteristicIdentifier)
+        self.led2 = Characteristic(initialValue: 0, uuid: CBUUIDs.led2ADCReadingCharacteristicIdentifier)
+        self.led3 = Characteristic(initialValue: 0, uuid: CBUUIDs.led3ADCReadingCharacteristicIdentifier)
     }
 }

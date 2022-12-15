@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CharacteristicKit
 
 struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
     typealias DataPoint = (CharacteristicType.T, Date)

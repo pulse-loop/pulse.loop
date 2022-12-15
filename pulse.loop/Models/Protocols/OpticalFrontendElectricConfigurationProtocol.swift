@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CharacteristicKit
 
 protocol OpticalFrontendElectricConfigurationProtocol: ObservableObject {
     associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor>

@@ -25,16 +25,16 @@
 		8B6A15012916A162000FA821 /* TIA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15002916A161000FA821 /* TIA.swift */; };
 		8B6A15032916A1E4000FA821 /* TimeInterval+Microseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */; };
 		8B6A15052916A358000FA821 /* OpticalFrontendWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15042916A358000FA821 /* OpticalFrontendWindow.swift */; };
-		8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15072916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift */; };
 		8B7E66C22901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */; };
-		8B86AF1C29279D0A001E3DEC /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B86AF1B29279D0A001E3DEC /* Characteristic.swift */; };
 		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8BB68AD92906B3D200AD753B /* OpticalWindowConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* OpticalWindowConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
+		8BDC66A9294B196B0078D4F9 /* CharacteristicKit in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC66A8294B19280078D4F9 /* CharacteristicKit */; };
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeOpticalFrontendWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendWindow.swift */; };
 		8BE12B702914132400AD2FF9 /* OpticalWindowTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* OpticalWindowTimingView.swift */; };
+		8BE38213294B1B470088D18D /* CharacteristicKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE38212294B1B470088D18D /* CharacteristicKit */; };
 		8BE66D032922E816000A76AA /* Runtime in Frameworks */ = {isa = PBXBuildFile; productRef = 8BE66D022922E816000A76AA /* Runtime */; };
 /* End PBXBuildFile section */
 
@@ -60,13 +60,12 @@
 		8B6A15002916A161000FA821 /* TIA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIA.swift; sourceTree = "<group>"; };
 		8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Microseconds.swift"; sourceTree = "<group>"; };
 		8B6A15042916A358000FA821 /* OpticalFrontendWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalFrontendWindow.swift; sourceTree = "<group>"; };
-		8B6A15072916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BLEDevice+CBPeripheralDelegate.swift"; sourceTree = "<group>"; };
 		8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceManager+CBCentralManagerDelegate.swift"; sourceTree = "<group>"; };
 		8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "pulse-loop-Info.plist"; sourceTree = SOURCE_ROOT; };
-		8B86AF1B29279D0A001E3DEC /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		8BB68AD82906B3D200AD753B /* OpticalWindowConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalWindowConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
+		8BDC66A8294B19280078D4F9 /* CharacteristicKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CharacteristicKit; path = ../../CharacteristicKit; sourceTree = "<group>"; };
 		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		8BE12B6D2913DBBC00AD2FF9 /* FakeOpticalFrontendWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeOpticalFrontendWindow.swift; sourceTree = "<group>"; };
 		8BE12B6F2914132400AD2FF9 /* OpticalWindowTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpticalWindowTimingView.swift; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE38213294B1B470088D18D /* CharacteristicKit in Frameworks */,
 				8BE66D032922E816000A76AA /* Runtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +87,7 @@
 		8B678B8028AFEC78009ECC97 = {
 			isa = PBXGroup;
 			children = (
+				8BDC66A7294B19280078D4F9 /* Packages */,
 				8B678B8B28AFEC78009ECC97 /* pulse.loop */,
 				8B678B8A28AFEC78009ECC97 /* Products */,
 				8BE96D702923D5BE00C6932E /* Frameworks */,
@@ -149,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				8B6A14F82916909E000FA821 /* BLEDevice.swift */,
-				8B6A15072916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift */,
 				8B55CC43292BB905000F57FE /* OpticalFrontendRawSensorData.swift */,
 				8B6A15042916A358000FA821 /* OpticalFrontendWindow.swift */,
 			);
@@ -159,7 +159,6 @@
 		8B7E66C02901B8EF00DA1C3D /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				8B86AF1B29279D0A001E3DEC /* Characteristic.swift */,
 				8B5D68BC28E8F730003B191F /* DeviceManager.swift */,
 				8B7E66C12901B91000DA1C3D /* DeviceManager+CBCentralManagerDelegate.swift */,
 				8B6A14FA291693A5000FA821 /* CBUUIDs.swift */,
@@ -194,6 +193,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8BDC66A7294B19280078D4F9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8BDC66A8294B19280078D4F9 /* CharacteristicKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		8BE96D702923D5BE00C6932E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +226,7 @@
 			name = pulse.loop;
 			packageProductDependencies = (
 				8BE66D022922E816000A76AA /* Runtime */,
+				8BE38212294B1B470088D18D /* CharacteristicKit */,
 			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
@@ -266,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B678B9528AFEC79009ECC97 /* Preview Assets.xcassets in Resources */,
+				8BDC66A9294B196B0078D4F9 /* CharacteristicKit in Resources */,
 				8B678B9128AFEC79009ECC97 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +294,6 @@
 				8B6A15012916A162000FA821 /* TIA.swift in Sources */,
 				8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */,
 				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
-				8B6A15082916B4DB000FA821 /* BLEDevice+CBPeripheralDelegate.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* OpticalWindowTimingView.swift in Sources */,
 				8B5830B62927E823006DADA3 /* ChartView.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
@@ -302,7 +310,6 @@
 				8B6A14F92916909E000FA821 /* BLEDevice.swift in Sources */,
 				8B55CC42292BB833000F57FE /* OpticalFrontendRawSensorDataProtocol.swift in Sources */,
 				8B6A15052916A358000FA821 /* OpticalFrontendWindow.swift in Sources */,
-				8B86AF1C29279D0A001E3DEC /* Characteristic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +552,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8BE38212294B1B470088D18D /* CharacteristicKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharacteristicKit;
+		};
 		8BE66D022922E816000A76AA /* Runtime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BE66D012922E816000A76AA /* XCRemoteSwiftPackageReference "Runtime" */;

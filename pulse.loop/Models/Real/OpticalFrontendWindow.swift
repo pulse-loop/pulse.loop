@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import CharacteristicKit
 
 class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContainer {
     class LED1PhaseType: LEDPhaseProtocol, CharacteristicContainer {
@@ -19,15 +20,15 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<Float32>
         var conv_end: Characteristic<Float32>
         
-        init(for peripheral: CBPeripheral) {
-            led_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1LightingStartCharacteristicIdentifier)
-            led_end = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1LightingEndCharacteristicIdentifier)
-            sample_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1SampleStartCharacteristicIdentifier)
-            sample_end = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1SampleEndCharacteristicIdentifier)
-            reset_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCResetStartCharacteristicIdentifier)
-            reset_end = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCResetEndCharacteristicIdentifier)
-            conv_st = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCConversionStartCharacteristicIdentifier)
-            conv_end = Characteristic(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led1ADCConversionEndCharacteristicIdentifier)
+        init() {
+            led_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led1LightingStartCharacteristicIdentifier)
+            led_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led1LightingEndCharacteristicIdentifier)
+            sample_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led1SampleStartCharacteristicIdentifier)
+            sample_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led1SampleEndCharacteristicIdentifier)
+            reset_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led1ADCResetStartCharacteristicIdentifier)
+            reset_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led1ADCResetEndCharacteristicIdentifier)
+            conv_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led1ADCConversionStartCharacteristicIdentifier)
+            conv_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led1ADCConversionEndCharacteristicIdentifier)
         }
     }
     
@@ -41,15 +42,15 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<Float32>
         var conv_end: Characteristic<Float32>
         
-        init(for peripheral: CBPeripheral) {
-            led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2LightingStartCharacteristicIdentifier)
-            led_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2LightingEndCharacteristicIdentifier)
-            sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2SampleStartCharacteristicIdentifier)
-            sample_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2SampleEndCharacteristicIdentifier)
-            reset_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCResetStartCharacteristicIdentifier)
-            reset_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCResetEndCharacteristicIdentifier)
-            conv_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCConversionStartCharacteristicIdentifier)
-            conv_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led2ADCConversionEndCharacteristicIdentifier)
+        init() {
+            led_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led2LightingStartCharacteristicIdentifier)
+            led_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led2LightingEndCharacteristicIdentifier)
+            sample_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led2SampleStartCharacteristicIdentifier)
+            sample_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led2SampleEndCharacteristicIdentifier)
+            reset_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led2ADCResetStartCharacteristicIdentifier)
+            reset_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led2ADCResetEndCharacteristicIdentifier)
+            conv_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led2ADCConversionStartCharacteristicIdentifier)
+            conv_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led2ADCConversionEndCharacteristicIdentifier)
         }
     }
     
@@ -63,15 +64,15 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<Float32>
         var conv_end: Characteristic<Float32>
         
-        init(for peripheral: CBPeripheral) {
-            led_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3LightingStartCharacteristicIdentifier)
-            led_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3LightingEndCharacteristicIdentifier)
-            sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3SampleStartCharacteristicIdentifier)
-            sample_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3SampleEndCharacteristicIdentifier)
-            reset_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCResetStartCharacteristicIdentifier)
-            reset_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCResetEndCharacteristicIdentifier)
-            conv_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCConversionStartCharacteristicIdentifier)
-            conv_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.led3ADCConversionEndCharacteristicIdentifier)
+        init() {
+            led_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led3LightingStartCharacteristicIdentifier)
+            led_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led3LightingEndCharacteristicIdentifier)
+            sample_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led3SampleStartCharacteristicIdentifier)
+            sample_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led3SampleEndCharacteristicIdentifier)
+            reset_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led3ADCResetStartCharacteristicIdentifier)
+            reset_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led3ADCResetEndCharacteristicIdentifier)
+            conv_st = Characteristic(initialValue: 0, uuid: CBUUIDs.led3ADCConversionStartCharacteristicIdentifier)
+            conv_end = Characteristic(initialValue: 0, uuid: CBUUIDs.led3ADCConversionEndCharacteristicIdentifier)
         }
     }
     
@@ -83,13 +84,13 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var conv_st: Characteristic<Float32>
         var conv_end: Characteristic<Float32>
         
-        init(for peripheral: CBPeripheral) {
-            sample_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientSampleStartCharacteristicIdentifier)
-            sample_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientSampleEndCharacteristicIdentifier)
-            reset_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCResetStartCharacteristicIdentifier)
-            reset_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCResetEndCharacteristicIdentifier)
-            conv_st = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCConversionStartCharacteristicIdentifier)
-            conv_end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.ambientADCConversionEndCharacteristicIdentifier)
+        init() {
+            sample_st = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientSampleStartCharacteristicIdentifier)
+            sample_end = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientSampleEndCharacteristicIdentifier)
+            reset_st = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientADCResetStartCharacteristicIdentifier)
+            reset_end = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientADCResetEndCharacteristicIdentifier)
+            conv_st = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientADCConversionStartCharacteristicIdentifier)
+            conv_end = Characteristic(initialValue: 0, uuid: CBUUIDs.ambientADCConversionEndCharacteristicIdentifier)
         }
     }
     
@@ -97,9 +98,9 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
         var start: Characteristic<Float32>
         var end: Characteristic<Float32>
         
-        init(for peripheral: CBPeripheral) {
-            start = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.dynamicPowerDownStartCharacteristicIdentifier)
-            end = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.dynamicPowerDownEndCharacteristicIdentifier)
+        init() {
+            start = Characteristic(initialValue: 0, uuid: CBUUIDs.dynamicPowerDownStartCharacteristicIdentifier)
+            end = Characteristic(initialValue: 0, uuid: CBUUIDs.dynamicPowerDownEndCharacteristicIdentifier)
         }
     }
     
@@ -111,11 +112,11 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     var dynamicPowerDown: DynamicPowerDownPhaseType
     
     init(for peripheral: CBPeripheral) {
-        ambientPhase = AmbientPhaseType(for: peripheral)
-        self.LED1Phase = Self.LED1PhaseType(for: peripheral)
-        self.LED2Phase = Self.LED2PhaseType(for: peripheral)
-        self.LED3Phase = Self.LED3PhaseType(for: peripheral)
-        totalWindowLength = .init(initialValue: 0, peripheral: peripheral, uuid: CBUUIDs.totalWindowLengthCharacteristicIdentifier)
-        dynamicPowerDown = DynamicPowerDownPhaseType(for: peripheral)
+        ambientPhase = AmbientPhaseType()
+        self.LED1Phase = Self.LED1PhaseType()
+        self.LED2Phase = Self.LED2PhaseType()
+        self.LED3Phase = Self.LED3PhaseType()
+        totalWindowLength = Characteristic(initialValue: 0, uuid: CBUUIDs.totalWindowLengthCharacteristicIdentifier)
+        dynamicPowerDown = DynamicPowerDownPhaseType()
     }
 }

@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CharacteristicKit
 
-class FakeDevice: DeviceProtocol {
+final class FakeDevice: DeviceProtocol {
     
     // MARK: Battery service.
     
@@ -44,6 +45,7 @@ class FakeDevice: DeviceProtocol {
     // MARK: Internal variables.
     private var updateTimer: DispatchSourceTimer?
     private var counter: Float = 0
+    var delegate: PeripheralDelegate<FakeDevice>?
     
     // MARK: Control functions.
     func connect() {

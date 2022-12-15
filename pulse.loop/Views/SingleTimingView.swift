@@ -28,14 +28,14 @@ struct SingleTimingView: View {
 #elseif os(iOS)
         HStack {
             Text("\(name) start")
-            TextField(name, value: $start, formatter: TimeInterval.microsecondsFormatter)
+            TextField(name, value: $start, formatter: Float32.microsecondsFormatter)
                 .multilineTextAlignment(.trailing)
                 .foregroundColor(.gray)
         }
         
         HStack {
             Text("\(name) end")
-            TextField(name, value: $end, formatter: TimeInterval.microsecondsFormatter)
+            TextField(name, value: $end, formatter: Float32.microsecondsFormatter)
                 .multilineTextAlignment(.trailing)
                 .foregroundColor(.gray)
         }

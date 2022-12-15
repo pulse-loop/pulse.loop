@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CharacteristicKit
 
 class FakeOpticalFrontendRawSensorData: OpticalFrontendRawSensorDataProtocol {
     var ambient: FakeCharacteristic<Float32>
@@ -19,11 +20,11 @@ class FakeOpticalFrontendRawSensorData: OpticalFrontendRawSensorDataProtocol {
          led1: Float32,
          led2: Float32,
          led3: Float32) {
-        self.ambient = .init(constant: ambient)
-        self.led1MinusAmbient = .init(constant: led1MinusAmbient)
-        self.led1 = .init(constant: led1)
-        self.led2 = .init(constant: led2)
-        self.led3 = .init(constant: led3)
+        self.ambient = FakeCharacteristic(constant: ambient)
+        self.led1MinusAmbient = FakeCharacteristic(constant: led1MinusAmbient)
+        self.led1 = FakeCharacteristic(constant: led1)
+        self.led2 = FakeCharacteristic(constant: led2)
+        self.led3 = FakeCharacteristic(constant: led3)
     }
     
     convenience init() {

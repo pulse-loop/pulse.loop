@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CharacteristicKit
 
 protocol LEDPhaseProtocol: ObservableObject {
     associatedtype TimeIntervalType: CharacteristicProtocol<Float32>
