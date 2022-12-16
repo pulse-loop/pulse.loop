@@ -11,34 +11,34 @@ import CharacteristicKit
 class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
         
     class LEDPhase: LEDPhaseProtocol {
-        @Published var led_st: FakeCharacteristic<Float32>
-        @Published var led_end: FakeCharacteristic<Float32>
-        @Published var sample_st: FakeCharacteristic<Float32>
-        @Published var sample_end: FakeCharacteristic<Float32>
-        @Published var reset_st: FakeCharacteristic<Float32>
-        @Published var reset_end: FakeCharacteristic<Float32>
-        @Published var conv_st: FakeCharacteristic<Float32>
-        @Published var conv_end: FakeCharacteristic<Float32>
+        @Published var led_st: MockCharacteristic<Float32>
+        @Published var led_end: MockCharacteristic<Float32>
+        @Published var sample_st: MockCharacteristic<Float32>
+        @Published var sample_end: MockCharacteristic<Float32>
+        @Published var reset_st: MockCharacteristic<Float32>
+        @Published var reset_end: MockCharacteristic<Float32>
+        @Published var conv_st: MockCharacteristic<Float32>
+        @Published var conv_end: MockCharacteristic<Float32>
         
         init(led_st: Float32, led_end: Float32, sample_st: Float32, sample_end: Float32, reset_st: Float32, reset_end: Float32, conv_st: Float32, conv_end: Float32) {
-            self.led_st = FakeCharacteristic(constant: led_st)
-            self.led_end = FakeCharacteristic(constant: led_end)
-            self.sample_st = FakeCharacteristic(constant: sample_st)
-            self.sample_end = FakeCharacteristic(constant: sample_end)
-            self.reset_st = FakeCharacteristic(constant: reset_st)
-            self.reset_end = FakeCharacteristic(constant: reset_end)
-            self.conv_st = FakeCharacteristic(constant: conv_st)
-            self.conv_end = FakeCharacteristic(constant: conv_end)
+            self.led_st = MockCharacteristic(constant: led_st)
+            self.led_end = MockCharacteristic(constant: led_end)
+            self.sample_st = MockCharacteristic(constant: sample_st)
+            self.sample_end = MockCharacteristic(constant: sample_end)
+            self.reset_st = MockCharacteristic(constant: reset_st)
+            self.reset_end = MockCharacteristic(constant: reset_end)
+            self.conv_st = MockCharacteristic(constant: conv_st)
+            self.conv_end = MockCharacteristic(constant: conv_end)
         }
     }
     
     class AmbientPhaseType: AmbientPhaseProtocol {
-        @Published var sample_st: FakeCharacteristic<Float32>
-        @Published var sample_end: FakeCharacteristic<Float32>
-        @Published var reset_st: FakeCharacteristic<Float32>
-        @Published var reset_end: FakeCharacteristic<Float32>
-        @Published var conv_st: FakeCharacteristic<Float32>
-        @Published var conv_end: FakeCharacteristic<Float32>
+        @Published var sample_st: MockCharacteristic<Float32>
+        @Published var sample_end: MockCharacteristic<Float32>
+        @Published var reset_st: MockCharacteristic<Float32>
+        @Published var reset_end: MockCharacteristic<Float32>
+        @Published var conv_st: MockCharacteristic<Float32>
+        @Published var conv_end: MockCharacteristic<Float32>
         
         init(sample_st: Float32, sample_end: Float32, reset_st: Float32, reset_end: Float32, conv_st: Float32, conv_end: Float32) {
             self.sample_st = .init(constant: sample_st)
@@ -51,8 +51,8 @@ class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
     }
     
     class DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol {
-        @Published var start: FakeCharacteristic<Float32>
-        @Published var end: FakeCharacteristic<Float32>
+        @Published var start: MockCharacteristic<Float32>
+        @Published var end: MockCharacteristic<Float32>
         
         init(start: Float32, end: Float32) {
             self.start = .init(constant: start)
@@ -64,7 +64,7 @@ class FakeOpticalFrontendWindow: OpticalFrontendWindowProtocol {
     @Published var LED1Phase: LEDPhase
     @Published var LED2Phase: LEDPhase
     @Published var LED3Phase: LEDPhase
-    @Published var totalWindowLength: FakeCharacteristic<Float32>
+    @Published var totalWindowLength: MockCharacteristic<Float32>
     @Published var dynamicPowerDown: DynamicPowerDownPhaseType
     
     init(ambientPhase: AmbientPhaseType, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: Float32, dynamicPowerDown: DynamicPowerDownPhaseType) {

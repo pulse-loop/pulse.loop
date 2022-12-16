@@ -111,7 +111,7 @@ class OpticalFrontendWindow: OpticalFrontendWindowProtocol, CharacteristicContai
     var totalWindowLength: Characteristic<Float32>
     var dynamicPowerDown: DynamicPowerDownPhaseType
     
-    init(for peripheral: CBPeripheral) {
+    init() {
         ambientPhase = AmbientPhaseType()
         self.LED1Phase = Self.LED1PhaseType()
         self.LED2Phase = Self.LED2PhaseType()

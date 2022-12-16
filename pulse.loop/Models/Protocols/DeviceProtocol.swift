@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol DeviceProtocol: DeviceModel, ObservableObject, Equatable {
+protocol DeviceProtocol: GenericPeripheralModel, Equatable {
         
     // MARK: Battery service.
     
@@ -39,10 +39,6 @@ protocol DeviceProtocol: DeviceModel, ObservableObject, Equatable {
     
     // MARK: Additional properties.
     var name: String { get }
-    var status: DeviceStatus { get set }
+    var status: PeripheralStatus { get set }
     var dataWindowLength: TimeInterval { get set }
-    
-    // MARK: Control functions.
-    func connect()
-    func disconnect()
 }

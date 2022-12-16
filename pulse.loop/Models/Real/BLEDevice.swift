@@ -10,26 +10,24 @@ import CoreBluetooth
 import OSLog
 import CharacteristicKit
 
-final class BLEDevice: DeviceProtocol {
-    
+final class BLEDevice: DeviceProtocol, PeripheralModel {
 
     internal var logger: Logger
         
     // MARK: Initialisers.
-    init(from peripheral: CBPeripheral) {
+    init(from peripheral: CBPeripheral?) {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Model")
-        logger.info("Initialising a new device from CoreBluetooth peripheral \"\(peripheral)\".")
+        logger.info("Initialising a new device from Core Bluetooth peripheral \"\(peripheral)\".")
         
         self.peripheral = peripheral
                 
         // Characteristic container structs.
-        self.opticalFrontendWindow = OpticalFrontendWindow(for: peripheral)
+        self.opticalFrontendWindow = OpticalFrontendWindow()
         self.rawData = OpticalFrontendRawSensorData()
         
         // Delegate.
         self.delegate = PeripheralDelegate(device: self)
-        // TODO: Remove peripheral!!!
-        peripheral.delegate = self.delegate
+        peripheral?.delegate = self.delegate
     }
     
     // MARK: Battery service.
@@ -60,13 +58,12 @@ final class BLEDevice: DeviceProtocol {
     var apiVersion: Int = 0
     
     // MARK: Additional properties.
-    var name: String { peripheral.name ?? "Unnamed device" }
-    @Published var status: DeviceStatus = .disconnected
+    var name: String { peripheral?.name ?? "Unnamed device" }
+    @Published var status: PeripheralStatus = .disconnected
     var dataWindowLength: TimeInterval = 5
     
     // MARK: Internal variables.
-    // TODO: REMOVE!!!
-    var peripheral: CBPeripheral!
+    var peripheral: CBPeripheral?
     var delegate: PeripheralDelegate<BLEDevice>?
     
     // MARK: Control functions.

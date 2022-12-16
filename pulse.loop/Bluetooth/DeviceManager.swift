@@ -63,10 +63,20 @@ class DeviceManager: NSObject, ObservableObject {
     }
     
     func connect(to device: BLEDevice) {
-        self.centralManager.connect(device.peripheral)
+        guard let peripheral = device.peripheral else {
+            logger.warning("Trying to connect to a device whose peripheral is nil.")
+            return
+        }
+        
+        self.centralManager.connect(peripheral)
     }
     
     func disconnect(from device: BLEDevice) {
-        self.centralManager.cancelPeripheralConnection(device.peripheral)
+        guard let peripheral = device.peripheral else {
+            logger.warning("Trying to connect to a device whose peripheral is nil.")
+            return
+        }
+        
+        self.centralManager.cancelPeripheralConnection(peripheral)
     }
 }
