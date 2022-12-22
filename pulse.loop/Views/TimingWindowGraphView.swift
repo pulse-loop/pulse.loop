@@ -1,5 +1,5 @@
 //
-//  OpticalWindowTimingView.swift
+//  TimingWindowGraphView.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 03/11/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OpticalWindowTimingView<OpticalWindowConfiguration: OpticalFrontendWindowProtocol>: View {
+struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: View {
     @ObservedObject var windowConfiguration: OpticalWindowConfiguration
     var ledColors: [Color] = [.blue.opacity(0.75), .green.opacity(0.75), .red.opacity(0.75), .gray.opacity(0.75)]
     
@@ -175,11 +175,11 @@ struct OpticalWindowTimingView<OpticalWindowConfiguration: OpticalFrontendWindow
     }
 }
 
-struct OpticalWindowTimingView_Previews: PreviewProvider {
+struct TimingWindowGraphView_Previews: PreviewProvider {
     static var previews: some View {
-        let conf = FakeOpticalFrontendWindow()
+        let conf = FakeTimingWindow()
         
-        OpticalWindowTimingView(windowConfiguration: conf)
+        TimingWindowGraphView(windowConfiguration: conf)
             .previewLayout(.sizeThatFits)
     }
 }

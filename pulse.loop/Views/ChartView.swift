@@ -16,6 +16,7 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
     @State var range: (CharacteristicType.T, CharacteristicType.T) = (.infinity, -.infinity)
     @State var path: Path = Path()
     @State var lastValue: CharacteristicType.T = .zero
+    
     let windowLength: TimeInterval
     let title: LocalizedStringKey?
     let lineColor: Color
@@ -28,7 +29,12 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
         return formatter
     }
     
-    init(value: CharacteristicType, title: LocalizedStringKey? = nil, lineColor: Color = .red, windowLength: TimeInterval = 5, smooth: Bool = false) {
+    init(value: CharacteristicType,
+         title: LocalizedStringKey? = nil,
+         lineColor: Color = .red,
+         windowLength: TimeInterval = 5,
+         smooth: Bool = false
+    ) {
         self.value = value
         self.title = title
         self.lineColor = lineColor
@@ -43,19 +49,20 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
             
             // Remove others.
             for i in 0..<data.count {
-                let (value, date) = data[i]
-                if date + windowLength < Date.now {
-                    data.remove(at: i)
-                    
-                    // Recompute min/max if needed.
-                    if value == self.range.0 {
-                        self.range.0 = data.map({$0.0}).min() ?? .infinity
-                    } else if value == self.range.1 {
-                        self.range.1 = data.map({$0.0}).max() ?? -.infinity
+                if let (value, date) = data[safe: i] {
+                    if date + windowLength < Date.now {
+                        data.remove(at: i)
+                        
+                        // Recompute min/max if needed.
+                        if value == self.range.0 {
+                            self.range.0 = data.map({$0.0}).min() ?? .infinity
+                        } else if value == self.range.1 {
+                            self.range.1 = data.map({$0.0}).max() ?? -.infinity
+                        }
+                    } else {
+                        // Break early, as the array is implicitly sorted...
+                        break
                     }
-                } else {
-                    // Break early, as the array is implicitly sorted...
-                    break
                 }
             }
             
@@ -110,6 +117,7 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
                 Text(title)
                     .font(.largeTitle.weight(.semibold))
             }
+            
             Canvas(rendersAsynchronously: true) { context, fullSize in
                 
                 let leftPadding = 0.0
@@ -167,7 +175,7 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
                     context.draw(Text(numberFormatter.string(for: tick * rangeOrder) ?? "").font(.caption), in: .init(origin: CGPoint(x: 0, y: y - 12), size: CGSize(width: 50, height: 20)))
                     context.stroke(horizontalLinePath.offsetBy(dx: leftPadding, dy: y), with: .color(.gray), style: StrokeStyle(dash: [2, 2]))
                 }
-                                
+                
                 // Line.
                 context.stroke(self.path.offsetBy(dx: leftPadding, dy: 0), with: .color(lineColor), style: StrokeStyle(lineWidth: 2))
             }
@@ -182,7 +190,7 @@ struct ChartView_Previews: PreviewProvider {
         device.connect()
         
         return TimelineView(.animation) { _ in
-            ChartView(value: device.rawData.ambient, title: "Chart", smooth: true)
+            ChartView(value: device.rawSensorData.ambient, title: "Chart", smooth: true)
                 .padding()
         }
         .previewLayout(.fixed(width: 600, height: 400))

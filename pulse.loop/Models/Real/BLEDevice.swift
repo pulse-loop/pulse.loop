@@ -22,8 +22,9 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
         self.peripheral = peripheral
                 
         // Characteristic container structs.
-        self.opticalFrontendWindow = OpticalFrontendWindow()
-        self.rawData = OpticalFrontendRawSensorData()
+        self.electricConfiguration = ElectricConfiguration()
+        self.timingWindow = TimingWindow()
+        self.rawSensorData = RawSensorData()
         
         // Delegate.
         self.delegate = PeripheralDelegate(device: self)
@@ -44,13 +45,17 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
     
     // MARK: Historic data.
     
+    // MARK: Electric configuration.
+    typealias ElectricConfigurationType = ElectricConfiguration
+    var electricConfiguration: ElectricConfiguration
+    
     // MARK: Optical frontend configuration.
-    typealias OpticalFrontendWindowType = OpticalFrontendWindow
-    var opticalFrontendWindow: OpticalFrontendWindowType
+    typealias TimingWindowType = TimingWindow
+    var timingWindow: TimingWindowType
     
     // MARK: Raw sensor data.
-    typealias OpticalFrontendRawSensorDataType = OpticalFrontendRawSensorData
-    var rawData: OpticalFrontendRawSensorDataType
+    typealias RawSensorDataType = RawSensorData
+    var rawSensorData: RawSensorDataType
     
     // MARK: Settings.
     

@@ -18,10 +18,10 @@ struct ContentView: View {
             List {
                 NavigationLink(destination: {
                     if let device = device as? FakeDevice {
-                        OpticalWindowConfigurationView(device: device)
+                        TimingWindowConfigurationView(device: device)
                             .navigationTitle("Window configuration")
                     } else if let device = device as? BLEDevice {
-                        OpticalWindowConfigurationView(device: device)
+                        TimingWindowConfigurationView(device: device)
                             .navigationTitle("Window configuration")
                     }
                 }, label: {
@@ -29,10 +29,15 @@ struct ContentView: View {
                 })
                 
                 NavigationLink(destination: {
-                    EmptyView()
-                        .navigationTitle("Electric calibration")
+                    if let device = device as? FakeDevice {
+                        ElectricConfigurationView(device: device)
+                            .navigationTitle("Electric configuration")
+                    } else if let device = device as? BLEDevice {
+                        ElectricConfigurationView(device: device)
+                            .navigationTitle("Electric configuration")
+                    }
                 }, label: {
-                    Label("Electric calibration", systemImage: "alternatingcurrent")
+                    Label("Electric configuration", systemImage: "alternatingcurrent")
                 })
                 
                 NavigationLink(destination: {

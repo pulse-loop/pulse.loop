@@ -1,5 +1,5 @@
 //
-//  OpticalWindowConfigurationForm.swift
+//  TimingWindowConfigurationForm.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 10/11/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFrontendWindowProtocol>: View {
+struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowProtocol>: View {
     
     enum FormSection: Int, CaseIterable, Equatable, CustomStringConvertible {
         case ambient
@@ -31,44 +31,9 @@ struct OpticalWindowConfigurationForm<OpticalWindowConfiguration: OpticalFronten
     
     var body: some View {
         Form {
-//            Section("Transimpedance amplifier") {
-//                
-//                Group {
-//                    Picker(selection: $windowConfiguration.tiaResistor1.value, label: Text("Resistor #1")) {
-//                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
-//                            Text(r.description).tag(r)
-//                        }
-//                    }
-//                    
-//                    
-//                    Picker(selection: $windowConfiguration.tiaResistor2.value, label: Text("Resistor #2")) {
-//                        ForEach(TIAResistor.allCases, id: \.rawValue) { r in
-//                            Text(r.description).tag(r)
-//                        }
-//                    }
-//                    
-//                    
-//                    Picker(selection: $windowConfiguration.tiaCapacitor1.value, label: Text("Capacitor #1")) {
-//                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
-//                            Text(r.description).tag(r)
-//                        }
-//                    }
-//                    
-//                    
-//                    Picker(selection: $windowConfiguration.tiaCapacitor2.value, label: Text("Capacitor #2")) {
-//                        ForEach(TIACapacitor.allCases, id: \.rawValue) { r in
-//                            Text(r.description).tag(r)
-//                        }
-//                    }
-//                }
-//            }
-#if os(iOS)
-//            .pickerStyle(.segmented)
-#endif
-            
             Section("Timing") {
                 Group {
-                    OpticalWindowTimingView(windowConfiguration: windowConfiguration)
+                    TimingWindowGraphView(windowConfiguration: windowConfiguration)
                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                     TextField("Window length",
@@ -180,11 +145,11 @@ struct AmbientTimingConfigurationView<Phase: AmbientPhaseProtocol>: View {
     }
 }
 
-struct OpticalWindowConfigurationForm_Previews: PreviewProvider {
+struct TimingWindowConfigurationForm_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(.vertical) {
             LazyVStack {
-                OpticalWindowConfigurationForm(windowConfiguration: .constant(FakeDevice().opticalFrontendWindow))
+                TimingWindowConfigurationForm(windowConfiguration: .constant(FakeDevice().timingWindow))
             }
             .padding()
         }

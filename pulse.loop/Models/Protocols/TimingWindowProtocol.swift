@@ -1,5 +1,5 @@
 //
-//  OpticalFrontendWindowProtocol.swift
+//  TimingWindowProtocol.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 05/11/22.
@@ -39,7 +39,7 @@ protocol DynamicPowerDownPhaseProtocol: ObservableObject {
     var end: TimeIntervalType { get set }
 }
 
-protocol OpticalFrontendWindowProtocol: ObservableObject {
+protocol TimingWindowProtocol: ObservableObject {
     
     associatedtype LED1PhaseType: LEDPhaseProtocol
     associatedtype LED2PhaseType: LEDPhaseProtocol

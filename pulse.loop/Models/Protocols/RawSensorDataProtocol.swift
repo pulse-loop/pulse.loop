@@ -1,5 +1,5 @@
 //
-//  OpticalFrontendRawSensorDataProtocol.swift
+//  RawSensorDataProtocol.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 21/11/22.
@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol OpticalFrontendRawSensorDataProtocol {
+protocol RawSensorDataProtocol {
     associatedtype RawOpticalType: CharacteristicProtocol<Float32>
 
     var ambient: RawOpticalType { get set }

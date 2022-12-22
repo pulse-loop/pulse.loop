@@ -24,13 +24,17 @@ protocol DeviceProtocol: GenericPeripheralModel, Equatable {
     
     // MARK: Historic data.
     
+    // MARK: Electric configuration.
+    associatedtype ElectricConfigurationType: ElectricConfigurationProtocol
+    var electricConfiguration: ElectricConfigurationType { get set }
+    
     // MARK: Optical frontend configuration.
-    associatedtype OpticalFrontendWindowType: OpticalFrontendWindowProtocol
-    var opticalFrontendWindow: OpticalFrontendWindowType { get set }
+    associatedtype TimingWindowType: TimingWindowProtocol
+    var timingWindow: TimingWindowType { get set }
     
     // MARK: Raw sensor data.
-    associatedtype OpticalFrontendRawSensorDataType: OpticalFrontendRawSensorDataProtocol
-    var rawData: OpticalFrontendRawSensorDataType { get }
+    associatedtype RawSensorDataType: RawSensorDataProtocol
+    var rawSensorData: RawSensorDataType { get }
     
     // MARK: Settings.
     

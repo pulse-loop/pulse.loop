@@ -25,13 +25,17 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     
     // MARK: Historic data.
     
+    // MARK: Electric configuration.
+    typealias ElectricConfigurationType = FakeElectricConfiguration
+    var electricConfiguration: ElectricConfigurationType = ElectricConfigurationType()
+    
     // MARK: Optical frontend configuration.
-    typealias OpticalFrontendWindowType = FakeOpticalFrontendWindow
-    var opticalFrontendWindow: OpticalFrontendWindowType = OpticalFrontendWindowType()
+    typealias TimingWindowType = FakeTimingWindow
+    var timingWindow: TimingWindowType = TimingWindowType()
         
     // MARK: Raw sensor data.
-    typealias OpticalFrontendRawSensorDataType = FakeOpticalFrontendRawSensorData
-    var rawData: OpticalFrontendRawSensorDataType = OpticalFrontendRawSensorDataType()
+    typealias RawSensorDataType = FakeRawSensorData
+    var rawSensorData: RawSensorDataType = RawSensorDataType()
     
     // MARK: Settings.
     
@@ -60,11 +64,11 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
             let new = sinf(self.counter) * 100
             self.counter += 0.1
             
-            self.rawData.ambient.setLocalValue(value: new)
-            self.rawData.led1MinusAmbient.setLocalValue(value: new)
-            self.rawData.led1.setLocalValue(value: new)
-            self.rawData.led2.setLocalValue(value: new)
-            self.rawData.led3.setLocalValue(value: new)
+            self.rawSensorData.ambient.setLocalValue(value: new)
+            self.rawSensorData.led1MinusAmbient.setLocalValue(value: new)
+            self.rawSensorData.led1.setLocalValue(value: new)
+            self.rawSensorData.led2.setLocalValue(value: new)
+            self.rawSensorData.led3.setLocalValue(value: new)
             
             DispatchQueue.main.async {
                 self.objectWillChange.send()
