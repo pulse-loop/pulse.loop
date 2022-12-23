@@ -9,7 +9,7 @@ import Foundation
 import CoreBluetooth
 import CharacteristicKit
 
-class TimingWindow: TimingWindowProtocol, CharacteristicContainer {    
+class TimingWindow: TimingWindowProtocol, CharacteristicContainer {
     class LED1PhaseType: LEDPhaseProtocol, CharacteristicContainer {
         var led_st: TimeIntervalType
         var led_end: TimeIntervalType

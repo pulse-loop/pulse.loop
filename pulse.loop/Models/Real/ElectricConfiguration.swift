@@ -9,8 +9,8 @@ import Foundation
 import CharacteristicKit
 
 class ElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContainer {
-    typealias TIAResistorType = Characteristic<TIAResistor>
-    typealias TIACapacitorType = Characteristic<TIACapacitor>
+    typealias TIAResistorType = Characteristic<TIAResistor.RawValue>
+    typealias TIACapacitorType = Characteristic<TIACapacitor.RawValue>
     typealias CurrentType = Characteristic<Float32>
     
     // MARK: Transimpedance amplifier.
@@ -31,18 +31,18 @@ class ElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContai
     var led3OffsetCurrent: CurrentType
     
     init() {
-        self.tiaResistor1 = TIAResistorType(initialValue: .R_100_kΩ, uuid: CBUUIDs.tiaResistor1CharacteristicIdentifier)
-        self.tiaResistor2 = TIAResistorType(initialValue: .R_100_kΩ, uuid: CBUUIDs.tiaResistor2CharacteristicIdentifier)
-        self.tiaCapacitor1 = TIACapacitorType(initialValue: .C_10_pF, uuid: CBUUIDs.tiaCapacitor1CharacteristicIdentifier)
-        self.tiaCapacitor2 = TIACapacitorType(initialValue: .C_10_pF, uuid: CBUUIDs.tiaCapacitor2CharacteristicIdentifier)
+        self.tiaResistor1 = TIAResistorType(initialValue: TIAResistor.R_100_kΩ.rawValue, uuid: CBUUIDs.tiaResistor1CharacteristicIdentifier)
+        self.tiaResistor2 = TIAResistorType(initialValue: TIAResistor.R_100_kΩ.rawValue, uuid: CBUUIDs.tiaResistor2CharacteristicIdentifier)
+        self.tiaCapacitor1 = TIACapacitorType(initialValue: TIACapacitor.C_10_pF.rawValue, uuid: CBUUIDs.tiaCapacitor1CharacteristicIdentifier)
+        self.tiaCapacitor2 = TIACapacitorType(initialValue: TIACapacitor.C_10_pF.rawValue, uuid: CBUUIDs.tiaCapacitor2CharacteristicIdentifier)
         
         self.led1Current = CurrentType(initialValue: .zero, uuid: CBUUIDs.led1CurrentCharacteristicIdentifier)
         self.led2Current = CurrentType(initialValue: .zero, uuid: CBUUIDs.led2CurrentCharacteristicIdentifier)
         self.led3Current = CurrentType(initialValue: .zero, uuid: CBUUIDs.led3CurrentCharacteristicIdentifier)
         
-//        self.ambientOffsetCurrent = CurrentType(initialValue: .zero, uuid: )
-//        self.led1OffsetCurrent = CurrentType(initialValue: .zero, uuid: )
-//        self.led2OffsetCurrent = CurrentType(initialValue: .zero, uuid: )
-//        self.led3OffsetCurrent = CurrentType(initialValue: .zero, uuid: )
+        self.ambientOffsetCurrent = CurrentType(initialValue: .zero, uuid: CBUUIDs.ambientOffsetCurrentCharacteristicIdentifier)
+        self.led1OffsetCurrent = CurrentType(initialValue: .zero, uuid: CBUUIDs.led1OffsetCurrentCharacteristicIdentifier)
+        self.led2OffsetCurrent = CurrentType(initialValue: .zero, uuid: CBUUIDs.led2OffsetCurrentCharacteristicIdentifier)
+        self.led3OffsetCurrent = CurrentType(initialValue: .zero, uuid: CBUUIDs.led3OffsetCurrentCharacteristicIdentifier)
     }
 }

@@ -93,6 +93,7 @@ struct CBUUIDs {
     // | Ambient ADC conversion start | Read/Write | `66DC5EDA-B89E-43D5-B940-13E29A468C77` |
     // | Ambient ADC reset end        | Read/Write | `E9AB33D4-DA9C-4424-851A-16CF66AA08C0` |
     // | Ambient ADC reset start      | Read/Write | `FD7FAFE2-4464-4F8C-A55C-79E45FB916B3` |
+    // | Ambient offset current       | Read/Write | `4ED69FED-8261-4931-A8A4-CA67B406A73A` |
     // | Ambient sample end           | Read/Write | `83C29A09-B658-4316-A1FD-D8AD97C02F80` |
     // | Ambient sample start         | Read/Write | `C35EBCC5-BCA4-4716-90E3-37B94D9AD6FF` |
     
@@ -100,6 +101,7 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicAmbientADCConversionStart = "66DC5EDA-B89E-43D5-B940-13E29A468C77"
     static private let kUUIDCharacteristicAmbientADCResetEnd = "E9AB33D4-DA9C-4424-851A-16CF66AA08C0"
     static private let kUUIDCharacteristicAmbientADCResetStart = "FD7FAFE2-4464-4F8C-A55C-79E45FB916B3"
+    static private let kUUIDCharacteristicAmbientOffsetCurrent = "4ED69FED-8261-4931-A8A4-CA67B406A73A"
     static private let kUUIDCharacteristicAmbientSampleEnd = "83C29A09-B658-4316-A1FD-D8AD97C02F80"
     static private let kUUIDCharacteristicAmbientSampleStart = "C35EBCC5-BCA4-4716-90E3-37B94D9AD6FF"
 
@@ -107,17 +109,24 @@ struct CBUUIDs {
     static let ambientADCConversionStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCConversionStart)
     static let ambientADCResetEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCResetEnd)
     static let ambientADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCResetStart)
+    static let ambientOffsetCurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientOffsetCurrent)
     static let ambientSampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientSampleEnd)
     static let ambientSampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientSampleStart)
     
     // | Characteristic               | Access     | UUID                                   |
     // |------------------------------|------------|----------------------------------------|
+    // | ADC averages                 | Read/Write | `7ADE19EA-2202-48E1-AFFB-4D8504024C37` |
+    // | Decimation factor            | Read/Write | `4D5A0E9C-0164-4D65-8F2D-86741B820EEF` |
     // | Dynamic power-down end       | Read/Write | `BC276997-792F-4391-9371-78F1C1038DB7` |
     // | Dynamic power-down start     | Read/Write | `0B68331C-B628-4D81-BBDB-47B79EA2430E` |
     
+    static private let kUUIDCharacteristicADCAverages = "7ADE19EA-2202-48E1-AFFB-4D8504024C37"
+    static private let kUUIDCharacteristicDecimationFactor = "4D5A0E9C-0164-4D65-8F2D-86741B820EEF"
     static private let kUUIDCharacteristicDynamicPowerDownEnd = "BC276997-792F-4391-9371-78F1C1038DB7"
     static private let kUUIDCharacteristicDynamicPowerDownStart = "0B68331C-B628-4D81-BBDB-47B79EA2430E"
 
+    static let ADCAveragesCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicADCAverages)
+    static let decimationFactorCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicDecimationFactor)
     static let dynamicPowerDownEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicDynamicPowerDownEnd)
     static let dynamicPowerDownStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicDynamicPowerDownStart)
     
@@ -129,6 +138,7 @@ struct CBUUIDs {
     // | LED1 ADC reset start         | Read/Write | `C8B42A6D-ECFC-40E8-8E3C-F5876EE749A3` |
     // | LED1 lighting end            | Read/Write | `9C678B37-F3AA-4B8C-AFD5-10B4694E49C7` |
     // | LED1 lighting start          | Read/Write | `F02C15DF-14F1-4872-BE99-33EE64F0E0B3` |
+    // | LED1 offset current          | Read/Write | `C5C6B835-56A6-4FC5-81BF-7512595DF3BD` |
     // | LED1 current                 | Read/Write | `A20B7943-5E1D-4053-8C4E-CD44463F460D` |
     // | LED1 sample end              | Read/Write | `F60A8B03-FAB1-433D-9D9E-8722DF003329` |
     // | LED1 sample start            | Read/Write | `FB219512-DC81-461A-B558-FE6E310E9333` |
@@ -139,6 +149,7 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED1ADCResetStart = "C8B42A6D-ECFC-40E8-8E3C-F5876EE749A3"
     static private let kUUIDCharacteristicLED1LightingEnd = "9C678B37-F3AA-4B8C-AFD5-10B4694E49C7"
     static private let kUUIDCharacteristicLED1LightingStart = "F02C15DF-14F1-4872-BE99-33EE64F0E0B3"
+    static private let kUUIDCharacteristicLED1OffsetCurrent = "C5C6B835-56A6-4FC5-81BF-7512595DF3BD"
     static private let kUUIDCharacteristicLED1Current = "A20B7943-5E1D-4053-8C4E-CD44463F460D"
     static private let kUUIDCharacteristicLED1SampleEnd = "F60A8B03-FAB1-433D-9D9E-8722DF003329"
     static private let kUUIDCharacteristicLED1SampleStart = "FB219512-DC81-461A-B558-FE6E310E9333"
@@ -149,6 +160,7 @@ struct CBUUIDs {
     static let led1ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCResetStart)
     static let led1LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1LightingEnd)
     static let led1LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1LightingStart)
+    static let led1OffsetCurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1OffsetCurrent)
     static let led1CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1Current)
     static let led1SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1SampleEnd)
     static let led1SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1SampleStart)
@@ -161,6 +173,7 @@ struct CBUUIDs {
     // | LED2 ADC reset start         | Read/Write | `E34424D5-68DA-467F-93FE-BE49F19FAB0E` |
     // | LED2 lighting end            | Read/Write | `B85968BA-FB52-46E8-81A5-0F837BF3D6EB` |
     // | LED2 lighting start          | Read/Write | `F710D5DC-2655-42D6-97AA-7A5FDF0285C8` |
+    // | LED2 offset current          | Read/Write | `1F23AD86-30CB-4AC2-AD23-226DA5B2EB0C` |
     // | LED2 current                 | Read/Write | `29CA51A3-B33B-44FD-853C-00FE8827ADC4` |
     // | LED2 sample end              | Read/Write | `F752142C-5BFC-4274-9044-E81D3F2F274A` |
     // | LED2 sample start            | Read/Write | `38644B85-3D2E-4D31-9679-06C9EB6BAC2D` |
@@ -171,6 +184,7 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED2ADCResetStart = "E34424D5-68DA-467F-93FE-BE49F19FAB0E"
     static private let kUUIDCharacteristicLED2LightingEnd = "B85968BA-FB52-46E8-81A5-0F837BF3D6EB"
     static private let kUUIDCharacteristicLED2LightingStart = "F710D5DC-2655-42D6-97AA-7A5FDF0285C8"
+    static private let kUUIDCharacteristicLED2OffsetCurrent = "1F23AD86-30CB-4AC2-AD23-226DA5B2EB0C"
     static private let kUUIDCharacteristicLED2Current = "29CA51A3-B33B-44FD-853C-00FE8827ADC4"
     static private let kUUIDCharacteristicLED2SampleEnd = "F752142C-5BFC-4274-9044-E81D3F2F274A"
     static private let kUUIDCharacteristicLED2SampleStart = "38644B85-3D2E-4D31-9679-06C9EB6BAC2D"
@@ -181,6 +195,7 @@ struct CBUUIDs {
     static let led2ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCResetStart)
     static let led2LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2LightingEnd)
     static let led2LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2LightingStart)
+    static let led2OffsetCurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2OffsetCurrent)
     static let led2CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2Current)
     static let led2SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2SampleEnd)
     static let led2SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2SampleStart)
@@ -193,6 +208,7 @@ struct CBUUIDs {
     // | LED3 ADC reset start         | Read/Write | `536D72C8-DFF0-4E38-93F7-7F376316EA8D` |
     // | LED3 lighting end            | Read/Write | `5B7F9859-092B-43D4-AC6B-AC9DD4742AB2` |
     // | LED3 lighting start          | Read/Write | `0B098015-110E-487E-AAE9-BEA1ED1F54A0` |
+    // | LED3 offset current          | Read/Write | `41AE7B18-F5D7-4475-9E3F-49354F077CED` |
     // | LED3 current                 | Read/Write | `F7535ED9-CB9F-469A-817E-1635DC3B68B0` |
     // | LED3 sample end              | Read/Write | `249782EC-004B-4A3D-9608-5143E69AB294` |
     // | LED3 sample start            | Read/Write | `733C5AED-D3B3-4F65-8898-6EA37DA30F71` |
@@ -203,6 +219,7 @@ struct CBUUIDs {
     static private let kUUIDCharacteristicLED3ADCResetStart = "536D72C8-DFF0-4E38-93F7-7F376316EA8D"
     static private let kUUIDCharacteristicLED3LightingEnd = "5B7F9859-092B-43D4-AC6B-AC9DD4742AB2"
     static private let kUUIDCharacteristicLED3LightingStart = "0B098015-110E-487E-AAE9-BEA1ED1F54A0"
+    static private let kUUIDCharacteristicLED3OffsetCurrent = "41AE7B18-F5D7-4475-9E3F-49354F077CED"
     static private let kUUIDCharacteristicLED3Current = "F7535ED9-CB9F-469A-817E-1635DC3B68B0"
     static private let kUUIDCharacteristicLED3SampleEnd = "249782EC-004B-4A3D-9608-5143E69AB294"
     static private let kUUIDCharacteristicLED3SampleStart = "733C5AED-D3B3-4F65-8898-6EA37DA30F71"
@@ -213,6 +230,7 @@ struct CBUUIDs {
     static let led3ADCResetStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCResetStart)
     static let led3LightingEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3LightingEnd)
     static let led3LightingStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3LightingStart)
+    static let led3OffsetCurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3OffsetCurrent)
     static let led3CurrentCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3Current)
     static let led3SampleEndCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3SampleEnd)
     static let led3SampleStartCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3SampleStart)

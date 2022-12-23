@@ -9,8 +9,8 @@ import Foundation
 import CharacteristicKit
 
 protocol ElectricConfigurationProtocol: ObservableObject {
-    associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor>
-    associatedtype TIACapacitorType: CharacteristicProtocol<TIACapacitor>
+    associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor.RawValue>
+    associatedtype TIACapacitorType: CharacteristicProtocol<TIACapacitor.RawValue>
     associatedtype CurrentType: CharacteristicProtocol<Float32>
     
     // MARK: Transimpedance amplifier.

@@ -19,7 +19,7 @@ extension Float32 {
     static let microsecondsFormatter: NumberFormatter = {
         let f = NumberFormatter()
         f.minimumSignificantDigits = 6
-        f.multiplier = 1
+        f.multiplier = 1_000_000
         
         // MEH...
         f.numberStyle = .percent

@@ -9,15 +9,15 @@ import Foundation
 import CharacteristicKit
 
 class FakeElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContainer {
-    typealias TIAResistorType = MockCharacteristic<TIAResistor>
-    typealias TIACapacitorType = MockCharacteristic<TIACapacitor>
+    typealias TIAResistorType = MockCharacteristic<TIAResistor.RawValue>
+    typealias TIACapacitorType = MockCharacteristic<TIACapacitor.RawValue>
     typealias CurrentType = MockCharacteristic<Float32>
     
     // MARK: Transimpedance amplifier.
-    var tiaResistor1: TIAResistorType = TIAResistorType(constant: .R_100_kΩ)
-    var tiaResistor2: TIAResistorType = TIAResistorType(constant: .R_100_kΩ)
-    var tiaCapacitor1: TIACapacitorType = TIACapacitorType(constant: .C_10_pF)
-    var tiaCapacitor2: TIACapacitorType = TIACapacitorType(constant: .C_10_pF)
+    var tiaResistor1: TIAResistorType = TIAResistorType(constant: TIAResistor.R_100_kΩ.rawValue)
+    var tiaResistor2: TIAResistorType = TIAResistorType(constant: TIAResistor.R_100_kΩ.rawValue)
+    var tiaCapacitor1: TIACapacitorType = TIACapacitorType(constant: TIACapacitor.C_10_pF.rawValue)
+    var tiaCapacitor2: TIACapacitorType = TIACapacitorType(constant: TIACapacitor.C_10_pF.rawValue)
     
     // MARK: LED currents.
     var led1Current: CurrentType = CurrentType(constant: .zero)
