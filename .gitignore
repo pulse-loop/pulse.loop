@@ -7,7 +7,15 @@
 # snapshot generated screenshots
 **/fastlane/screenshots
 
+**/fastlane/FastlaneRunner
+
 # scan temporary files
 **/fastlane/test_output
 
 **/.DS_Store
+
+**/*.pkg
+**/*.app
+**/*.dSYM.zip
+Gemfile
+Gemfile.lock
