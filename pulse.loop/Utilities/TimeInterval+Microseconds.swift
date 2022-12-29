@@ -9,16 +9,16 @@ import Foundation
 
 extension Float32 {
     init(microseconds: Double) {
-        self = Float32(microseconds)
+        self = Float32(microseconds / 1_000_000)
     }
     
     init(milliseconds: Double) {
-        self = Float32(milliseconds) * 1_000
+        self = Float32(milliseconds / 1_000)
     }
     
     static let microsecondsFormatter: NumberFormatter = {
         let f = NumberFormatter()
-        f.minimumSignificantDigits = 6
+        f.maximumFractionDigits = 2
         f.multiplier = 1_000_000
         
         // MEH...

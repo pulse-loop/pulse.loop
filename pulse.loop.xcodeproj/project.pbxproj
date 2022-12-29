@@ -38,6 +38,7 @@
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeTimingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeTimingWindow.swift */; };
 		8BE12B702914132400AD2FF9 /* TimingWindowGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */; };
+		8BE33036295DA65200CB4D81 /* LabeledSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		8BE12B6D2913DBBC00AD2FF9 /* FakeTimingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTimingWindow.swift; sourceTree = "<group>"; };
 		8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowGraphView.swift; sourceTree = "<group>"; };
+		8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */,
 				8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */,
 				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
+				8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				8B55CC44292BB905000F57FE /* RawSensorData.swift in Sources */,
 				8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */,
 				8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */,
+				8BE33036295DA65200CB4D81 /* LabeledSliderView.swift in Sources */,
 				8B560DC929546F2F00564909 /* ElectricConfigurationView.swift in Sources */,
 				8BB68AD92906B3D200AD753B /* TimingWindowConfigurationView.swift in Sources */,
 				8B6A14FF2916A01B000FA821 /* TimingWindowProtocol.swift in Sources */,

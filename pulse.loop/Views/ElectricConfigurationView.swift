@@ -49,7 +49,52 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
 #if os(iOS)
             .pickerStyle(.segmented)
 #endif
-
+            
+            Section("LED currents") {
+                LabeledSliderView(value: $device.electricConfiguration.led1Current.value, in: 0...100) {
+                    Text("LED 1\t") +
+                    Text("\(device.electricConfiguration.led1Current.value, specifier: "%.2f") mA")
+                        .foregroundColor(.secondary)
+                }
+                
+                LabeledSliderView(value: $device.electricConfiguration.led2Current.value, in: 0...100) {
+                    Text("LED 1\t") +
+                    Text("\(device.electricConfiguration.led2Current.value, specifier: "%.2f") mA")
+                        .foregroundColor(.secondary)
+                }
+                
+                LabeledSliderView(value: $device.electricConfiguration.led3Current.value, in: 0...100) {
+                    Text("LED 1\t") +
+                    Text("\(device.electricConfiguration.led3Current.value, specifier: "%.2f") mA")
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Section("Offset currents") {
+                LabeledSliderView(value: $device.electricConfiguration.ambientOffsetCurrent.value, in: -7...7) {
+                    Text("Ambient\t") +
+                    Text("\(device.electricConfiguration.ambientOffsetCurrent.value, specifier: "%.2f") µA")
+                        .foregroundColor(.secondary)
+                }
+                
+                LabeledSliderView(value: $device.electricConfiguration.led1OffsetCurrent.value, in: -7...7) {
+                    Text("LED 1\t") +
+                    Text("\(device.electricConfiguration.led1OffsetCurrent.value, specifier: "%.2f") µA")
+                        .foregroundColor(.secondary)
+                }
+                
+                LabeledSliderView(value: $device.electricConfiguration.led2OffsetCurrent.value, in: -7...7) {
+                    Text("LED 2\t") +
+                    Text("\(device.electricConfiguration.led2OffsetCurrent.value, specifier: "%.2f") µA")
+                        .foregroundColor(.secondary)
+                }
+                
+                LabeledSliderView(value: $device.electricConfiguration.led3OffsetCurrent.value, in: -7...7) {
+                    Text("LED 3\t") +
+                    Text("\(device.electricConfiguration.led3OffsetCurrent.value, specifier: "%.2f") µA")
+                        .foregroundColor(.secondary)
+                }
+            }
         }
         #if os(macOS)
         .formStyle(.grouped)
