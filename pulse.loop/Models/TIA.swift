@@ -32,14 +32,14 @@ enum TIAResistor: Float32, CustomStringConvertible, CaseIterable, Equatable {
 }
 
 enum TIACapacitor: Float32, CustomStringConvertible, CaseIterable, Equatable {
-    case C_2_5_pF = 2.5
-    case C_5_pF = 5
-    case C_7_5_pF = 7.5
-    case C_10_pF = 10
-    case C_17_5_pF = 17.5
-    case C_20_pF = 20
-    case C_22_5_pF = 22.5
-    case C_25_pF = 25
+    case C_2_5_pF = 2.5E-12
+    case C_5_pF = 5E-12
+    case C_7_5_pF = 7.5E-12
+    case C_10_pF = 10E-12
+    case C_17_5_pF = 17.5E-12
+    case C_20_pF = 20E-12
+    case C_22_5_pF = 22.5E-12
+    case C_25_pF = 25E-12
     
     var description: String {
         switch self {

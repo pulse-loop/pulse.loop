@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: View {
-    @ObservedObject var windowConfiguration: OpticalWindowConfiguration
+    @Binding var windowConfiguration: OpticalWindowConfiguration
     var ledColors: [Color] = [.blue.opacity(0.75), .green.opacity(0.75), .red.opacity(0.75), .gray.opacity(0.75)]
     
     @State var lastScaleValue: CGFloat = 1
@@ -179,7 +179,7 @@ struct TimingWindowGraphView_Previews: PreviewProvider {
     static var previews: some View {
         let conf = FakeTimingWindow()
         
-        TimingWindowGraphView(windowConfiguration: conf)
+        TimingWindowGraphView(windowConfiguration: .constant(conf))
             .previewLayout(.sizeThatFits)
     }
 }

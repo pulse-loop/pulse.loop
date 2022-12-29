@@ -26,14 +26,13 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
     }
 
     
-    @State var currentSection: FormSection = .ambient
+    @State private var currentSection: FormSection = .ambient
     @Binding var windowConfiguration: OpticalWindowConfiguration
     
     var body: some View {
-        Form {
             Section("Timing") {
                 Group {
-                    TimingWindowGraphView(windowConfiguration: windowConfiguration)
+                    TimingWindowGraphView(windowConfiguration: $windowConfiguration)
                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                     TextField("Window length",
@@ -111,10 +110,6 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
                 }
 #endif
             }
-        }
-#if os(macOS)
-        .formStyle(.grouped)
-#endif
     }
 }
 

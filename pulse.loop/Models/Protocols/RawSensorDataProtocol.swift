@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol RawSensorDataProtocol {
+protocol RawSensorDataProtocol: ObservableObject {
     associatedtype RawOpticalType: CharacteristicProtocol<Float32>
 
     var ambient: RawOpticalType { get set }
