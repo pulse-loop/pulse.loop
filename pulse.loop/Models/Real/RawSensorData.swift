@@ -7,8 +7,9 @@
 
 import Foundation
 import CharacteristicKit
+import Combine
 
-class RawSensorData: RawSensorDataProtocol, CharacteristicContainer {
+class RawSensorData: RawSensorDataProtocol, CharacteristicContainer {    
     typealias RawOpticalType = Characteristic<Float32>
     
     var ambient: RawOpticalType

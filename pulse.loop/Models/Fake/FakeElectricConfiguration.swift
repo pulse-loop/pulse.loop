@@ -7,8 +7,9 @@
 
 import Foundation
 import CharacteristicKit
+import Combine
 
-class FakeElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContainer {
+class FakeElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContainer {    
     typealias TIAResistorType = MockCharacteristic<TIAResistor.RawValue>
     typealias TIACapacitorType = MockCharacteristic<TIACapacitor.RawValue>
     typealias CurrentType = MockCharacteristic<Float32>

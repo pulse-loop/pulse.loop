@@ -8,8 +8,12 @@
 import Foundation
 import CharacteristicKit
 import CoreBluetooth
+import Combine
 
 final class FakeDevice: DeviceProtocol, MockPeripheralModel {
+    var valueChangeCancellable: AnyCancellable?
+    
+    var state: CBPeripheralState = .connected
     
     // MARK: Battery service.
     
@@ -44,14 +48,11 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     
     // MARK: Additional properties.
     var name: String = "Fake Device"
-    var status: PeripheralStatus = .connected
     @Published var dataWindowLength: TimeInterval = 5
     
     // MARK: Internal variables.
     private var updateTimer: DispatchSourceTimer?
     private var counter: Float = 0
-//    var delegate: PeripheralDelegate<FakeDevice>?
-//    var peripheral: CBPeripheral?
     
     // MARK: Control functions.
     func connect() {

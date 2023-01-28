@@ -9,13 +9,24 @@ import Foundation
 import CoreBluetooth
 import OSLog
 import CharacteristicKit
+import Combine
 
 final class BLEDevice: DeviceProtocol, PeripheralModel {
+    static var requiredAdvertisedServices: [CBUUID]? = [CBUUIDs.pulseLoopIdentifierServiceIdentifier]
+    static var servicesToScan: [CBUUID]? = nil
+    static var centralManager: CBCentralManager?
+    static var centralManagerDelegate: CBCentralManagerDelegate?
+        
+    var valueChangeCancellable: AnyCancellable?
+    
+    var peripheral: CBPeripheral
+    var delegate: PeripheralDelegate<BLEDevice>?
+    
 
     internal var logger: Logger
         
     // MARK: Initialisers.
-    init(from peripheral: CBPeripheral?) {
+    init(from peripheral: CBPeripheral) {
         self.logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Bluetooth Device Model")
         logger.info("Initialising a new device from Core Bluetooth peripheral \"\(peripheral)\".")
         
@@ -27,8 +38,7 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
         self.rawSensorData = RawSensorData()
         
         // Delegate.
-        self.delegate = PeripheralDelegate(device: self)
-        peripheral?.delegate = self.delegate
+        self.initialiseDelegate()
     }
     
     // MARK: Battery service.
@@ -63,22 +73,8 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
     var apiVersion: Int = 0
     
     // MARK: Additional properties.
-    var name: String { peripheral?.name ?? "Unnamed device" }
-    @Published var status: PeripheralStatus = .disconnected
+    var name: String { peripheral.name ?? "Unnamed device" }
     var dataWindowLength: TimeInterval = 5
-    
-    // MARK: Internal variables.
-    var peripheral: CBPeripheral?
-    var delegate: PeripheralDelegate<BLEDevice>?
-    
-    // MARK: Control functions.
-    func connect() {
-        DeviceManager.shared.connect(to: self)
-    }
-    
-    func disconnect() {
-        DeviceManager.shared.disconnect(from: self)
-    }
 }
 
 extension BLEDevice: Equatable {

@@ -36,13 +36,13 @@ struct DeviceListItem<Device: DeviceProtocol>: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            if selected && device.status != .disconnected {
+            if selected && device.state != .disconnected {
                 HStack(spacing: 8) {
-                    if device.status != .connected {
+                    if device.state != .connected {
                         ProgressView()
                             .controlSize(.small)
                     }
-                    Text(device.status.description.capitalized)
+                    Text(device.state.description.capitalized)
                         .font(.system(.body).bold())
                 }
             } else {

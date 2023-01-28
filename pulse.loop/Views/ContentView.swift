@@ -12,7 +12,6 @@ struct ContentView: View {
     @State private var devicePopoverPresented: Bool = false
     
     @Binding var device: any DeviceProtocol
-    @EnvironmentObject var deviceManager: DeviceManager
     
     var body: some View {
         NavigationView {
@@ -57,7 +56,7 @@ struct ContentView: View {
                         Label("Devices", systemImage: "antenna.radiowaves.left.and.right")
                     }
                     .popover(isPresented: $devicePopoverPresented) {
-                        DeviceSelectionView(manager: deviceManager, selectedDevice: $device)
+                        DeviceSelectionView(selectedDevice: $device)
                             .frame(minWidth: 400, minHeight: 480)
                     }
                 }
