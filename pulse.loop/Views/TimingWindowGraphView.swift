@@ -18,109 +18,111 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
         VStack(alignment: .leading) {
             GeometryReader { geometry in
                 ScrollView(.horizontal) {
-                    Canvas { context, size in
-                        func rectangleForInterval(from start: Float32, to end: Float32) -> Path {
-                            let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
-                            let rect = CGRect(x: xStart, y: 0, width: xEnd - xStart, height: size.height)
-                            return Path(rect)
-                        }
-                        
-                        func rectangleForInterval(from start: Float32, to end: Float32, band: Int) -> Path {
-                            let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
-                            let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
+                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                        Canvas { context, size in
+                            func rectangleForInterval(from start: Float32, to end: Float32) -> Path {
+                                let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
+                                let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
+                                let rect = CGRect(x: xStart, y: 0, width: xEnd - xStart, height: size.height)
+                                return Path(rect)
+                            }
                             
-                            let bandHeight = size.height / 4
-                            let yStart = CGFloat(band) * bandHeight
+                            func rectangleForInterval(from start: Float32, to end: Float32, band: Int) -> Path {
+                                let xStart = size.width * CGFloat(start/windowConfiguration.totalWindowLength.value)
+                                let xEnd = size.width * CGFloat(end/windowConfiguration.totalWindowLength.value)
+                                
+                                let bandHeight = size.height / 4
+                                let yStart = CGFloat(band) * bandHeight
+                                
+                                let rect = CGRect(x: xStart, y: yStart, width: xEnd - xStart, height: bandHeight)
+                                return Path(rect)
+                            }
                             
-                            let rect = CGRect(x: xStart, y: yStart, width: xEnd - xStart, height: bandHeight)
-                            return Path(rect)
+                            // Fill dynamic power down
+                            let dynamicPowerDownPath = rectangleForInterval(from: windowConfiguration.dynamicPowerDown.start.value,
+                                                                            to: windowConfiguration.dynamicPowerDown.end.value)
+                            context.fill(dynamicPowerDownPath, with: .linearGradient(
+                                .init(stops: [
+                                    .init(color: .primary.opacity(0.1), location: 0),
+                                    .init(color: .primary.opacity(0.1), location: 0.4),
+                                    .init(color: .clear, location: 0.4)
+                                ]),
+                                startPoint: .zero,
+                                endPoint: CGPoint(x: 16, y: 16),
+                                options: .repeat)
+                            )
+                            
+                            // Five horizontal alternate color bands
+                            let colors: [Color] = [.clear, .primary.opacity(0.1), .clear, .primary.opacity(0.1)]
+                            
+                            for i in 0..<4 {
+                                let band = rectangleForInterval(from: .zero, to: windowConfiguration.dynamicPowerDown.start.value, band: i)
+                                context.fill(band, with: .color(colors[i]))
+                            }
+                            
+                            // Overlay indicators: lighting
+                            let lightingTuples = [
+                                (0, 0),
+                                (windowConfiguration.LED1Phase.led_st.value, windowConfiguration.LED1Phase.led_end.value),
+                                (windowConfiguration.LED2Phase.led_st.value, windowConfiguration.LED2Phase.led_end.value),
+                                (windowConfiguration.LED3Phase.led_st.value, windowConfiguration.LED3Phase.led_end.value)
+                            ]
+                            
+                            for tuple in lightingTuples.enumerated() {
+                                let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 0)
+                                context.fill(rect, with: .color(ledColors[tuple.offset]))
+                            }
+                            
+                            // Overlay indicators: sampling
+                            let samplingTuples = [
+                                (windowConfiguration.ambientPhase.sample_st.value, windowConfiguration.ambientPhase.sample_end.value),
+                                (windowConfiguration.LED1Phase.sample_st.value, windowConfiguration.LED1Phase.sample_end.value),
+                                (windowConfiguration.LED2Phase.sample_st.value, windowConfiguration.LED2Phase.sample_end.value),
+                                (windowConfiguration.LED3Phase.sample_st.value, windowConfiguration.LED3Phase.sample_end.value)
+                            ]
+                            
+                            for tuple in samplingTuples.enumerated() {
+                                let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 1)
+                                context.fill(rect, with: .color(ledColors[tuple.offset]))
+                            }
+                            
+                            // Overlay indicators: conversion
+                            let conversionTuples = [
+                                (windowConfiguration.ambientPhase.conv_st.value, windowConfiguration.ambientPhase.conv_end.value),
+                                (windowConfiguration.LED1Phase.conv_st.value, windowConfiguration.LED1Phase.conv_end.value),
+                                (windowConfiguration.LED2Phase.conv_st.value, windowConfiguration.LED2Phase.conv_end.value),
+                                (windowConfiguration.LED3Phase.conv_st.value, windowConfiguration.LED3Phase.conv_end.value)
+                            ]
+                            
+                            for tuple in conversionTuples.enumerated() {
+                                let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 2)
+                                context.fill(rect, with: .color(ledColors[tuple.offset]))
+                            }
+                            
+                            // Overlay indicators: reset
+                            let resetTuples = [
+                                (windowConfiguration.ambientPhase.reset_st.value, windowConfiguration.ambientPhase.reset_end.value),
+                                (windowConfiguration.LED1Phase.reset_st.value, windowConfiguration.LED1Phase.reset_end.value),
+                                (windowConfiguration.LED2Phase.reset_st.value, windowConfiguration.LED2Phase.reset_end.value),
+                                (windowConfiguration.LED3Phase.reset_st.value, windowConfiguration.LED3Phase.reset_end.value)
+                            ]
+                            
+                            for tuple in resetTuples.enumerated() {
+                                let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 3)
+                                context.fill(rect, with: .color(ledColors[tuple.offset]))
+                            }
+                            
+                            // Overlay text
+                            let names = ["LI", "SA", "CNV", "RST"]
+                            
+                            for i in 0..<4 {
+                                let point = CGPoint(x: 2, y: 2 + size.height / 4 * CGFloat(i))
+                                context.draw(Text(names[i]).font(.system(size: 8).italic().monospaced()), at: point, anchor: .topLeading)
+                            }
                         }
-                        
-                        // Fill dynamic power down
-                        let dynamicPowerDownPath = rectangleForInterval(from: windowConfiguration.dynamicPowerDown.start.value,
-                                                                        to: windowConfiguration.dynamicPowerDown.end.value)
-                        context.fill(dynamicPowerDownPath, with: .linearGradient(
-                            .init(stops: [
-                                .init(color: .primary.opacity(0.1), location: 0),
-                                .init(color: .primary.opacity(0.1), location: 0.4),
-                                .init(color: .clear, location: 0.4)
-                            ]),
-                            startPoint: .zero,
-                            endPoint: CGPoint(x: 16, y: 16),
-                            options: .repeat)
-                        )
-                        
-                        // Five horizontal alternate color bands
-                        let colors: [Color] = [.clear, .primary.opacity(0.1), .clear, .primary.opacity(0.1)]
-                        
-                        for i in 0..<4 {
-                            let band = rectangleForInterval(from: .zero, to: windowConfiguration.dynamicPowerDown.start.value, band: i)
-                            context.fill(band, with: .color(colors[i]))
-                        }
-                        
-                        // Overlay indicators: lighting
-                        let lightingTuples = [
-                            (0, 0),
-                            (windowConfiguration.LED1Phase.led_st.value, windowConfiguration.LED1Phase.led_end.value),
-                            (windowConfiguration.LED2Phase.led_st.value, windowConfiguration.LED2Phase.led_end.value),
-                            (windowConfiguration.LED3Phase.led_st.value, windowConfiguration.LED3Phase.led_end.value)
-                        ]
-                        
-                        for tuple in lightingTuples.enumerated() {
-                            let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 0)
-                            context.fill(rect, with: .color(ledColors[tuple.offset]))
-                        }
-                        
-                        // Overlay indicators: sampling
-                        let samplingTuples = [
-                            (windowConfiguration.ambientPhase.sample_st.value, windowConfiguration.ambientPhase.sample_end.value),
-                            (windowConfiguration.LED1Phase.sample_st.value, windowConfiguration.LED1Phase.sample_end.value),
-                            (windowConfiguration.LED2Phase.sample_st.value, windowConfiguration.LED2Phase.sample_end.value),
-                            (windowConfiguration.LED3Phase.sample_st.value, windowConfiguration.LED3Phase.sample_end.value)
-                        ]
-                        
-                        for tuple in samplingTuples.enumerated() {
-                            let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 1)
-                            context.fill(rect, with: .color(ledColors[tuple.offset]))
-                        }
-                        
-                        // Overlay indicators: conversion
-                        let conversionTuples = [
-                            (windowConfiguration.ambientPhase.conv_st.value, windowConfiguration.ambientPhase.conv_end.value),
-                            (windowConfiguration.LED1Phase.conv_st.value, windowConfiguration.LED1Phase.conv_end.value),
-                            (windowConfiguration.LED2Phase.conv_st.value, windowConfiguration.LED2Phase.conv_end.value),
-                            (windowConfiguration.LED3Phase.conv_st.value, windowConfiguration.LED3Phase.conv_end.value)
-                        ]
-                        
-                        for tuple in conversionTuples.enumerated() {
-                            let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 2)
-                            context.fill(rect, with: .color(ledColors[tuple.offset]))
-                        }
-                        
-                        // Overlay indicators: reset
-                        let resetTuples = [
-                            (windowConfiguration.ambientPhase.reset_st.value, windowConfiguration.ambientPhase.reset_end.value),
-                            (windowConfiguration.LED1Phase.reset_st.value, windowConfiguration.LED1Phase.reset_end.value),
-                            (windowConfiguration.LED2Phase.reset_st.value, windowConfiguration.LED2Phase.reset_end.value),
-                            (windowConfiguration.LED3Phase.reset_st.value, windowConfiguration.LED3Phase.reset_end.value)
-                        ]
-                        
-                        for tuple in resetTuples.enumerated() {
-                            let rect = rectangleForInterval(from: tuple.element.0, to: tuple.element.1, band: 3)
-                            context.fill(rect, with: .color(ledColors[tuple.offset]))
-                        }
-                        
-                        // Overlay text
-                        let names = ["LI", "SA", "CNV", "RST"]
-                        
-                        for i in 0..<4 {
-                            let point = CGPoint(x: 2, y: 2 + size.height / 4 * CGFloat(i))
-                            context.draw(Text(names[i]).font(.system(size: 8).italic().monospaced()), at: point, anchor: .topLeading)
-                        }
+                        .frame(width: geometry.size.width * scale)
+                        .drawingGroup()
                     }
-                    .frame(width: geometry.size.width * scale)
-                    .drawingGroup()
                 }
                 .overlay(alignment: .topTrailing) {
                     HStack {
@@ -130,7 +132,7 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
                         } label: {
                             Label("Zoom in", systemImage: "minus.magnifyingglass")
                         }
-
+                        
                         Button {
                             scale = scale * 1.2
                         } label: {
@@ -143,7 +145,7 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
                     .background(in: RoundedRectangle(cornerRadius: 4, style: .continuous))
                     //.backgroundStyle(.thinMaterial)
                     .padding(4)
-
+                    
                 }
             }
             .frame(height: 100)
@@ -163,7 +165,7 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
                     Circle().fill(ledColors[2]).frame(width: 20)
                     Text("LED 2")
                 }
-                 
+                
                 HStack {
                     Circle().fill(ledColors[3]).frame(width: 20)
                     Text("LED 3")

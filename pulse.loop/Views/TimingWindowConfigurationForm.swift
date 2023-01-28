@@ -30,19 +30,19 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
     @Binding var windowConfiguration: OpticalWindowConfiguration
     
     var body: some View {
-            Section("Timing") {
-                Group {
-                    TimingWindowGraphView(windowConfiguration: $windowConfiguration)
-                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-
-                    TextField("Window length",
-                              value: $windowConfiguration.totalWindowLength.value,
-                              formatter: Float32.microsecondsFormatter)
-
-                    SingleTimingView(name: "Dynamic PD",
-                                     start: $windowConfiguration.dynamicPowerDown.start.value,
-                                     end: $windowConfiguration.dynamicPowerDown.end.value)
-                }
+        Section("Timing") {
+            Group {
+                TimingWindowGraphView(windowConfiguration: $windowConfiguration)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                
+                TextField("Window length",
+                          value: $windowConfiguration.totalWindowLength.value,
+                          formatter: Float32.microsecondsFormatter)
+                
+                SingleTimingView(name: "Dynamic PD",
+                                 start: $windowConfiguration.dynamicPowerDown.start.value,
+                                 end: $windowConfiguration.dynamicPowerDown.end.value)
+            }
                 
 #if os(macOS)
                 TabView {
