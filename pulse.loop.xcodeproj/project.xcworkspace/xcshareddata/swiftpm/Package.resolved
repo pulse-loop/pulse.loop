@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "characteristickit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/persello/characteristickit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a57396d3ece23e90ff9175f64a12840bbb606013"
+      }
+    },
+    {
       "identity" : "runtime",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wickwirew/Runtime.git",

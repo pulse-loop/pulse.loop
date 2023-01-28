@@ -33,8 +33,8 @@
 		8BB68AD92906B3D200AD753B /* TimingWindowConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
 		8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */; };
-		8BC60B7629859E2B00327C4F /* CharacteristicKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC60B7529859E2B00327C4F /* CharacteristicKit */; };
 		8BC60B7829859E7B00327C4F /* CBPeripheralState+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC60B7729859E7B00327C4F /* CBPeripheralState+CustomStringConvertible.swift */; };
+		8BC60B7B2985A32300327C4F /* CharacteristicKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC60B7A2985A32300327C4F /* CharacteristicKit */; };
 		8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */; };
 		8BE12B6E2913DBBC00AD2FF9 /* FakeTimingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6D2913DBBC00AD2FF9 /* FakeTimingWindow.swift */; };
 		8BE12B702914132400AD2FF9 /* TimingWindowGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */; };
@@ -71,7 +71,6 @@
 		8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
 		8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
-		8BC60B7429859E1D00327C4F /* CharacteristicKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CharacteristicKit; path = ../../CharacteristicKit; sourceTree = "<group>"; };
 		8BC60B7729859E7B00327C4F /* CBPeripheralState+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBPeripheralState+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		8BE12B6D2913DBBC00AD2FF9 /* FakeTimingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTimingWindow.swift; sourceTree = "<group>"; };
@@ -84,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC60B7629859E2B00327C4F /* CharacteristicKit in Frameworks */,
+				8BC60B7B2985A32300327C4F /* CharacteristicKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +102,6 @@
 		8B678B8028AFEC78009ECC97 = {
 			isa = PBXGroup;
 			children = (
-				8BC60B7029859D7500327C4F /* Packages */,
 				8B678B8B28AFEC78009ECC97 /* pulse.loop */,
 				8B678B8A28AFEC78009ECC97 /* Products */,
 				8BE96D702923D5BE00C6932E /* Frameworks */,
@@ -213,14 +211,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8BC60B7029859D7500327C4F /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				8BC60B7429859E1D00327C4F /* CharacteristicKit */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		8BE96D702923D5BE00C6932E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +235,7 @@
 			);
 			name = pulse.loop;
 			packageProductDependencies = (
-				8BC60B7529859E2B00327C4F /* CharacteristicKit */,
+				8BC60B7A2985A32300327C4F /* CharacteristicKit */,
 			);
 			productName = pulse.loop;
 			productReference = 8B678B8928AFEC78009ECC97 /* pulse.loop.app */;
@@ -276,6 +266,7 @@
 			);
 			mainGroup = 8B678B8028AFEC78009ECC97;
 			packageReferences = (
+				8BC60B792985A32300327C4F /* XCRemoteSwiftPackageReference "characteristickit" */,
 			);
 			productRefGroup = 8B678B8A28AFEC78009ECC97 /* Products */;
 			projectDirPath = "";
@@ -562,9 +553,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		8BC60B792985A32300327C4F /* XCRemoteSwiftPackageReference "characteristickit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/persello/characteristickit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		8BC60B7529859E2B00327C4F /* CharacteristicKit */ = {
+		8BC60B7A2985A32300327C4F /* CharacteristicKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 8BC60B792985A32300327C4F /* XCRemoteSwiftPackageReference "characteristickit" */;
 			productName = CharacteristicKit;
 		};
 /* End XCSwiftPackageProductDependency section */
