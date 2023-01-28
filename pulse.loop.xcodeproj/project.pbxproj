@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B1F230C291D383D00B9BF9F /* TimingWindowConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */; };
 		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
+		8B443E23295E11360083F41E /* ChartStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B443E22295E11360083F41E /* ChartStackView.swift */; };
 		8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */; };
 		8B55CC42292BB833000F57FE /* RawSensorDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC41292BB833000F57FE /* RawSensorDataProtocol.swift */; };
 		8B55CC44292BB905000F57FE /* RawSensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC43292BB905000F57FE /* RawSensorData.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowConfigurationForm.swift; sourceTree = "<group>"; };
 		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
+		8B443E22295E11360083F41E /* ChartStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStackView.swift; sourceTree = "<group>"; };
 		8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8B55CC41292BB833000F57FE /* RawSensorDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawSensorDataProtocol.swift; sourceTree = "<group>"; };
 		8B55CC43292BB905000F57FE /* RawSensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawSensorData.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */,
 				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
 				8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */,
+				8B443E22295E11360083F41E /* ChartStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				8B6A15032916A1E4000FA821 /* TimeInterval+Microseconds.swift in Sources */,
 				8B6A15012916A162000FA821 /* TIA.swift in Sources */,
 				8B5D68BD28E8F730003B191F /* DeviceManager.swift in Sources */,
+				8B443E23295E11360083F41E /* ChartStackView.swift in Sources */,
 				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* TimingWindowGraphView.swift in Sources */,
 				8B5830B62927E823006DADA3 /* ChartView.swift in Sources */,
