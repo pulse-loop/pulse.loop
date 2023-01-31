@@ -67,11 +67,11 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                                            envelopePhase: Float32,
                                            envelopeAmplitude: Float32,
                                            envelopeOffset: Float32,
-                                           envelopeFrequency: Float32) -> (Float32, Float32, Float32) {
+                                           envelopeFrequency: Float32) -> (Int32, Int32, Int32) {
                 let envelope = envelopeOffset + envelopeAmplitude * sinf((self.counter * envelopeFrequency) + envelopePhase)
                 let value = envelope * sinf((self.counter * frequency) + phase)
                 
-                return (envelope, -envelope, value)
+                return (Int32(envelope), Int32(-envelope), Int32(value))
             }
             
             // Aggregated data generator.
