@@ -22,24 +22,24 @@ struct AggregatedData: Equatable {
         static let none = CriticalPoints([])
     }
     
-    var ambientReading: Float32 = 0
-    var led1Reading: Float32 = 0
-    var led2Reading: Float32 = 0
-    var led3Reading: Float32 = 0
-    var ambientLowerThreshold: Float32 = 0
-    var ambientUpperThreshold: Float32 = 0
-    var led1LowerThreshold: Float32 = 0
-    var led1UpperThreshold: Float32 = 0
-    var led2LowerThreshold: Float32 = 0
-    var led2UpperThreshold: Float32 = 0
-    var led3LowerThreshold: Float32 = 0
-    var led3UpperThreshold: Float32 = 0
+    var ambientReading: Float32 = .nan
+    var led1Reading: Float32 = .nan
+    var led2Reading: Float32 = .nan
+    var led3Reading: Float32 = .nan
+    var ambientLowerThreshold: Float32 = .nan
+    var ambientUpperThreshold: Float32 = .nan
+    var led1LowerThreshold: Float32 = .nan
+    var led1UpperThreshold: Float32 = .nan
+    var led2LowerThreshold: Float32 = .nan
+    var led2UpperThreshold: Float32 = .nan
+    var led3LowerThreshold: Float32 = .nan
+    var led3UpperThreshold: Float32 = .nan
     var criticalPoints: CriticalPoints = .none
 }
 
 protocol RawSensorDataProtocol: ObservableObject {
-    associatedtype RawOpticalType: CharacteristicProtocol<Float32>
-    associatedtype AggregatedDataType: CharacteristicProtocol<AggregatedData>
+    associatedtype RawOpticalType: GeneralCharacteristicProtocol<Float32>
+    associatedtype AggregatedDataType: GeneralCharacteristicProtocol<AggregatedData>
 
     var ambient: RawOpticalType { get set }
     var led1MinusAmbient: RawOpticalType { get set }

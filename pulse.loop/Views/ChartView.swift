@@ -8,14 +8,41 @@
 import SwiftUI
 import CharacteristicKit
 
-struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
-    typealias DataPoint = (CharacteristicType.T, Date)
+struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedData>>: View {
+    
+    enum DataSets {
+        case ambient
+        case led1
+        case led2
+        case led3
+    }
+    
+    typealias DataPoint = (Float32, Date)
     
     @ObservedObject var value: CharacteristicType
-    @State var data: [DataPoint] = []
-    @State var range: (CharacteristicType.T, CharacteristicType.T) = (.infinity, -.infinity)
+    
+    var dataSets: [DataSets] = [.ambient, .led1, .led2, .led3]
+    
+    @State var ambientData: [DataPoint] = []
+    @State var led1Data: [DataPoint] = []
+    @State var led2Data: [DataPoint] = []
+    @State var led3Data: [DataPoint] = []
+    
+    @State var ambientLowerThreshold: [DataPoint] = []
+    @State var led1LowerThreshold: [DataPoint] = []
+    @State var led2LowerThreshold: [DataPoint] = []
+    @State var led3LowerThreshold: [DataPoint] = []
+    
+    @State var ambientUpperThreshold: [DataPoint] = []
+    @State var led1UpperThreshold: [DataPoint] = []
+    @State var led2UpperThreshold: [DataPoint] = []
+    @State var led3UpperThreshold: [DataPoint] = []
+    
     @State var path: Path = Path()
-    @State var lastValue: CharacteristicType.T = .zero
+    
+    
+    @State var range: (Float32, Float32) = (.infinity, -.infinity)
+    @State var lastValue: CharacteristicType.T = AggregatedData()
     
     let windowLength: TimeInterval
     let title: LocalizedStringKey?
@@ -40,75 +67,78 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
         self.lineColor = lineColor
         self.windowLength = windowLength
         self.smooth = smooth
+        
+        // Attach Combine sink...
     }
     
     private func updateChartWith(value: CharacteristicType.T, size: CGSize) {
-        Task {
-            // Add data.
-            data.append((value, Date.now))
-            
-            // Remove others.
-            for i in 0..<data.count {
-                if let (value, date) = data[safe: i] {
-                    if date + windowLength < Date.now {
-                        data.remove(at: i)
-                        
-                        // Recompute min/max if needed.
-                        if value == self.range.0 {
-                            self.range.0 = data.map({$0.0}).min() ?? .infinity
-                        } else if value == self.range.1 {
-                            self.range.1 = data.map({$0.0}).max() ?? -.infinity
-                        }
-                    } else {
-                        // Break early, as the array is implicitly sorted...
-                        break
-                    }
-                }
-            }
-            
-            // Update range.
-            var (min, max) = self.range
-            min = value < min ? value : min
-            max = value > max ? value : max
-            self.range = (min, max)
-            
-            // Update path.
-            self.buildPath(in: size)
-            
-            // Set last value.
-            self.lastValue = value
-        }
+//        Task {
+//            // Add data.
+//            data.append((value, Date.now))
+//
+//            // Remove others.
+//            for i in 0..<data.count {
+//                if let (value, date) = data[safe: i] {
+//                    if date + windowLength < Date.now {
+//                        data.remove(at: i)
+//
+//                        // Recompute min/max if needed.
+//                        if value == self.range.0 {
+//                            self.range.0 = data.map({$0.0}).min() ?? .infinity
+//                        } else if value == self.range.1 {
+//                            self.range.1 = data.map({$0.0}).max() ?? -.infinity
+//                        }
+//                    } else {
+//                        // Break early, as the array is implicitly sorted...
+//                        break
+//                    }
+//                }
+//            }
+//
+//            // Update range.
+//            var (min, max) = self.range
+//            min = value < min ? value : min
+//            max = value > max ? value : max
+//            self.range = (min, max)
+//
+//            // Update path.
+//            self.buildPath(in: size)
+//
+//            // Set last value.
+//            self.lastValue = value
+//        }
     }
     
     private func getCoordinates(for dataPoint: DataPoint, in size: CGSize) -> CGPoint {
-        let datePointTimeInterval: TimeInterval = windowLength - Date.now.timeIntervalSince(dataPoint.1)
-        let x: CGFloat = datePointTimeInterval / windowLength * size.width
-        
-        var (min, max) = self.range
-        let yRange = max - min
-        let clampedYRange: CharacteristicType.T
-        if yRange.isFinite && yRange != 0 {
-            min = min - yRange * 0.1
-            max = max + yRange * 0.1
-            clampedYRange = max - min
-        } else {
-            clampedYRange = 1
-        }
-        
-        let y: CGFloat = size.height - CGFloat((dataPoint.0 - min) / clampedYRange) * size.height
-        
-        return CGPoint(x: x, y: y)
+//        let datePointTimeInterval: TimeInterval = windowLength - Date.now.timeIntervalSince(dataPoint.1)
+//        let x: CGFloat = datePointTimeInterval / windowLength * size.width
+//
+//        var (min, max) = self.range
+//        let yRange = max - min
+//        let clampedYRange: CharacteristicType.T
+//        if yRange.isFinite && yRange != 0 {
+//            min = min - yRange * 0.1
+//            max = max + yRange * 0.1
+//            clampedYRange = max - min
+//        } else {
+//            clampedYRange = 1
+//        }
+//
+//        let y: CGFloat = size.height - CGFloat((dataPoint.0 - min) / clampedYRange) * size.height
+//
+//        return CGPoint(x: x, y: y)
+        return CGPoint.zero
     }
     
     private func buildPath(in size: CGSize) {
-        var path = Path()
-        path.move(to: getCoordinates(for: data.first ?? (0, Date.now), in: size))
-        for point in data {
-            let coordinate = getCoordinates(for: point, in: size)
-            path.addLine(to: coordinate)
-        }
-        
-        self.path = path
+//        var path = Path()
+//        path.move(to: getCoordinates(for: data.first ?? (0, Date.now), in: size))
+//        for point in data {
+//            let coordinate = getCoordinates(for: point, in: size)
+//            path.addLine(to: coordinate)
+//        }
+//
+//        self.path = path
     }
     
     var body: some View {
@@ -125,9 +155,9 @@ struct ChartView<CharacteristicType: CharacteristicProtocol<Float32>>: View {
                 paddedSize.width -= leftPadding
                 
                 // Add data.
-                if self.lastValue != self.value.value || smooth {
-                    updateChartWith(value: self.value.value, size: paddedSize)
-                }
+//                if self.lastValue != self.value.value || smooth {
+//                    updateChartWith(value: self.value.value, size: paddedSize)
+//                }
                 
                 // Background.
                 context.fill(Path(roundedRect: CGRect(origin: .zero, size: fullSize), cornerRadius: 8), with: .color(.gray.opacity(0.1)))
@@ -190,7 +220,7 @@ struct ChartView_Previews: PreviewProvider {
         device.connect()
         
         return TimelineView(.animation) { _ in
-            ChartView(value: device.rawSensorData.ambient, title: "Chart", smooth: true)
+            ChartView(value: device.rawSensorData.aggregatedData, title: "Chart", smooth: true)
                 .padding()
         }
         .previewLayout(.fixed(width: 600, height: 400))
