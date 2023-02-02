@@ -9,9 +9,9 @@ import Foundation
 import CharacteristicKit
 
 protocol ElectricConfigurationProtocol: ObservableObject {
-    associatedtype TIAResistorType: CharacteristicProtocol<TIAResistor.RawValue>
-    associatedtype TIACapacitorType: CharacteristicProtocol<TIACapacitor.RawValue>
-    associatedtype CurrentType: CharacteristicProtocol<Float32>
+    associatedtype TIAResistorType: GeneralCharacteristicProtocol<TIAResistor.RawValue>
+    associatedtype TIACapacitorType: GeneralCharacteristicProtocol<TIACapacitor.RawValue>
+    associatedtype CurrentType: GeneralCharacteristicProtocol<Float32>
     
     // MARK: Transimpedance amplifier.
     var tiaCapacitor1: TIACapacitorType { get set }

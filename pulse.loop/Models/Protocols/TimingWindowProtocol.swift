@@ -9,7 +9,7 @@ import Foundation
 import CharacteristicKit
 
 protocol LEDPhaseProtocol: ObservableObject {
-    associatedtype TimeIntervalType: CharacteristicProtocol<Float32>
+    associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
     
     var led_st: TimeIntervalType { get set }
     var led_end: TimeIntervalType { get set }
@@ -22,7 +22,7 @@ protocol LEDPhaseProtocol: ObservableObject {
 }
 
 protocol AmbientPhaseProtocol: ObservableObject {
-    associatedtype TimeIntervalType: CharacteristicProtocol<Float32>
+    associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
 
     var sample_st: TimeIntervalType { get set }
     var sample_end: TimeIntervalType { get set }
@@ -33,7 +33,7 @@ protocol AmbientPhaseProtocol: ObservableObject {
 }
 
 protocol DynamicPowerDownPhaseProtocol: ObservableObject {
-    associatedtype TimeIntervalType: CharacteristicProtocol<Float32>
+    associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
 
     var start: TimeIntervalType { get set }
     var end: TimeIntervalType { get set }
@@ -46,7 +46,7 @@ protocol TimingWindowProtocol: ObservableObject {
     associatedtype LED3PhaseType: LEDPhaseProtocol
     associatedtype AmbientPhaseType: AmbientPhaseProtocol
     associatedtype DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol
-    associatedtype TimeIntervalType: CharacteristicProtocol<Float32>
+    associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
 
     var ambientPhase: AmbientPhaseType { get set }
     var LED1Phase: LED1PhaseType { get set }

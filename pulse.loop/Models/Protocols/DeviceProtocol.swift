@@ -7,6 +7,7 @@
 
 import Foundation
 import CharacteristicKit
+import CoreBluetooth
 
 protocol DeviceProtocol: GenericPeripheralModel, Equatable {
         
@@ -43,6 +44,5 @@ protocol DeviceProtocol: GenericPeripheralModel, Equatable {
     
     // MARK: Additional properties.
     var name: String { get }
-    var status: PeripheralStatus { get set }
     var dataWindowLength: TimeInterval { get set }
 }
