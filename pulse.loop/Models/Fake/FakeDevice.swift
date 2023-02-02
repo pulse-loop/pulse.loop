@@ -58,7 +58,7 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     func connect() {
         let queue = DispatchQueue(label: "FakeDevice", qos: .userInteractive)
         self.updateTimer = DispatchSource.makeTimerSource(queue: queue)
-        self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(100))
+        self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(10))
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
             
@@ -71,7 +71,7 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                 let envelope = envelopeOffset + envelopeAmplitude * sinf((self.counter * envelopeFrequency) + envelopePhase)
                 let value = envelope * sinf((self.counter * frequency) + phase)
                 
-                return (Int32(envelope), Int32(-envelope), Int32(value))
+                return (Int32(envelope * 1_000_000), Int32(-envelope * 1_000_000), Int32(value * 1_000_000))
             }
             
             // Aggregated data generator.
@@ -105,14 +105,14 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
             
             (newPoint.led3UpperThreshold,
              newPoint.led3LowerThreshold,
-             newPoint.led3Reading) = generateModulatedSineWave(phase: 4,
-                                                               frequency: 5,
-                                                               envelopePhase: -1,
-                                                               envelopeAmplitude: 2,
-                                                               envelopeOffset: 0,
-                                                               envelopeFrequency: 2)
+             newPoint.led3Reading) = generateModulatedSineWave(phase: 6,
+                                                               frequency: 3,
+                                                               envelopePhase: -7,
+                                                               envelopeAmplitude: 5,
+                                                               envelopeOffset: -1,
+                                                               envelopeFrequency: 8)
             
-            self.counter += 0.1
+            self.counter += 0.01
             
             DispatchQueue.main.async {
                 self.rawSensorData.aggregatedData.value = newPoint
