@@ -3,10 +3,10 @@
     {
       "identity" : "characteristickit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/persello/CharacteristicKit",
+      "location" : "https://github.com/persello/characteristickit",
       "state" : {
         "branch" : "main",
-        "revision" : "f891c39bd4fc5a292b0a343cb60dbd629fa4363a"
+        "revision" : "77278913448c06bf5ad41056c2c6ec4c0ec94a3a"
       }
     },
     {
