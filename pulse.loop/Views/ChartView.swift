@@ -1,5 +1,5 @@
 //
-//  OldChartView.swift
+//  ChartView.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 18/11/22.
@@ -9,7 +9,7 @@ import SwiftUI
 import CharacteristicKit
 import Combine
 
-struct OldChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedData>>: View {
+struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedData>>: View {
     
     enum DataSets {
         case ambient
@@ -285,7 +285,7 @@ struct ChartView_Previews: PreviewProvider {
         device.connect()
         
         return TimelineView(.animation) { _ in
-            OldChartView(value: device.rawSensorData.aggregatedData, dataSets: [.led2], windowLength: 3, title: "Chart")
+            ChartView(value: device.rawSensorData.aggregatedData, dataSets: [.led2], windowLength: 3, title: "Chart")
                 .padding()
         }
         .previewLayout(.fixed(width: 400, height: 300))

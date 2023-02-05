@@ -9,18 +9,14 @@ import SwiftUI
 
 struct ChartStackView<SensorData: RawSensorDataProtocol>: View {
     @ObservedObject var rawSensorData: SensorData
-    var device = FakeDevice()
     
-    init(rawSensorData: SensorData, device: FakeDevice = FakeDevice()) {
+    init(rawSensorData: SensorData, device: any DeviceProtocol = FakeDevice()) {
         self.rawSensorData = rawSensorData
-        self.device = device
-        
-        device.connect()
     }
     
     var body: some View {
         HStack {
-            OldChartView(value: device.rawSensorData.aggregatedData)
+            ChartView(value: rawSensorData.aggregatedData)
 //            OldChartView(value: rawSensorData.aggregatedData, title: "Ambient", lineColor: .blue, smooth: false)
                 .frame(width: 300, height: 320)
 //

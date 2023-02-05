@@ -18,7 +18,7 @@
 		8B560DCB295472C300564909 /* ElectricConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B560DCA295472C300564909 /* ElectricConfiguration.swift */; };
 		8B560DCD2954752C00564909 /* FakeElectricConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B560DCC2954752C00564909 /* FakeElectricConfiguration.swift */; };
 		8B560DD029547F2D00564909 /* Collection+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B560DCF29547F2D00564909 /* Collection+safe.swift */; };
-		8B5830B62927E823006DADA3 /* OldChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5830B52927E823006DADA3 /* OldChartView.swift */; };
+		8B5830B62927E823006DADA3 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5830B52927E823006DADA3 /* ChartView.swift */; };
 		8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */; };
 		8B678B9128AFEC79009ECC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9028AFEC79009ECC97 /* Assets.xcassets */; };
 		8B678B9528AFEC79009ECC97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B678B9428AFEC79009ECC97 /* Preview Assets.xcassets */; };
@@ -54,7 +54,7 @@
 		8B560DCA295472C300564909 /* ElectricConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricConfiguration.swift; sourceTree = "<group>"; };
 		8B560DCC2954752C00564909 /* FakeElectricConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeElectricConfiguration.swift; sourceTree = "<group>"; };
 		8B560DCF29547F2D00564909 /* Collection+safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+safe.swift"; sourceTree = "<group>"; };
-		8B5830B52927E823006DADA3 /* OldChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldChartView.swift; sourceTree = "<group>"; };
+		8B5830B52927E823006DADA3 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8B678B8928AFEC78009ECC97 /* pulse.loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulse.loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B678B8C28AFEC78009ECC97 /* pulse_loopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pulse_loopApp.swift; sourceTree = "<group>"; };
 		8B678B8E28AFEC78009ECC97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				8B443E22295E11360083F41E /* ChartStackView.swift */,
-				8B5830B52927E823006DADA3 /* OldChartView.swift */,
+				8B5830B52927E823006DADA3 /* ChartView.swift */,
 				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
 				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
 				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
@@ -307,7 +307,7 @@
 				8B443E23295E11360083F41E /* ChartStackView.swift in Sources */,
 				8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */,
 				8BE12B702914132400AD2FF9 /* TimingWindowGraphView.swift in Sources */,
-				8B5830B62927E823006DADA3 /* OldChartView.swift in Sources */,
+				8B5830B62927E823006DADA3 /* ChartView.swift in Sources */,
 				8B560DCB295472C300564909 /* ElectricConfiguration.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
