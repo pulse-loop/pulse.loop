@@ -93,7 +93,7 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
             #elseif os(iOS)
             Picker(selection: $currentSection, label: Text("Section")) {
                 ForEach(FormSection.allCases, id: \.rawValue) { section in
-                    Text(section.description).tag(r)
+                    Text(section.description).tag(section)
                 }
             }
             .pickerStyle(.segmented)
