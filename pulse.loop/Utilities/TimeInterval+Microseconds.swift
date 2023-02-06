@@ -24,6 +24,6 @@ extension Float32 {
         // MEH...
         formatter.numberStyle = .percent
         formatter.percentSymbol = " µs"
-        return f
+        return formatter
     }()
 }

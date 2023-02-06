@@ -64,7 +64,7 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
                                                                 to: windowConfiguration.dynamicPowerDown.start.value,
                                                                 band: bandIndex)
 
-                                context.fill(band, with: .color(colors[i]))
+                                context.fill(band, with: .color(colors[bandIndex]))
                             }
 
                             // swiftlint:disable line_length
