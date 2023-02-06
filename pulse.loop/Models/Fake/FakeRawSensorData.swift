@@ -11,14 +11,14 @@ import CharacteristicKit
 class FakeRawSensorData: RawSensorDataProtocol {
     typealias RawOpticalType = MockCharacteristic<Float32>
     typealias AggregatedDataType = MockCharacteristic<AggregatedData>
-    
+
     var ambient: RawOpticalType
     var led1MinusAmbient: RawOpticalType
     var led1: RawOpticalType
     var led2: RawOpticalType
     var led3: RawOpticalType
     var aggregatedData: AggregatedDataType
-    
+
     init(ambient: Float32,
          led1MinusAmbient: Float32,
          led1: Float32,
@@ -32,7 +32,7 @@ class FakeRawSensorData: RawSensorDataProtocol {
         self.led3 = RawOpticalType(constant: led3)
         self.aggregatedData = AggregatedDataType(constant: aggregatedData)
     }
-    
+
     convenience init() {
         self.init(ambient: 0, led1MinusAmbient: 0, led1: 0, led2: 0, led3: 0, aggregatedData: AggregatedData())
     }

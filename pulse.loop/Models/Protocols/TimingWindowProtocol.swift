@@ -10,26 +10,26 @@ import CharacteristicKit
 
 protocol LEDPhaseProtocol: ObservableObject {
     associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
-    
-    var led_st: TimeIntervalType { get set }
-    var led_end: TimeIntervalType { get set }
-    var sample_st: TimeIntervalType { get set }
-    var sample_end: TimeIntervalType { get set }
-    var reset_st: TimeIntervalType { get set }
-    var reset_end: TimeIntervalType { get set }
-    var conv_st: TimeIntervalType { get set }
-    var conv_end: TimeIntervalType { get set }
+
+    var ledStart: TimeIntervalType { get set }
+    var ledEnd: TimeIntervalType { get set }
+    var sampleStart: TimeIntervalType { get set }
+    var sampleEnd: TimeIntervalType { get set }
+    var resetStart: TimeIntervalType { get set }
+    var resetEnd: TimeIntervalType { get set }
+    var convStart: TimeIntervalType { get set }
+    var convEnd: TimeIntervalType { get set }
 }
 
 protocol AmbientPhaseProtocol: ObservableObject {
     associatedtype TimeIntervalType: GeneralCharacteristicProtocol<Float32>
 
-    var sample_st: TimeIntervalType { get set }
-    var sample_end: TimeIntervalType { get set }
-    var reset_st: TimeIntervalType { get set }
-    var reset_end: TimeIntervalType { get set }
-    var conv_st: TimeIntervalType { get set }
-    var conv_end: TimeIntervalType { get set }
+    var sampleStart: TimeIntervalType { get set }
+    var sampleEnd: TimeIntervalType { get set }
+    var resetStart: TimeIntervalType { get set }
+    var resetEnd: TimeIntervalType { get set }
+    var convStart: TimeIntervalType { get set }
+    var convEnd: TimeIntervalType { get set }
 }
 
 protocol DynamicPowerDownPhaseProtocol: ObservableObject {
@@ -40,7 +40,7 @@ protocol DynamicPowerDownPhaseProtocol: ObservableObject {
 }
 
 protocol TimingWindowProtocol: ObservableObject {
-    
+
     associatedtype LED1PhaseType: LEDPhaseProtocol
     associatedtype LED2PhaseType: LEDPhaseProtocol
     associatedtype LED3PhaseType: LEDPhaseProtocol

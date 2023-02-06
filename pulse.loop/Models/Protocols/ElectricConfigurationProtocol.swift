@@ -12,13 +12,13 @@ protocol ElectricConfigurationProtocol: ObservableObject {
     associatedtype TIAResistorType: GeneralCharacteristicProtocol<TIAResistor.RawValue>
     associatedtype TIACapacitorType: GeneralCharacteristicProtocol<TIACapacitor.RawValue>
     associatedtype CurrentType: GeneralCharacteristicProtocol<Float32>
-    
+
     // MARK: Transimpedance amplifier.
     var tiaCapacitor1: TIACapacitorType { get set }
     var tiaCapacitor2: TIACapacitorType { get set }
     var tiaResistor1: TIAResistorType { get set }
     var tiaResistor2: TIAResistorType { get set }
-    
+
     // MARK: LED currents.
     var led1Current: CurrentType { get set }
     var led2Current: CurrentType { get set }

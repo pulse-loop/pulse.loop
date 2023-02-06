@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+
     @State private var devicePopoverPresented: Bool = false
-    
+
     @Binding var device: any DeviceProtocol
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -27,7 +27,7 @@ struct ContentView: View {
                 }, label: {
                     Label("Window configuration", systemImage: "timeline.selection")
                 })
-                
+
                 NavigationLink(destination: {
                     if let device = device as? FakeDevice {
                         ElectricConfigurationView(device: device)
@@ -39,7 +39,7 @@ struct ContentView: View {
                 }, label: {
                     Label("Electric configuration", systemImage: "alternatingcurrent")
                 })
-                
+
                 NavigationLink(destination: {
                     EmptyView()
                         .navigationTitle("Algorithm configuration")
@@ -62,14 +62,14 @@ struct ContentView: View {
                 }
             }
             .listStyle(.sidebar)
-            
+
             Text("No section selected")
                 .font(.title)
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewpreviews: PreviewProvider {
     static var previews: some View {
         ContentView(device: .constant(FakeDevice()))
     }

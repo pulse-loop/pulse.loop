@@ -10,13 +10,13 @@ import SwiftUI
 struct DeviceSelectionView: View {
     @Binding var selectedDevice: any DeviceProtocol
     @State var devices: [BLEDevice] = []
-    
+
     var body: some View {
         List {
             ForEach(devices.sorted(by: {$0.name > $1.name}), id: \.peripheral) { peripheral in
                 DeviceListItem(device: peripheral, selectedDevice: $selectedDevice)
             }
-            
+
             DeviceListItem(device: FakeDevice(), selectedDevice: $selectedDevice)
         }
         #if os(macOS)
@@ -33,7 +33,7 @@ struct DeviceSelectionView: View {
     }
 }
 
-struct DeviceSelectionView_Previews: PreviewProvider {
+struct DeviceSelectionViewpreviews: PreviewProvider {
     static var previews: some View {
         Text("AAA")
             .popover(isPresented: .constant(true)) {

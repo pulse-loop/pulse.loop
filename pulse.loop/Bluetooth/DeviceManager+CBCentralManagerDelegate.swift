@@ -28,10 +28,15 @@ extension DeviceManager: CBCentralManagerDelegate {
             self.scan()
         }
     }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+
+    func centralManager(
+        _ central: CBCentralManager,
+        didDiscover peripheral: CBPeripheral,
+        advertisementData: [String: Any],
+        rssi RSSI: NSNumber
+    ) {
         if self.discoveredDevices[peripheral.identifier] == nil {
-            self.logger.info("Central manager discovered new peripheral \"\(peripheral.description)\" (\(RSSI)), with advertisement data \(advertisementData.description).")
+            self.logger.info("Central manager discovered \"\(peripheral.description)\".")
 
             let discovery = BLEDeviceDiscovery(device: BLEDevice(from: peripheral), lastSeen: Date.now)
             DispatchQueue.main.async {
@@ -43,7 +48,7 @@ extension DeviceManager: CBCentralManagerDelegate {
             }
         }
     }
-    
+
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         self.logger.info("Central manager connected to peripheral \"\(peripheral.description)\".")
         DispatchQueue.main.async {
@@ -51,26 +56,31 @@ extension DeviceManager: CBCentralManagerDelegate {
         }
         peripheral.discoverServices([])
     }
-    
+
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         self.logger.info("Central manager disconnected from peripheral \"\(peripheral.description)\".")
         DispatchQueue.main.async {
             self.discoveredDevices[peripheral.identifier]?.device.status = .disconnected
         }
-        
+
         self.scan()
     }
-    
+
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        self.logger.info("Central manager failed to connect to \"\(peripheral.description)\" because of the following error: \"\(error?.localizedDescription ?? "Unknown error")\".")
+
+        self.logger.info("""
+        Central manager failed to connect to \"\(peripheral.description)\"\
+        because of the following error: \"\(error?.localizedDescription ?? "Unknown error")\".
+        """)
+
         DispatchQueue.main.async {
             self.discoveredDevices[peripheral.identifier]?.device.status = .disconnected
         }
-        
+
         self.scan()
     }
-    
-    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+
+    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
         self.logger.info("Central manager will restore state: \(dict).")
     }
 }

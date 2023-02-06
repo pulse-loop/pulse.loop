@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ChartStackView<SensorData: RawSensorDataProtocol>: View {
     @ObservedObject var rawSensorData: SensorData
-    
+
     init(rawSensorData: SensorData, device: any DeviceProtocol = FakeDevice()) {
         self.rawSensorData = rawSensorData
     }
-    
+
     var body: some View {
         HStack {
             ChartView(
@@ -22,21 +22,21 @@ struct ChartStackView<SensorData: RawSensorDataProtocol>: View {
                 title: "Ambient"
             )
             .frame(width: 300, height: 320)
-            
+
             ChartView(
                 value: rawSensorData.aggregatedData,
                 dataSets: [.led1],
                 title: "LED 1"
             )
             .frame(width: 300, height: 320)
-            
+
             ChartView(
                 value: rawSensorData.aggregatedData,
                 dataSets: [.led2],
                 title: "LED 2"
             )
             .frame(width: 300, height: 320)
-            
+
             ChartView(
                 value: rawSensorData.aggregatedData,
                 dataSets: [.led3],
@@ -47,11 +47,11 @@ struct ChartStackView<SensorData: RawSensorDataProtocol>: View {
     }
 }
 
-struct ChartStackView_Previews: PreviewProvider {
+struct ChartStackViewpreviews: PreviewProvider {
     static var previews: some View {
         let device = FakeDevice()
         device.connect()
-        
+
         return ChartStackView(rawSensorData: device.rawSensorData)
     }
 }

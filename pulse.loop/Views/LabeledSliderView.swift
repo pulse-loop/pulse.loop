@@ -7,17 +7,19 @@
 
 import SwiftUI
 
-struct LabeledSliderView<Value, Label>: View where Value: BinaryFloatingPoint, Value.Stride: BinaryFloatingPoint, Label: View {
+struct LabeledSliderView<Value, Label>: View
+where Value: BinaryFloatingPoint, Value.Stride: BinaryFloatingPoint, Label: View {
+
     @Binding var value: Value
     let range: ClosedRange<Value>
     let label: Label
-    
+
     init(value: Binding<Value>, in range: ClosedRange<Value> = 0...1, label: () -> Label = { EmptyView() }) {
         self._value = value
         self.range = range
         self.label = label()
     }
-    
+
     var body: some View {
         #if os(iOS)
         HStack {
@@ -34,7 +36,7 @@ struct LabeledSliderView<Value, Label>: View where Value: BinaryFloatingPoint, V
     }
 }
 
-struct LabeledSliderView_Previews: PreviewProvider {
+struct LabeledSliderViewpreviews: PreviewProvider {
     static var previews: some View {
         LabeledSliderView(value: .constant(0.5), in: 0...3) {
             Text("Label")

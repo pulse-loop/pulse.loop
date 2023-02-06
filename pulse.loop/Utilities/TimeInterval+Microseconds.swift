@@ -11,19 +11,19 @@ extension Float32 {
     init(microseconds: Double) {
         self = Float32(microseconds / 1_000_000)
     }
-    
+
     init(milliseconds: Double) {
         self = Float32(milliseconds / 1_000)
     }
-    
+
     static let microsecondsFormatter: NumberFormatter = {
-        let f = NumberFormatter()
-        f.maximumFractionDigits = 2
-        f.multiplier = 1_000_000
-        
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        formatter.multiplier = 1_000_000
+
         // MEH...
-        f.numberStyle = .percent
-        f.percentSymbol = " µs"
+        formatter.numberStyle = .percent
+        formatter.percentSymbol = " µs"
         return f
     }()
 }

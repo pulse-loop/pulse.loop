@@ -8,74 +8,99 @@
 import Foundation
 import CharacteristicKit
 
+// swiftlint:disable nesting
+
 class FakeTimingWindow: TimingWindowProtocol {
-        
+
     class LEDPhase: LEDPhaseProtocol {
         typealias TimeIntervalType = MockCharacteristic<Float32>
-        
-        @Published var led_st: TimeIntervalType
-        @Published var led_end: TimeIntervalType
-        @Published var sample_st: TimeIntervalType
-        @Published var sample_end: TimeIntervalType
-        @Published var reset_st: TimeIntervalType
-        @Published var reset_end: TimeIntervalType
-        @Published var conv_st: TimeIntervalType
-        @Published var conv_end: TimeIntervalType
-        
-        init(led_st: Float32, led_end: Float32, sample_st: Float32, sample_end: Float32, reset_st: Float32, reset_end: Float32, conv_st: Float32, conv_end: Float32) {
-            self.led_st = TimeIntervalType(constant: led_st)
-            self.led_end = TimeIntervalType(constant: led_end)
-            self.sample_st = TimeIntervalType(constant: sample_st)
-            self.sample_end = TimeIntervalType(constant: sample_end)
-            self.reset_st = TimeIntervalType(constant: reset_st)
-            self.reset_end = TimeIntervalType(constant: reset_end)
-            self.conv_st = TimeIntervalType(constant: conv_st)
-            self.conv_end = TimeIntervalType(constant: conv_end)
+
+        @Published var ledStart: TimeIntervalType
+        @Published var ledEnd: TimeIntervalType
+        @Published var sampleStart: TimeIntervalType
+        @Published var sampleEnd: TimeIntervalType
+        @Published var resetStart: TimeIntervalType
+        @Published var resetEnd: TimeIntervalType
+        @Published var convStart: TimeIntervalType
+        @Published var convEnd: TimeIntervalType
+
+        init(
+            ledStart: Float32,
+            ledEnd: Float32,
+            sampleStart: Float32,
+            sampleEnd: Float32,
+            resetStart: Float32,
+            resetEnd: Float32,
+            convStart: Float32,
+            convEnd: Float32
+        ) {
+            self.ledStart = TimeIntervalType(constant: ledStart)
+            self.ledEnd = TimeIntervalType(constant: ledEnd)
+            self.sampleStart = TimeIntervalType(constant: sampleStart)
+            self.sampleEnd = TimeIntervalType(constant: sampleEnd)
+            self.resetStart = TimeIntervalType(constant: resetStart)
+            self.resetEnd = TimeIntervalType(constant: resetEnd)
+            self.convStart = TimeIntervalType(constant: convStart)
+            self.convEnd = TimeIntervalType(constant: convEnd)
         }
     }
-    
+
     class AmbientPhaseType: AmbientPhaseProtocol {
         typealias TimeIntervalType = MockCharacteristic<Float32>
 
-        @Published var sample_st: TimeIntervalType
-        @Published var sample_end: TimeIntervalType
-        @Published var reset_st: TimeIntervalType
-        @Published var reset_end: TimeIntervalType
-        @Published var conv_st: TimeIntervalType
-        @Published var conv_end: TimeIntervalType
-        
-        init(sample_st: Float32, sample_end: Float32, reset_st: Float32, reset_end: Float32, conv_st: Float32, conv_end: Float32) {
-            self.sample_st = TimeIntervalType(constant: sample_st)
-            self.sample_end = TimeIntervalType(constant: sample_end)
-            self.reset_st = TimeIntervalType(constant: reset_st)
-            self.reset_end = TimeIntervalType(constant: reset_end)
-            self.conv_st = TimeIntervalType(constant: conv_st)
-            self.conv_end = TimeIntervalType(constant: conv_end)
+        @Published var sampleStart: TimeIntervalType
+        @Published var sampleEnd: TimeIntervalType
+        @Published var resetStart: TimeIntervalType
+        @Published var resetEnd: TimeIntervalType
+        @Published var convStart: TimeIntervalType
+        @Published var convEnd: TimeIntervalType
+
+        init(
+            sampleStart: Float32,
+            sampleEnd: Float32,
+            resetStart: Float32,
+            resetEnd: Float32,
+            convStart: Float32,
+            convEnd: Float32
+        ) {
+            self.sampleStart = TimeIntervalType(constant: sampleStart)
+            self.sampleEnd = TimeIntervalType(constant: sampleEnd)
+            self.resetStart = TimeIntervalType(constant: resetStart)
+            self.resetEnd = TimeIntervalType(constant: resetEnd)
+            self.convStart = TimeIntervalType(constant: convStart)
+            self.convEnd = TimeIntervalType(constant: convEnd)
         }
     }
-    
+
     class DynamicPowerDownPhaseType: DynamicPowerDownPhaseProtocol {
         typealias TimeIntervalType = MockCharacteristic<Float32>
 
         @Published var start: TimeIntervalType
         @Published var end: TimeIntervalType
-        
+
         init(start: Float32, end: Float32) {
             self.start = .init(constant: start)
             self.end = .init(constant: end)
         }
     }
-    
+
     typealias TimeIntervalType = MockCharacteristic<Float32>
-    
+
     @Published var ambientPhase: AmbientPhaseType
     @Published var LED1Phase: LEDPhase
     @Published var LED2Phase: LEDPhase
     @Published var LED3Phase: LEDPhase
     @Published var totalWindowLength: TimeIntervalType
     @Published var dynamicPowerDown: DynamicPowerDownPhaseType
-    
-    init(ambientPhase: AmbientPhaseType, LED1Phase: LEDPhase, LED2Phase: LEDPhase, LED3Phase: LEDPhase, totalWindowLength: Float32, dynamicPowerDown: DynamicPowerDownPhaseType) {
+
+    init(
+        ambientPhase: AmbientPhaseType,
+        LED1Phase: LEDPhase,
+        LED2Phase: LEDPhase,
+        LED3Phase: LEDPhase,
+        totalWindowLength: Float32,
+        dynamicPowerDown: DynamicPowerDownPhaseType
+    ) {
         self.ambientPhase = ambientPhase
         self.LED1Phase = LED1Phase
         self.LED2Phase = LED2Phase
@@ -83,46 +108,46 @@ class FakeTimingWindow: TimingWindowProtocol {
         self.totalWindowLength = TimeIntervalType(constant: totalWindowLength)
         self.dynamicPowerDown = dynamicPowerDown
     }
-    
+
     convenience init() {
         self.init(
             ambientPhase: FakeTimingWindow.AmbientPhaseType(
-                sample_st: Float32(microseconds: 2225),
-                sample_end: Float32(microseconds: 2299.75),
-                reset_st: Float32(microseconds: 2600),
-                reset_end: Float32(microseconds: 2610),
-                conv_st: Float32(microseconds: 2300),
-                conv_end: Float32(microseconds: 2500)
+                sampleStart: Float32(microseconds: 2225),
+                sampleEnd: Float32(microseconds: 2299.75),
+                resetStart: Float32(microseconds: 2600),
+                resetEnd: Float32(microseconds: 2610),
+                convStart: Float32(microseconds: 2300),
+                convEnd: Float32(microseconds: 2500)
             ),
             LED1Phase: FakeTimingWindow.LEDPhase(
-                led_st: Float32(microseconds: 1100),
-                led_end: Float32(microseconds: 1400),
-                sample_st: Float32(microseconds: 1225),
-                sample_end: Float32(microseconds: 1299.75),
-                reset_st: Float32(microseconds: 1600),
-                reset_end: Float32(microseconds: 1605),
-                conv_st: Float32(microseconds: 1300),
-                conv_end: Float32(microseconds: 1500)
+                ledStart: Float32(microseconds: 1100),
+                ledEnd: Float32(microseconds: 1400),
+                sampleStart: Float32(microseconds: 1225),
+                sampleEnd: Float32(microseconds: 1299.75),
+                resetStart: Float32(microseconds: 1600),
+                resetEnd: Float32(microseconds: 1605),
+                convStart: Float32(microseconds: 1300),
+                convEnd: Float32(microseconds: 1500)
             ),
             LED2Phase: FakeTimingWindow.LEDPhase(
-                led_st: Float32(microseconds: 100),
-                led_end: Float32(microseconds: 400),
-                sample_st: Float32(microseconds: 225),
-                sample_end: Float32(microseconds: 299.75),
-                reset_st: Float32(microseconds: 600),
-                reset_end: Float32(microseconds: 601),
-                conv_st: Float32(microseconds: 300),
-                conv_end: Float32(microseconds: 500)
+                ledStart: Float32(microseconds: 100),
+                ledEnd: Float32(microseconds: 400),
+                sampleStart: Float32(microseconds: 225),
+                sampleEnd: Float32(microseconds: 299.75),
+                resetStart: Float32(microseconds: 600),
+                resetEnd: Float32(microseconds: 601),
+                convStart: Float32(microseconds: 300),
+                convEnd: Float32(microseconds: 500)
             ),
             LED3Phase: FakeTimingWindow.LEDPhase(
-                led_st: Float32(microseconds: 3100),
-                led_end: Float32(microseconds: 3400),
-                sample_st: Float32(microseconds: 3225),
-                sample_end: Float32(microseconds: 3299.75),
-                reset_st: Float32(microseconds: 3600),
-                reset_end: Float32(microseconds: 3630),
-                conv_st: Float32(microseconds: 3300),
-                conv_end: Float32(microseconds: 3500)
+                ledStart: Float32(microseconds: 3100),
+                ledEnd: Float32(microseconds: 3400),
+                sampleStart: Float32(microseconds: 3225),
+                sampleEnd: Float32(microseconds: 3299.75),
+                resetStart: Float32(microseconds: 3600),
+                resetEnd: Float32(microseconds: 3630),
+                convStart: Float32(microseconds: 3300),
+                convEnd: Float32(microseconds: 3500)
             ),
             totalWindowLength: Float32(microseconds: 10000),
             dynamicPowerDown: FakeTimingWindow.DynamicPowerDownPhaseType(

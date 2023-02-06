@@ -10,11 +10,11 @@ import SwiftUI
 struct DeviceListItem<Device: DeviceProtocol>: View {
     @ObservedObject var device: Device
     @Binding var selectedDevice: any DeviceProtocol
-    
+
     private var realDevice: Bool {
         device is BLEDevice
     }
-    
+
     private var selected: Bool {
         if let selectedDevice = selectedDevice as? Device {
             return selectedDevice == device
@@ -22,13 +22,13 @@ struct DeviceListItem<Device: DeviceProtocol>: View {
             return false
         }
     }
-    
+
     var body: some View {
         HStack {
             Image(systemName: realDevice ? "bolt.heart" : "circle.hexagonpath")
                 .font(.system(size: 50, weight: .light))
                 .foregroundColor(.accentColor)
-            
+
             VStack(alignment: .leading) {
                 Text(device.name)
                     .font(.title)
@@ -60,7 +60,7 @@ struct DeviceListItem<Device: DeviceProtocol>: View {
     }
 }
 
-struct DeviceListItem_Previews: PreviewProvider {
+struct DeviceListItempreviews: PreviewProvider {
     static var previews: some View {
         DeviceListItem(device: FakeDevice(), selectedDevice: .constant(FakeDevice()))
             .previewLayout(.sizeThatFits)

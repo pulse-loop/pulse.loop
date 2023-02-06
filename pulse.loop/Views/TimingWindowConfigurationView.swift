@@ -10,38 +10,38 @@ import Charts
 
 struct TimingWindowConfigurationView<Device>: View where Device: DeviceProtocol {
     @ObservedObject var device: Device
-    
+
     var body: some View {
-#if os(iOS)
+        #if os(iOS)
         Form {
             ScrollView(.horizontal) {
                 ChartStackView(rawSensorData: device.rawSensorData)
-                .padding()
+                    .padding()
             }
-            
+
             TimingWindowConfigurationForm(windowConfiguration: $device.timingWindow)
         }
-#elseif os(macOS)
+        #elseif os(macOS)
         ScrollView(.vertical) {
             ScrollView(.horizontal) {
                 ChartStackView(rawSensorData: device.rawSensorData)
                     .padding()
             }
-            
+
             Form {
                 TimingWindowConfigurationForm(windowConfiguration: $device.timingWindow)
             }
             .formStyle(.grouped)
         }
-#endif
+        #endif
     }
 }
 
-struct TimingWindowConfigurationView_Previews: PreviewProvider {
+struct TimingWindowConfigurationViewpreviews: PreviewProvider {
     static var previews: some View {
         let device = FakeDevice()
         device.connect()
-        
+
         return TimingWindowConfigurationView(device: device)
             .previewLayout(.fixed(width: 600, height: 1000))
     }

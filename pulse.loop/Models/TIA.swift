@@ -8,49 +8,49 @@
 import Foundation
 
 enum TIAResistor: Float32, CustomStringConvertible, CaseIterable, Equatable {
-    case R_10_kΩ = 10_000
-    case R_25_kΩ = 25_000
-    case R_50_kΩ = 50_000
-    case R_100_kΩ = 100_000
-    case R_250_kΩ = 250_000
-    case R_500_kΩ = 500_000
-    case R_1_MΩ = 1_000_000
-    case R_2_MΩ = 2_000_000
+    case r10kΩ = 10_000
+    case r25kΩ = 25_000
+    case r50kΩ = 50_000
+    case r100kΩ = 100_000
+    case r250kΩ = 250_000
+    case r500kΩ = 500_000
+    case r1MΩ = 1_000_000
+    case r2MΩ = 2_000_000
 
     var description: String {
         switch self {
-        case .R_500_kΩ: return "500 kΩ"
-        case .R_250_kΩ: return "250 kΩ"
-        case .R_100_kΩ: return "100 kΩ"
-        case .R_50_kΩ: return "50 kΩ"
-        case .R_25_kΩ: return "25 kΩ"
-        case .R_10_kΩ: return "10 kΩ"
-        case .R_1_MΩ: return "1 MΩ"
-        case .R_2_MΩ: return "2 MΩ"
+        case .r500kΩ: return "500 kΩ"
+        case .r250kΩ: return "250 kΩ"
+        case .r100kΩ: return "100 kΩ"
+        case .r50kΩ: return "50 kΩ"
+        case .r25kΩ: return "25 kΩ"
+        case .r10kΩ: return "10 kΩ"
+        case .r1MΩ: return "1 MΩ"
+        case .r2MΩ: return "2 MΩ"
         }
     }
 }
 
 enum TIACapacitor: Float32, CustomStringConvertible, CaseIterable, Equatable {
-    case C_2_5_pF = 2.5E-12
-    case C_5_pF = 5E-12
-    case C_7_5_pF = 7.5E-12
-    case C_10_pF = 10E-12
-    case C_17_5_pF = 17.5E-12
-    case C_20_pF = 20E-12
-    case C_22_5_pF = 22.5E-12
-    case C_25_pF = 25E-12
-    
+    case c2p5F = 2.5E-12
+    case c5pF = 5E-12
+    case c7p5F = 7.5E-12
+    case c10pF = 10E-12
+    case c17p5F = 17.5E-12
+    case c20pF = 20E-12
+    case c22p5F = 22.5E-12
+    case c25pF = 25E-12
+
     var description: String {
         switch self {
-        case .C_5_pF: return "5 pF"
-        case .C_2_5_pF: return "2.5 pF"
-        case .C_10_pF: return "10 pF"
-        case .C_7_5_pF: return "7.5 pF"
-        case .C_20_pF: return "20 pF"
-        case .C_17_5_pF: return "17.5 pF"
-        case .C_25_pF: return "25 pF"
-        case .C_22_5_pF: return "22.5 pF"
+        case .c5pF: return "5 pF"
+        case .c2p5F: return "2.5 pF"
+        case .c10pF: return "10 pF"
+        case .c7p5F: return "7.5 pF"
+        case .c20pF: return "20 pF"
+        case .c17p5F: return "17.5 pF"
+        case .c25pF: return "25 pF"
+        case .c22p5F: return "22.5 pF"
         }
     }
 }

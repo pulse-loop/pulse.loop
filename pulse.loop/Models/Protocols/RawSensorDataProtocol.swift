@@ -11,21 +11,21 @@ import CharacteristicKit
 struct AggregatedData: Equatable {
     struct CriticalPoints: OptionSet, Equatable, DataDecodable {
         let rawValue: Int8
-        
+
         static let led1Min = CriticalPoints(rawValue: 1 << 4)
         static let led2Min = CriticalPoints(rawValue: 1 << 2)
         static let led3Min = CriticalPoints(rawValue: 1 << 0)
         static let led1Max = CriticalPoints(rawValue: 2 << 4)
         static let led2Max = CriticalPoints(rawValue: 2 << 2)
         static let led3Max = CriticalPoints(rawValue: 2 << 0)
-        
+
         static let none = CriticalPoints([])
-        
+
         static func decode(from data: Data) -> AggregatedData.CriticalPoints? {
             return Self(rawValue: Int8.decode(from: data) ?? 0)
         }
     }
-    
+
     var ambientReading: Int32 = 0
     var led1Reading: Int32 = 0
     var led2Reading: Int32 = 0
