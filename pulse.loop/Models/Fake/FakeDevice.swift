@@ -60,7 +60,7 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     func connect() {
         let queue = DispatchQueue(label: "FakeDevice", qos: .userInteractive)
         self.updateTimer = DispatchSource.makeTimerSource(queue: queue)
-        self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(10))
+        self.updateTimer?.schedule(deadline: .now(), repeating: .milliseconds(50))
         self.updateTimer?.setEventHandler { [weak self] in
             guard let self else { return }
 

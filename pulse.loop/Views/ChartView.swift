@@ -42,8 +42,6 @@ struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedDat
     @State private var led3UpperThreshold: [DataPoint] = []
 
     @State private var paths: [WritableKeyPath<Self, State<[DataPoint]>>: Path] = [:]
-    @State private var pathCaches: [WritableKeyPath<Self, State<[DataPoint]>>: [CGPoint]] = [:]
-    @State private var pathCacheUpdates: [WritableKeyPath<Self, State<[DataPoint]>>: CFTimeInterval] = [:]
 
     @State private var range: (Float32, Float32) = (.infinity, -.infinity)
     @State private var size: CGSize = .zero
@@ -98,7 +96,15 @@ struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedDat
             if let (_, date) = self[keyPath: destination].wrappedValue[safe: i] {
                 if date + windowLength < CACurrentMediaTime() {
                     if self[keyPath: destination].wrappedValue.indices.contains(i) {
-                        self[keyPath: destination].wrappedValue.remove(at: i)
+                        let discarded = self[keyPath: destination].wrappedValue.remove(at: i)
+                        
+                        // Recompute min/max if needed.
+                        if discarded.0 == self.range.0 {
+                            self.range.0 = self[keyPath: destination].wrappedValue.map({$0.0}).min() ?? .infinity
+                        } else if discarded.0 == self.range.1 {
+                            self.range.1 = self[keyPath: destination].wrappedValue.map({$0.0}).max() ?? -.infinity
+                        }
+                        
                     }
                 } else {
                     // Break early, as the array is implicitly sorted...
@@ -115,13 +121,8 @@ struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedDat
         max = newDataPoint > max ? newDataPoint : max
         self.range = (min, max)
 
-        // Update path cache.
-        self.updatePathCache(dataPoints: destination)
-
         // Create path.
-        if let cache = self.pathCaches[destination] {
-            paths[destination] = self.buildPath(in: self.size, from: cache)
-        }
+        paths[destination] = self.buildPath(from: self[keyPath: destination].wrappedValue)
     }
 
     private func getCoordinates(for dataPoint: DataPoint, in size: CGSize) -> CGPoint {
@@ -145,46 +146,21 @@ struct ChartView<CharacteristicType: GeneralCharacteristicProtocol<AggregatedDat
         return CGPoint(x: x, y: y)
     }
 
-    private func buildPath(in size: CGSize, from cache: [CGPoint]) -> Path {
+    private func buildPath(from data: [DataPoint]) -> Path {
         var path = Path()
-        path.move(to: cache.first ?? .zero)
+        if let first = data.first {
+            path.move(to: getCoordinates(for: first, in: self.size))
+        } else {
+            path.move(to: .zero)
+        }
 
-        for point in cache {
-            path.addLine(to: point)
+        for point in data {
+            path.addLine(to: getCoordinates(for: point, in: self.size))
         }
 
         return path
     }
-
-    private func updatePathCache(dataPoints: WritableKeyPath<Self, State<[DataPoint]>>) {
-
-        let targetCount = self[keyPath: dataPoints].wrappedValue.count
-        var result: [CGPoint] = []
-
-        if let oldCache = self.pathCaches[dataPoints] {
-            if oldCache.count >= targetCount {
-                result = Array(oldCache.dropFirst(oldCache.count - (targetCount - 1)))
-            } else {
-                result = oldCache
-            }
-        }
-
-        // Shift all points to the left.
-        let elapsedTime = CACurrentMediaTime() - self.pathCacheUpdates[dataPoints, default: 0]
-        let shift = elapsedTime / windowLength * self.size.width
-        result = result.map { CGPoint(x: $0.x - shift, y: $0.y) }
-        self.pathCacheUpdates[dataPoints] = CACurrentMediaTime()
-
-        // Add new point.
-        result.append(
-            self.getCoordinates(
-                for: self[keyPath: dataPoints].wrappedValue.last ?? (0, CACurrentMediaTime()), in: self.size
-            )
-        )
-
-        self.pathCaches[dataPoints] = result
-    }
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let title {
