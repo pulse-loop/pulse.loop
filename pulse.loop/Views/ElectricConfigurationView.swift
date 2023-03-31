@@ -17,7 +17,7 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
         Form {
 
             ScrollView(.horizontal) {
-                ChartStackView(rawSensorData: device.rawSensorData)
+                ChartStackView(sensorData: device.sensorData)
                     .padding()
             }
 

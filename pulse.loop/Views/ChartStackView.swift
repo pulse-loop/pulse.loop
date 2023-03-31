@@ -7,42 +7,42 @@
 
 import SwiftUI
 
-struct ChartStackView<SensorData: RawSensorDataProtocol>: View {
-    @ObservedObject var rawSensorData: SensorData
+struct ChartStackView<SensorData: SensorDataProtocol>: View {
+    @ObservedObject var sensorData: SensorData
 
-    init(rawSensorData: SensorData, device: any DeviceProtocol = FakeDevice()) {
-        self.rawSensorData = rawSensorData
+    init(sensorData: SensorData, device: any DeviceProtocol = FakeDevice()) {
+        self.sensorData = sensorData
     }
 
     var body: some View {
         HStack {
-            ChartView(
-                value: rawSensorData.aggregatedData,
-                dataSets: [.ambient],
-                title: "Ambient"
-            )
-            .frame(width: 300, height: 320)
-
-            ChartView(
-                value: rawSensorData.aggregatedData,
-                dataSets: [.led1],
-                title: "LED 1"
-            )
-            .frame(width: 300, height: 320)
-
-            ChartView(
-                value: rawSensorData.aggregatedData,
-                dataSets: [.led2],
-                title: "LED 2"
-            )
-            .frame(width: 300, height: 320)
-
-            ChartView(
-                value: rawSensorData.aggregatedData,
-                dataSets: [.led3],
-                title: "LED 3"
-            )
-            .frame(width: 300, height: 320)
+//            ChartView(
+//                value: sensorData.aggregatedData,
+//                dataSets: [.ambient],
+//                title: "Ambient"
+//            )
+//            .frame(width: 300, height: 320)
+//
+//            ChartView(
+//                value: sensorData.aggregatedData,
+//                dataSets: [.led1],
+//                title: "LED 1"
+//            )
+//            .frame(width: 300, height: 320)
+//
+//            ChartView(
+//                value: sensorData.aggregatedData,
+//                dataSets: [.led2],
+//                title: "LED 2"
+//            )
+//            .frame(width: 300, height: 320)
+//
+//            ChartView(
+//                value: sensorData.aggregatedData,
+//                dataSets: [.led3],
+//                title: "LED 3"
+//            )
+//            .frame(width: 300, height: 320)
         }
     }
 }
@@ -52,6 +52,6 @@ struct ChartStackViewpreviews: PreviewProvider {
         let device = FakeDevice()
         device.connect()
 
-        return ChartStackView(rawSensorData: device.rawSensorData)
+        return ChartStackView(sensorData: device.sensorData)
     }
 }

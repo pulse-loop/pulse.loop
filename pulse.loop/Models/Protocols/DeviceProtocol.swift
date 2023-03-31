@@ -33,9 +33,9 @@ protocol DeviceProtocol: GenericPeripheralModel, Equatable {
     associatedtype TimingWindowType: TimingWindowProtocol
     var timingWindow: TimingWindowType { get set }
 
-    // MARK: Raw sensor data.
-    associatedtype RawSensorDataType: RawSensorDataProtocol
-    var rawSensorData: RawSensorDataType { get }
+    // MARK: Sensor data.
+    associatedtype SensorDataType: SensorDataProtocol
+    var sensorData: SensorDataType { get }
 
     // MARK: Settings.
 

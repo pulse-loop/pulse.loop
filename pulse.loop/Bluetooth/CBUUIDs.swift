@@ -28,7 +28,7 @@ struct CBUUIDs {
     // | Firmware upgrade               | `0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025` |
     // | Historic data                  | `DE753059-8906-4F07-A192-12879BB84DA7` |
     // | Optical frontend configuration | `C8F276D4-E0DD-4660-8070-619FF734134B` |
-    // | Raw sensor data                | `272DF1F7-9D28-4B8C-86F6-30DB30ACE42C` |
+    // | Sensor data                    | `272DF1F7-9D28-4B8C-86F6-30DB30ACE42C` |
     // | Settings                       | `821198C8-3036-4E14-B01C-364F2B20C603` |
     // | pulse.loop identifier          | `68D68245-CFD8-4A1C-9858-B27ABC4C382E` |
 
@@ -40,7 +40,7 @@ struct CBUUIDs {
     static private let kUUIDServiceFirmwareUpgrade = "0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025"
     static private let kUUIDServiceHistoricData = "DE753059-8906-4F07-A192-12879BB84DA7"
     static private let kUUIDServiceOpticalFrontendConfiguration = "C8F276D4-E0DD-4660-8070-619FF734134B"
-    static private let kUUIDServiceRawSensorData = "272DF1F7-9D28-4B8C-86F6-30DB30ACE42C"
+    static private let kUUIDServiceSensorData = "272DF1F7-9D28-4B8C-86F6-30DB30ACE42C"
     static private let kUUIDServiceSettings = "821198C8-3036-4E14-B01C-364F2B20C603"
     static private let kUUIDServicePulseLoopIdentifier = "68D68245-CFD8-4A1C-9858-B27ABC4C382E"
 
@@ -52,7 +52,7 @@ struct CBUUIDs {
     static let firmwareUpgradeServiceIdentifier = CBUUID(string: kUUIDServiceFirmwareUpgrade)
     static let historicDataServiceIdentifier = CBUUID(string: kUUIDServiceHistoricData)
     static let opticalFrontendConfigurationServiceIdentifier = CBUUID(string: kUUIDServiceOpticalFrontendConfiguration)
-    static let rawSensorDataServiceIdentifier = CBUUID(string: kUUIDServiceRawSensorData)
+    static let sensorDataServiceIdentifier = CBUUID(string: kUUIDServiceSensorData)
     static let settingsServiceIdentifier = CBUUID(string: kUUIDServiceSettings)
     static let pulseLoopIdentifierServiceIdentifier = CBUUID(string: kUUIDServicePulseLoopIdentifier)
 
@@ -66,29 +66,14 @@ struct CBUUIDs {
 
     static let versionCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicVersion)
 
-    // MARK: Raw sensor data service
+    // MARK: Sensor data service
 
     // | Characteristic        | Access | UUID                                   |
     // |-----------------------|--------|----------------------------------------|
-    // | Ambient phase reading | Read   | `33EAF25F-7A5C-4327-A95B-B602DA54C443` |
-    // | LED1 - Ambient        | Read   | `CF66D344-584D-4E67-AC30-17D28B099A30` |
-    // | LED1 ADC reading      | Read   | `05500B81-516D-4BD9-95BA-C0B87C911DDB` |
-    // | LED2 ADC reading      | Read   | `A93B639D-8A8D-43EA-8A5A-8175D7C09E0B` |
-    // | LED3 ADC reading      | Read   | `C0A12246-79E4-4BD7-8A4F-B841D5590F70` |
     // | Aggregated data       | Read   | `26CB3CCA-F22E-4179-8125-55874E9153AD` |
 
-    static private let kUUIDCharacteristicAmbientADCReading = "33EAF25F-7A5C-4327-A95B-B602DA54C443"
-    static private let kUUIDCharacteristicLED1MinusAmbient = "CF66D344-584D-4E67-AC30-17D28B099A30"
-    static private let kUUIDCharacteristicLED1ADCReading = "05500B81-516D-4BD9-95BA-C0B87C911DDB"
-    static private let kUUIDCharacteristicLED2ADCReading = "A93B639D-8A8D-43EA-8A5A-8175D7C09E0B"
-    static private let kUUIDCharacteristicLED3ADCReading = "C0A12246-79E4-4BD7-8A4F-B841D5590F70"
     static private let kUUIDCharacteristicAggregatedDataReading = "26CB3CCA-F22E-4179-8125-55874E9153AD"
 
-    static let ambientADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAmbientADCReading)
-    static let led1MinusAmbientCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1MinusAmbient)
-    static let led1ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCReading)
-    static let led2ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCReading)
-    static let led3ADCReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCReading)
     static let aggregatedDataReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAggregatedDataReading)
     // MARK: Optical frontend configuration service
 

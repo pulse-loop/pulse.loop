@@ -15,7 +15,7 @@ struct TimingWindowConfigurationView<Device>: View where Device: DeviceProtocol 
         #if os(iOS)
         Form {
             ScrollView(.horizontal) {
-                ChartStackView(rawSensorData: device.rawSensorData)
+                ChartStackView(sensorData: device.sensorData)
                     .padding()
             }
 
@@ -24,7 +24,7 @@ struct TimingWindowConfigurationView<Device>: View where Device: DeviceProtocol 
         #elseif os(macOS)
         ScrollView(.vertical) {
             ScrollView(.horizontal) {
-                ChartStackView(rawSensorData: device.rawSensorData)
+                ChartStackView(sensorData: device.sensorData)
                     .padding()
             }
 

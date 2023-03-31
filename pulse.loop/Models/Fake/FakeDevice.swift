@@ -37,9 +37,9 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     typealias TimingWindowType = FakeTimingWindow
     var timingWindow: TimingWindowType = TimingWindowType()
 
-    // MARK: Raw sensor data.
-    typealias RawSensorDataType = FakeRawSensorData
-    var rawSensorData: RawSensorDataType = RawSensorDataType()
+    // MARK: Sensor data.
+    typealias SensorDataType = FakeSensorData
+    var sensorData: SensorDataType = SensorDataType()
 
     // MARK: Settings.
 
@@ -78,9 +78,9 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
             }
 
             // Aggregated data generator.
-            var newPoint = AggregatedData()
-            (newPoint.ambientUpperThreshold,
-             newPoint.ambientLowerThreshold,
+            var newPoint = RawOpticalData()
+            (_,
+             _,
              newPoint.ambientReading) = generateModulatedSineWave(phase: 0,
                                                                   frequency: 10,
                                                                   envelopePhase: 0,
@@ -88,8 +88,8 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                                                                   envelopeOffset: 5,
                                                                   envelopeFrequency: 1)
 
-            (newPoint.led1UpperThreshold,
-             newPoint.led1LowerThreshold,
+            (_,
+             _,
              newPoint.led1Reading) = generateModulatedSineWave(phase: 4,
                                                                frequency: 5,
                                                                envelopePhase: -1,
@@ -97,8 +97,8 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                                                                envelopeOffset: 0,
                                                                envelopeFrequency: 2)
 
-            (newPoint.led2UpperThreshold,
-             newPoint.led2LowerThreshold,
+            (_,
+             _,
              newPoint.led2Reading) = generateModulatedSineWave(phase: 2,
                                                                frequency: 40,
                                                                envelopePhase: -4,
@@ -106,8 +106,8 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                                                                envelopeOffset: -5,
                                                                envelopeFrequency: 3)
 
-            (newPoint.led3UpperThreshold,
-             newPoint.led3LowerThreshold,
+            (_,
+             _,
              newPoint.led3Reading) = generateModulatedSineWave(phase: 6,
                                                                frequency: 3,
                                                                envelopePhase: -7,
@@ -118,7 +118,7 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
             self.counter += 0.01
 
             DispatchQueue.main.async {
-                self.rawSensorData.aggregatedData.value = newPoint
+                self.sensorData.aggregatedData.value = newPoint
                 self.objectWillChange.send()
             }
         }

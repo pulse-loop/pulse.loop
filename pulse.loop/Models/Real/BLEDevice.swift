@@ -34,7 +34,7 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
         // Characteristic container structs.
         self.electricConfiguration = ElectricConfiguration()
         self.timingWindow = TimingWindow()
-        self.rawSensorData = RawSensorData()
+        self.sensorData = SensorData()
 
         // Delegate.
         self.initialiseDelegate()
@@ -62,9 +62,9 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
     typealias TimingWindowType = TimingWindow
     var timingWindow: TimingWindowType
 
-    // MARK: Raw sensor data.
-    typealias RawSensorDataType = RawSensorData
-    var rawSensorData: RawSensorDataType
+    // MARK: Sensor data.
+    typealias SensorDataType = SensorData
+    var sensorData: SensorDataType
 
     // MARK: Settings.
 
