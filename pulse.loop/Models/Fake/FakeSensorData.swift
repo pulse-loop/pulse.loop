@@ -1,5 +1,5 @@
 //
-//  FakeOpticalFrontendSensorData.swift
+//  FakeSensorData.swift
 //  pulse.loop
 //
 //  Created by Riccardo Persello on 21/11/22.

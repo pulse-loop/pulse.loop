@@ -31,3 +31,14 @@ extension RawOpticalData: DataDecodable {
         return result
     }
 }
+
+extension RawOpticalData: PlottableData {
+    func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Value)] {
+        return [
+            (ChannelSpecifier(name: "Ambient", color: .blue), Float(self.ambientReading)),
+            (ChannelSpecifier(name: "Green", color: .green), Float(self.led1Reading)),
+            (ChannelSpecifier(name: "Red", color: .red), Float(self.led2Reading)),
+            (ChannelSpecifier(name: "Infrared", color: .gray), Float(self.led3Reading))
+        ]
+    }
+}
