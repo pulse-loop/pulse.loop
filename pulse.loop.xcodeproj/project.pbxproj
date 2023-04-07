@@ -203,12 +203,12 @@
 				8BDDC31C291E744E00FDE269 /* DeviceListItem.swift */,
 				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
 				8B560DC829546F2F00564909 /* ElectricConfigurationView.swift */,
+				8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */,
+				8B7A6869298BFF0F008257F1 /* RangedMeasurementChartView.swift */,
+				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
 				8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */,
 				8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */,
 				8BE12B6F2914132400AD2FF9 /* TimingWindowGraphView.swift */,
-				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
-				8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */,
-				8B7A6869298BFF0F008257F1 /* RangedMeasurementChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

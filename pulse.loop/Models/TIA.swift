@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum TIAResistor: Float32, CustomStringConvertible, CaseIterable, Equatable {
-    case r10kΩ = 10_000
-    case r25kΩ = 25_000
-    case r50kΩ = 50_000
-    case r100kΩ = 100_000
-    case r250kΩ = 250_000
-    case r500kΩ = 500_000
-    case r1MΩ = 1_000_000
-    case r2MΩ = 2_000_000
+enum TIAResistor: UInt8, CustomStringConvertible, CaseIterable, Equatable {
+    case r10kΩ = 5
+    case r25kΩ = 4
+    case r50kΩ = 3
+    case r100kΩ = 2
+    case r250kΩ = 1
+    case r500kΩ = 0
+    case r1MΩ = 6
+    case r2MΩ = 7
 
     var description: String {
         switch self {
@@ -31,15 +31,15 @@ enum TIAResistor: Float32, CustomStringConvertible, CaseIterable, Equatable {
     }
 }
 
-enum TIACapacitor: Float32, CustomStringConvertible, CaseIterable, Equatable {
-    case c2p5F = 2.5E-12
-    case c5pF = 5E-12
-    case c7p5F = 7.5E-12
-    case c10pF = 10E-12
-    case c17p5F = 17.5E-12
-    case c20pF = 20E-12
-    case c22p5F = 22.5E-12
-    case c25pF = 25E-12
+enum TIACapacitor: UInt8, CustomStringConvertible, CaseIterable, Equatable {
+    case c2p5F = 1
+    case c5pF = 0
+    case c7p5F = 3
+    case c10pF = 2
+    case c17p5F = 5
+    case c20pF = 4
+    case c22p5F = 7
+    case c25pF = 6
 
     var description: String {
         switch self {
