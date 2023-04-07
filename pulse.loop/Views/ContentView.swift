@@ -42,9 +42,9 @@ struct ContentView: View {
 
                 NavigationLink(destination: {
                     EmptyView()
-                        .navigationTitle("Algorithm configuration")
+                        .navigationTitle("Calibration")
                 }, label: {
-                    Label("Algorithm configuration", systemImage: "function")
+                    Label("Calibration", systemImage: "scope")
                 })
             }
             .navigationTitle("pulse.loop")
@@ -69,7 +69,7 @@ struct ContentView: View {
     }
 }
 
-struct ContentViewpreviews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(device: .constant(FakeDevice()))
     }

@@ -13,6 +13,7 @@
 		8B31DCD829E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */; };
 		8B31DCDA29E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */; };
 		8B31DCDC29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */; };
+		8B43A54A29E080190065B3F3 /* CalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43A54929E080190065B3F3 /* CalibrationView.swift */; };
 		8B443E23295E11360083F41E /* ChartStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B443E22295E11360083F41E /* ChartStackView.swift */; };
 		8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */; };
 		8B55CC42292BB833000F57FE /* SensorDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */; };
@@ -53,6 +54,7 @@
 		8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationAlgorithmConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationAlgorithmConfiguration.swift; sourceTree = "<group>"; };
 		8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCalibrationAlgorithmConfiguration.swift; sourceTree = "<group>"; };
+		8B43A54929E080190065B3F3 /* CalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationView.swift; sourceTree = "<group>"; };
 		8B443E22295E11360083F41E /* ChartStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStackView.swift; sourceTree = "<group>"; };
 		8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataProtocol.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		8BB68AD62906B38C00AD753B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B43A54929E080190065B3F3 /* CalibrationView.swift */,
 				8B443E22295E11360083F41E /* ChartStackView.swift */,
 				8B5830B52927E823006DADA3 /* ChartView.swift */,
 				8B678B8E28AFEC78009ECC97 /* ContentView.swift */,
@@ -335,6 +338,7 @@
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
 				8B6A14FB291693A5000FA821 /* CBUUIDs.swift in Sources */,
+				8B43A54A29E080190065B3F3 /* CalibrationView.swift in Sources */,
 				8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
 				8B6A14F729168FD0000FA821 /* DeviceSelectionView.swift in Sources */,

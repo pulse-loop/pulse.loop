@@ -14,7 +14,7 @@ where Value: BinaryFloatingPoint, Value.Stride: BinaryFloatingPoint, Label: View
     let range: ClosedRange<Value>
     let label: Label
 
-    init(value: Binding<Value>, in range: ClosedRange<Value> = 0...1, label: () -> Label = { EmptyView() }) {
+    init(value: Binding<Value>, in range: ClosedRange<Value> = 0...1, @ViewBuilder label: () -> Label) {
         self._value = value
         self.range = range
         self.label = label()
