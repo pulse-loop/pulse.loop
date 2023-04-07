@@ -208,7 +208,7 @@ struct ChartView_Previews: PreviewProvider {
         device.connect()
         
         return TimelineView(.animation) { _ in
-            ChartView(characteristic: device.sensorData.aggregatedData, windowLength: 3, title: "Title")
+            ChartView(characteristic: device.sensorData.rawOpticalData, windowLength: 3, title: "Title")
                 .padding()
         }
         .previewLayout(.fixed(width: 400, height: 300))

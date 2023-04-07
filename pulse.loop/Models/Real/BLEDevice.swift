@@ -32,6 +32,7 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
         self.peripheral = peripheral
 
         // Characteristic container structs.
+        self.calibrationAlgorithmConfiguration = CalibrationAlgorithmConfiguration()
         self.electricConfiguration = ElectricConfiguration()
         self.timingWindow = TimingWindow()
         self.sensorData = SensorData()
@@ -53,10 +54,14 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
     // MARK: Firmware upgrade service.
 
     // MARK: Historic data.
+    
+    // MARK: Calibration.
+    typealias CalibrationAlgorithmConfigurationType = CalibrationAlgorithmConfiguration
+    var calibrationAlgorithmConfiguration: CalibrationAlgorithmConfigurationType
 
     // MARK: Electric configuration.
     typealias ElectricConfigurationType = ElectricConfiguration
-    var electricConfiguration: ElectricConfiguration
+    var electricConfiguration: ElectricConfigurationType
 
     // MARK: Optical frontend configuration.
     typealias TimingWindowType = TimingWindow

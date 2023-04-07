@@ -10,6 +10,9 @@
 		8B1F230C291D383D00B9BF9F /* TimingWindowConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */; };
 		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
 		8B31DCD629E04FBB004E1D5C /* FilteredOpticalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD529E04FBB004E1D5C /* FilteredOpticalData.swift */; };
+		8B31DCD829E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */; };
+		8B31DCDA29E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */; };
+		8B31DCDC29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */; };
 		8B443E23295E11360083F41E /* ChartStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B443E22295E11360083F41E /* ChartStackView.swift */; };
 		8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */; };
 		8B55CC42292BB833000F57FE /* SensorDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */; };
@@ -48,6 +51,9 @@
 		8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowConfigurationForm.swift; sourceTree = "<group>"; };
 		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
 		8B31DCD529E04FBB004E1D5C /* FilteredOpticalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredOpticalData.swift; sourceTree = "<group>"; };
+		8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationAlgorithmConfigurationProtocol.swift; sourceTree = "<group>"; };
+		8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationAlgorithmConfiguration.swift; sourceTree = "<group>"; };
+		8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCalibrationAlgorithmConfiguration.swift; sourceTree = "<group>"; };
 		8B443E22295E11360083F41E /* ChartStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStackView.swift; sourceTree = "<group>"; };
 		8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataProtocol.swift; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 		8B6A14FC29169FB0000FA821 /* Fake */ = {
 			isa = PBXGroup;
 			children = (
+				8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */,
 				8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */,
 				8B560DCC2954752C00564909 /* FakeElectricConfiguration.swift */,
 				8B55CC45292BBA87000F57FE /* FakeSensorData.swift */,
@@ -170,6 +177,7 @@
 		8B6A14FD29169FF2000FA821 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */,
 				8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */,
 				8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */,
 				8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */,
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				8B6A14F82916909E000FA821 /* BLEDevice.swift */,
+				8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */,
 				8B560DCA295472C300564909 /* ElectricConfiguration.swift */,
 				8B55CC43292BB905000F57FE /* SensorData.swift */,
 				8B6A15042916A358000FA821 /* TimingWindow.swift */,
@@ -311,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B31DCD829E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift in Sources */,
 				8B1F230C291D383D00B9BF9F /* TimingWindowConfigurationForm.swift in Sources */,
 				8B560DCD2954752C00564909 /* FakeElectricConfiguration.swift in Sources */,
 				8BC60B7829859E7B00327C4F /* CBPeripheralState+CustomStringConvertible.swift in Sources */,
@@ -335,6 +345,8 @@
 				8B55CC44292BB905000F57FE /* SensorData.swift in Sources */,
 				8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */,
 				8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */,
+				8B31DCDA29E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift in Sources */,
+				8B31DCDC29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift in Sources */,
 				8BE33036295DA65200CB4D81 /* LabeledSliderView.swift in Sources */,
 				8B560DC929546F2F00564909 /* ElectricConfigurationView.swift in Sources */,
 				8BB68AD92906B3D200AD753B /* TimingWindowConfigurationView.swift in Sources */,

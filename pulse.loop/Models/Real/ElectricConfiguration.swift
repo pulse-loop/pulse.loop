@@ -12,6 +12,7 @@ class ElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContai
     typealias TIAResistorType = Characteristic<TIAResistor.RawValue>
     typealias TIACapacitorType = Characteristic<TIACapacitor.RawValue>
     typealias CurrentType = Characteristic<Float32>
+    typealias ADCCountsType = Characteristic<UInt8>
 
     // MARK: Transimpedance amplifier.
     var tiaResistor1: TIAResistorType
@@ -29,6 +30,10 @@ class ElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContai
     var led1OffsetCurrent: CurrentType
     var led2OffsetCurrent: CurrentType
     var led3OffsetCurrent: CurrentType
+    
+    // MARK: ADC settings.
+    var adcAverages: ADCCountsType
+    var decimationFactor: ADCCountsType
 
     init() {
         self.tiaResistor1 = TIAResistorType(initialValue: TIAResistor.r100kΩ.rawValue,
@@ -55,5 +60,8 @@ class ElectricConfiguration: ElectricConfigurationProtocol, CharacteristicContai
                                              uuid: CBUUIDs.led2OffsetCurrentCharacteristicIdentifier)
         self.led3OffsetCurrent = CurrentType(initialValue: .zero,
                                              uuid: CBUUIDs.led3OffsetCurrentCharacteristicIdentifier)
+        
+        self.adcAverages = ADCCountsType(initialValue: 0, uuid: CBUUIDs.ADCAveragesCharacteristicIdentifier)
+        self.decimationFactor = ADCCountsType(initialValue: 0, uuid: CBUUIDs.decimationFactorCharacteristicIdentifier)
     }
 }

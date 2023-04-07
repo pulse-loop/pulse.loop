@@ -10,12 +10,17 @@ import CharacteristicKit
 import Combine
 
 class SensorData: SensorDataProtocol, CharacteristicContainer {
-    typealias AggregatedDataType = Characteristic<RawOpticalData>
+    typealias RawOpticalDataType = Characteristic<RawOpticalData>
+    typealias FilteredOpticalDataType = Characteristic<FilteredOpticalData>
 
-    var aggregatedData: AggregatedDataType
+    var rawOpticalData: RawOpticalDataType
+    var filteredOpticalData: FilteredOpticalDataType
 
     init() {
-        self.aggregatedData = AggregatedDataType(initialValue: RawOpticalData(),
-                                                 uuid: CBUUIDs.aggregatedDataReadingCharacteristicIdentifier)
+        self.rawOpticalData = RawOpticalDataType(initialValue: RawOpticalData(),
+                                                 uuid: CBUUIDs.rawOpticalDataReadingCharacteristicIdentifier)
+        
+        self.filteredOpticalData = FilteredOpticalDataType(initialValue: FilteredOpticalData(),
+                                                           uuid: CBUUIDs.filteredOpticalDataReadingCharacteristicIdentifier)
     }
 }

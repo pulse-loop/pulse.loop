@@ -17,28 +17,28 @@ struct ChartStackView<SensorData: SensorDataProtocol>: View {
     var body: some View {
         HStack {
             ChartView(
-                characteristic: sensorData.aggregatedData,
+                characteristic: sensorData.rawOpticalData,
                 channelFilter: ["Ambient"],
                 title: "Ambient"
             )
             .frame(width: 300, height: 320)
             
             ChartView(
-                characteristic: sensorData.aggregatedData,
+                characteristic: sensorData.rawOpticalData,
                 channelFilter: ["Green"],
                 title: "Green"
             )
             .frame(width: 300, height: 320)
             
             ChartView(
-                characteristic: sensorData.aggregatedData,
+                characteristic: sensorData.rawOpticalData,
                 channelFilter: ["Red"],
                 title: "Red"
             )
             .frame(width: 300, height: 320)
             
             ChartView(
-                characteristic: sensorData.aggregatedData,
+                characteristic: sensorData.rawOpticalData,
                 channelFilter: ["Infrared"],
                 title: "Infrared"
             )

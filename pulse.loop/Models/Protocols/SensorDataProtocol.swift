@@ -9,7 +9,9 @@ import Foundation
 import CharacteristicKit
 
 protocol SensorDataProtocol: ObservableObject {
-    associatedtype AggregatedDataType: GeneralCharacteristicProtocol<RawOpticalData>
+    associatedtype RawOpticalDataType: GeneralCharacteristicProtocol<RawOpticalData>
+    associatedtype FilteredOpticalDataType: GeneralCharacteristicProtocol<FilteredOpticalData>
 
-    var aggregatedData: AggregatedDataType { get }
+    var rawOpticalData: RawOpticalDataType { get }
+    var filteredOpticalData: FilteredOpticalDataType { get }
 }

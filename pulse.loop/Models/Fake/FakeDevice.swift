@@ -29,6 +29,10 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
 
     // MARK: Historic data.
 
+    // MARK: Calibration.
+    typealias CalibrationAlgorithmConfigurationType = FakeCalibrationAlgorithmConfiguration
+    var calibrationAlgorithmConfiguration: CalibrationAlgorithmConfigurationType = FakeCalibrationAlgorithmConfiguration()
+    
     // MARK: Electric configuration.
     typealias ElectricConfigurationType = FakeElectricConfiguration
     var electricConfiguration: ElectricConfigurationType = ElectricConfigurationType()
@@ -118,7 +122,7 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
             self.counter += 0.01
 
             DispatchQueue.main.async {
-                self.sensorData.aggregatedData.value = newPoint
+                self.sensorData.rawOpticalData.value = newPoint
                 self.objectWillChange.send()
             }
         }

@@ -24,6 +24,10 @@ protocol DeviceProtocol: GenericPeripheralModel, Equatable {
     // MARK: Firmware upgrade service.
 
     // MARK: Historic data.
+    
+    // MARK: Calibration.
+    associatedtype CalibrationAlgorithmConfigurationType: CalibrationAlgorithmConfigurationProtocol
+    var calibrationAlgorithmConfiguration: CalibrationAlgorithmConfigurationType { get set }
 
     // MARK: Electric configuration.
     associatedtype ElectricConfigurationType: ElectricConfigurationProtocol

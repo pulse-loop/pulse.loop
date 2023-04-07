@@ -12,6 +12,7 @@ protocol ElectricConfigurationProtocol: ObservableObject {
     associatedtype TIAResistorType: GeneralCharacteristicProtocol<TIAResistor.RawValue>
     associatedtype TIACapacitorType: GeneralCharacteristicProtocol<TIACapacitor.RawValue>
     associatedtype CurrentType: GeneralCharacteristicProtocol<Float32>
+    associatedtype ADCCountsType: GeneralCharacteristicProtocol<UInt8>
 
     // MARK: Transimpedance amplifier.
     var tiaCapacitor1: TIACapacitorType { get set }
@@ -29,4 +30,8 @@ protocol ElectricConfigurationProtocol: ObservableObject {
     var led1OffsetCurrent: CurrentType { get set }
     var led2OffsetCurrent: CurrentType { get set }
     var led3OffsetCurrent: CurrentType { get set }
+    
+    // MARK: ADC settings.
+    var adcAverages: ADCCountsType { get set }
+    var decimationFactor: ADCCountsType { get set }
 }

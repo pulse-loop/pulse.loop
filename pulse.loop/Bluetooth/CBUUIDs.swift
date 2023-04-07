@@ -23,14 +23,15 @@ struct CBUUIDs {
     // | Heart Rate         | `0x180D` |
     // | Pulse Oximeter     | `0x1822` |
 
-    // | Service                        | UUID                                   |
-    // |--------------------------------|----------------------------------------|
-    // | Firmware upgrade               | `0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025` |
-    // | Historic data                  | `DE753059-8906-4F07-A192-12879BB84DA7` |
-    // | Optical frontend configuration | `C8F276D4-E0DD-4660-8070-619FF734134B` |
-    // | Sensor data                    | `272DF1F7-9D28-4B8C-86F6-30DB30ACE42C` |
-    // | Settings                       | `821198C8-3036-4E14-B01C-364F2B20C603` |
-    // | pulse.loop identifier          | `68D68245-CFD8-4A1C-9858-B27ABC4C382E` |
+    // | Service                        | UUID                                   | Description                                                                 |
+    // |--------------------------------|----------------------------------------|-----------------------------------------------------------------------------|
+    // | Firmware upgrade               | `0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025` | Firmware upgrade service.                                                   |
+    // | Historic data                  | `DE753059-8906-4F07-A192-12879BB84DA7` | Historic data that can be downloaded by the user.                           |
+    // | Calibration                    | `0E87EDC7-757C-49BA-87A8-F1EA1053F4C1` | `[DEBUG ONLY]` Calibration data.                                            |
+    // | Optical frontend configuration | `C8F276D4-E0DD-4660-8070-619FF734134B` | `[DEBUG ONLY]` Optical sensor configuration.                                |
+    // | Sensor data                    | `272DF1F7-9D28-4B8C-86F6-30DB30ACE42C` | `[DEBUG ONLY]` Optical sensor data, IMU data, system status and parameters. |
+    // | Settings                       | `821198C8-3036-4E14-B01C-364F2B20C603` | Settings that can be changed by the user.                                   |
+    // | pulse.loop identifier          | `68D68245-CFD8-4A1C-9858-B27ABC4C382E` | pulse.loop BLE API version. Used for detection.                             |
 
     static private let kUUIDServiceBattery = "0x180F"
     static private let kUUIDServiceCurrentTime = "0x1805"
@@ -39,6 +40,7 @@ struct CBUUIDs {
     static private let kUUIDServicePulseOximeter = "0x1822"
     static private let kUUIDServiceFirmwareUpgrade = "0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025"
     static private let kUUIDServiceHistoricData = "DE753059-8906-4F07-A192-12879BB84DA7"
+    static private let kUUIDServiceCalibration = "0E87EDC7-757C-49BA-87A8-F1EA1053F4C1"
     static private let kUUIDServiceOpticalFrontendConfiguration = "C8F276D4-E0DD-4660-8070-619FF734134B"
     static private let kUUIDServiceSensorData = "272DF1F7-9D28-4B8C-86F6-30DB30ACE42C"
     static private let kUUIDServiceSettings = "821198C8-3036-4E14-B01C-364F2B20C603"
@@ -51,6 +53,7 @@ struct CBUUIDs {
     static let pulseOximeterServiceIdentifier = CBUUID(string: kUUIDServicePulseOximeter)
     static let firmwareUpgradeServiceIdentifier = CBUUID(string: kUUIDServiceFirmwareUpgrade)
     static let historicDataServiceIdentifier = CBUUID(string: kUUIDServiceHistoricData)
+    static let calibrationServiceIdentifier = CBUUID(string: kUUIDServiceCalibration)
     static let opticalFrontendConfigurationServiceIdentifier = CBUUID(string: kUUIDServiceOpticalFrontendConfiguration)
     static let sensorDataServiceIdentifier = CBUUID(string: kUUIDServiceSensorData)
     static let settingsServiceIdentifier = CBUUID(string: kUUIDServiceSettings)
@@ -70,11 +73,94 @@ struct CBUUIDs {
 
     // | Characteristic        | Access | UUID                                   |
     // |-----------------------|--------|----------------------------------------|
-    // | Aggregated data       | Read   | `26CB3CCA-F22E-4179-8125-55874E9153AD` |
+    // | Raw optical data      | Read   | `26CB3CCA-F22E-4179-8125-55874E9153AD` |
+    // | Filtered optical data | Read   | `BDC0FC52-797B-4065-AABA-DC394F1DD0FD` |
 
-    static private let kUUIDCharacteristicAggregatedDataReading = "26CB3CCA-F22E-4179-8125-55874E9153AD"
+    static private let kUUIDCharacteristicRawOpticalDataReading = "26CB3CCA-F22E-4179-8125-55874E9153AD"
+    static private let kUUIDCharacteristicFilteredOpticalDataReading = "BDC0FC52-797B-4065-AABA-DC394F1DD0FD"
 
-    static let aggregatedDataReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicAggregatedDataReading)
+    static let rawOpticalDataReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicRawOpticalDataReading)
+    static let filteredOpticalDataReadingCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicFilteredOpticalDataReading)
+
+    // MARK: Calibration service
+
+    // | Characteristic                | Access     | UUID                                   |
+    // |-------------------------------|------------|----------------------------------------|
+    // | LED1 adc set point            | Read/Write | `9B98BA9A-9EEA-40F6-87F4-53BF2BB19699` |
+    // | LED1 adc working threshold    | Read/Write | `41A91B62-9FB2-41E3-906A-E24697D938D5` |
+    // | LED1 alpha                    | Read/Write | `A01B4911-9CA4-4E51-A484-C0E5E962FDA6` |
+    // | LED1 current max              | Read/Write | `71F1573E-DB0D-4B52-9E9F-AA505719D41D` |
+    // | LED1 current min              | Read/Write | `2043264C-C1A8-4A62-8FDE-525BE380AA13` |
+    // | LED1 offset current max       | Read/Write | `0428B369-BD92-4625-BEF3-55B9C054411E` |
+    // | LED1 offset current min       | Read/Write | `914E65A0-F10D-4E35-9705-424FBE514594` |
+    // | LED1 offset current set point | Read/Write | `BA6BFE73-1621-42CC-B792-AEE5BAAE57CD` |
+    // | LED2 adc set point            | Read/Write | `BA113050-05DC-4A44-B4EF-7DBF10E74171` |
+    // | LED2 adc working threshold    | Read/Write | `43C5ECAD-63F4-42A8-A3AE-7F799FF6B01B` |
+    // | LED2 alpha                    | Read/Write | `1E33ED6E-1EB1-4738-9BAA-6A617BECB801` |
+    // | LED2 current max              | Read/Write | `2EB0E60C-B688-479A-AC80-D196F3146FD0` |
+    // | LED2 current min              | Read/Write | `9621CF82-87A9-4794-AB81-7BAC475574BD` |
+    // | LED2 offset current max       | Read/Write | `6F2BB2FE-6DB8-4D3B-8AA6-5D4845CFBFA2` |
+    // | LED2 offset current min       | Read/Write | `913C4C37-63E9-49C4-9944-782DD702D503` |
+    // | LED2 offset current set point | Read/Write | `FDBB0D89-33B6-40E0-B7B5-1C5E74D3FB05` |
+    // | LED3 adc set point            | Read/Write | `4D149938-C228-4345-B41C-26CDFF119B41` |
+    // | LED3 adc working threshold    | Read/Write | `337F34FC-E9A3-4BEC-817D-2E194D60E0B6` |
+    // | LED3 alpha                    | Read/Write | `A067A9B6-5395-448B-90D5-B243FE8E120D` |
+    // | LED3 current max              | Read/Write | `EB28857B-622F-42D8-B304-F7CCAE955EC0` |
+    // | LED3 current min              | Read/Write | `B7FF9A50-9954-4E5E-AD49-1A1925C51C33` |
+    // | LED3 offset current max       | Read/Write | `1C7EDBC5-4613-4FFF-9F8A-E1952E3CCDE6` |
+    // | LED3 offset current min       | Read/Write | `BC9E526F-E17D-43DE-B2B9-E36A0461D7BB` |
+    // | LED3 offset current set point | Read/Write | `1AAA3A9F-680D-4530-A08E-CB90E8B34142` |
+
+    static private let kUUIDCharacteristicLED1ADCSetPoint = "9B98BA9A-9EEA-40F6-87F4-53BF2BB19699"
+    static private let kUUIDCharacteristicLED1ADCWorkingThreshold = "41A91B62-9FB2-41E3-906A-E24697D938D5"
+    static private let kUUIDCharacteristicLED1Alpha = "A01B4911-9CA4-4E51-A484-C0E5E962FDA6"
+    static private let kUUIDCharacteristicLED1CurrentMax = "71F1573E-DB0D-4B52-9E9F-AA505719D41D"
+    static private let kUUIDCharacteristicLED1CurrentMin = "2043264C-C1A8-4A62-8FDE-525BE380AA13"
+    static private let kUUIDCharacteristicLED1OffsetCurrentMax = "0428B369-BD92-4625-BEF3-55B9C054411E"
+    static private let kUUIDCharacteristicLED1OffsetCurrentMin = "914E65A0-F10D-4E35-9705-424FBE514594"
+    static private let kUUIDCharacteristicLED1OffsetCurrentSetPoint = "BA6BFE73-1621-42CC-B792-AEE5BAAE57CD"
+    static private let kUUIDCharacteristicLED2ADCSetPoint = "BA113050-05DC-4A44-B4EF-7DBF10E74171"
+    static private let kUUIDCharacteristicLED2ADCWorkingThreshold = "43C5ECAD-63F4-42A8-A3AE-7F799FF6B01B"
+    static private let kUUIDCharacteristicLED2Alpha = "1E33ED6E-1EB1-4738-9BAA-6A617BECB801"
+    static private let kUUIDCharacteristicLED2CurrentMax = "2EB0E60C-B688-479A-AC80-D196F3146FD0"
+    static private let kUUIDCharacteristicLED2CurrentMin = "9621CF82-87A9-4794-AB81-7BAC475574BD"
+    static private let kUUIDCharacteristicLED2OffsetCurrentMax = "6F2BB2FE-6DB8-4D3B-8AA6-5D4845CFBFA2"
+    static private let kUUIDCharacteristicLED2OffsetCurrentMin = "913C4C37-63E9-49C4-9944-782DD702D503"
+    static private let kUUIDCharacteristicLED2OffsetCurrentSetPoint = "FDBB0D89-33B6-40E0-B7B5-1C5E74D3FB05"
+    static private let kUUIDCharacteristicLED3ADCSetPoint = "4D149938-C228-4345-B41C-26CDFF119B41"
+    static private let kUUIDCharacteristicLED3ADCWorkingThreshold = "337F34FC-E9A3-4BEC-817D-2E194D60E0B6"
+    static private let kUUIDCharacteristicLED3Alpha = "A067A9B6-5395-448B-90D5-B243FE8E120D"
+    static private let kUUIDCharacteristicLED3CurrentMax = "EB28857B-622F-42D8-B304-F7CCAE955EC0"
+    static private let kUUIDCharacteristicLED3CurrentMin = "B7FF9A50-9954-4E5E-AD49-1A1925C51C33"
+    static private let kUUIDCharacteristicLED3OffsetCurrentMax = "1C7EDBC5-4613-4FFF-9F8A-E1952E3CCDE6"
+    static private let kUUIDCharacteristicLED3OffsetCurrentMin = "BC9E526F-E17D-43DE-B2B9-E36A0461D7BB"
+    static private let kUUIDCharacteristicLED3OffsetCurrentSetPoint = "1AAA3A9F-680D-4530-A08E-CB90E8B34142"
+
+    static let led1ADCSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCSetPoint)
+    static let led1ADCWorkingThresholdCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1ADCWorkingThreshold)
+    static let led1AlphaCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1Alpha)
+    static let led1CurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1CurrentMax)
+    static let led1CurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1CurrentMin)
+    static let led1OffsetCurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1OffsetCurrentMax)
+    static let led1OffsetCurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1OffsetCurrentMin)
+    static let led1OffsetCurrentSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1OffsetCurrentSetPoint)
+    static let led2ADCSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCSetPoint)
+    static let led2ADCWorkingThresholdCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2ADCWorkingThreshold)
+    static let led2AlphaCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2Alpha)
+    static let led2CurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2CurrentMax)
+    static let led2CurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2CurrentMin)
+    static let led2OffsetCurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2OffsetCurrentMax)
+    static let led2OffsetCurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2OffsetCurrentMin)
+    static let led2OffsetCurrentSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2OffsetCurrentSetPoint)
+    static let led3ADCSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCSetPoint)
+    static let led3ADCWorkingThresholdCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3ADCWorkingThreshold)
+    static let led3AlphaCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3Alpha)
+    static let led3CurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3CurrentMax)
+    static let led3CurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3CurrentMin)
+    static let led3OffsetCurrentMaxCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3OffsetCurrentMax)
+    static let led3OffsetCurrentMinCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3OffsetCurrentMin)
+    static let led3OffsetCurrentSetPointCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3OffsetCurrentSetPoint)
+
     // MARK: Optical frontend configuration service
 
     // | Characteristic               | Access     | UUID                                   |

@@ -9,15 +9,21 @@ import Foundation
 import CharacteristicKit
 
 class FakeSensorData: SensorDataProtocol {
-    typealias AggregatedDataType = MockCharacteristic<RawOpticalData>
+    typealias RawOpticalDataType = MockCharacteristic<RawOpticalData>
+    typealias FilteredOpticalDataType = MockCharacteristic<FilteredOpticalData>
 
-    var aggregatedData: AggregatedDataType
+    var rawOpticalData: RawOpticalDataType
+    var filteredOpticalData: FilteredOpticalDataType
 
-    init(aggregatedData: RawOpticalData) {
-        self.aggregatedData = AggregatedDataType(constant: aggregatedData)
+    init(rawOpticalData: RawOpticalData, filteredOpticalData: FilteredOpticalData) {
+        self.rawOpticalData = RawOpticalDataType(constant: rawOpticalData)
+        self.filteredOpticalData = FilteredOpticalDataType(constant: filteredOpticalData)
     }
 
     convenience init() {
-        self.init(aggregatedData: RawOpticalData())
+        self.init(
+            rawOpticalData: RawOpticalData(),
+            filteredOpticalData: FilteredOpticalData()
+        )
     }
 }

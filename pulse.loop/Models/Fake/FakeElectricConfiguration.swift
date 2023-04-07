@@ -13,6 +13,7 @@ class FakeElectricConfiguration: ElectricConfigurationProtocol, CharacteristicCo
     typealias TIAResistorType = MockCharacteristic<TIAResistor.RawValue>
     typealias TIACapacitorType = MockCharacteristic<TIACapacitor.RawValue>
     typealias CurrentType = MockCharacteristic<Float32>
+    typealias ADCCountsType = MockCharacteristic<UInt8>
 
     // MARK: Transimpedance amplifier.
     var tiaResistor1: TIAResistorType = TIAResistorType(constant: TIAResistor.r100kΩ.rawValue)
@@ -30,4 +31,8 @@ class FakeElectricConfiguration: ElectricConfigurationProtocol, CharacteristicCo
     var led1OffsetCurrent: CurrentType = CurrentType(constant: .zero)
     var led2OffsetCurrent: CurrentType = CurrentType(constant: .zero)
     var led3OffsetCurrent: CurrentType = CurrentType(constant: .zero)
+    
+    // MARK: ADC settings.
+    var adcAverages: ADCCountsType = ADCCountsType(constant: .zero)
+    var decimationFactor: ADCCountsType = ADCCountsType(constant: .zero)
 }
