@@ -207,7 +207,7 @@ struct ChartView_Previews: PreviewProvider {
         let device = FakeDevice()
         device.connect()
         
-        return TimelineView(.animation) { _ in
+        return TimelineView(.periodic(from: Date.now, by: 5)) { _ in
             ChartView(characteristic: device.sensorData.rawOpticalData, windowLength: 3, title: "Title")
                 .padding()
         }

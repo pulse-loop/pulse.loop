@@ -20,25 +20,25 @@ protocol CalibrationAlgorithmConfigurationProtocol: ObservableObject {
     var led1Alpha: AlphaType { get set }
     var led1MaximumCurrent: CurrentLimitType { get set }
     var led1MinimumCurrent: CurrentLimitType { get set }
-    var led1MaximumOffsetCurrent: OffsetCurrentType { get set }
-    var led1MinimumOffsetCurrent: OffsetCurrentType { get set }
-    var led1OffsetCurrentSetpoint: OffsetCurrentType { get set }
+//    var led1MaximumOffsetCurrent: OffsetCurrentType { get set }
+//    var led1MinimumOffsetCurrent: OffsetCurrentType { get set }
+//    var led1OffsetCurrentSetpoint: OffsetCurrentType { get set }
     
     var led2ADCSetpoint: ADCSetPointType { get set }
     var led2ADCWorkingThreshold: ADCWorkingThresholdType { get set }
     var led2Alpha: AlphaType { get set }
     var led2MaximumCurrent: CurrentLimitType { get set }
     var led2MinimumCurrent: CurrentLimitType { get set }
-    var led2MaximumOffsetCurrent: OffsetCurrentType { get set }
-    var led2MinimumOffsetCurrent: OffsetCurrentType { get set }
-    var led2OffsetCurrentSetpoint: OffsetCurrentType { get set }
+//    var led2MaximumOffsetCurrent: OffsetCurrentType { get set }
+//    var led2MinimumOffsetCurrent: OffsetCurrentType { get set }
+//    var led2OffsetCurrentSetpoint: OffsetCurrentType { get set }
     
     var led3ADCSetpoint: ADCSetPointType { get set }
     var led3ADCWorkingThreshold: ADCWorkingThresholdType { get set }
     var led3Alpha: AlphaType { get set }
     var led3MaximumCurrent: CurrentLimitType { get set }
     var led3MinimumCurrent: CurrentLimitType { get set }
-    var led3MaximumOffsetCurrent: OffsetCurrentType { get set }
-    var led3MinimumOffsetCurrent: OffsetCurrentType { get set }
-    var led3OffsetCurrentSetpoint: OffsetCurrentType { get set }
+//    var led3MaximumOffsetCurrent: OffsetCurrentType { get set }
+//    var led3MinimumOffsetCurrent: OffsetCurrentType { get set }
+//    var led3OffsetCurrentSetpoint: OffsetCurrentType { get set }
 }

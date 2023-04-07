@@ -34,7 +34,6 @@
 		8B6A15012916A162000FA821 /* TIA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15002916A161000FA821 /* TIA.swift */; };
 		8B6A15032916A1E4000FA821 /* TimeInterval+Microseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */; };
 		8B6A15052916A358000FA821 /* TimingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A15042916A358000FA821 /* TimingWindow.swift */; };
-		8B7A686A298BFF0F008257F1 /* RangedMeasurementChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A6869298BFF0F008257F1 /* RangedMeasurementChartView.swift */; };
 		8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B678B8E28AFEC78009ECC97 /* ContentView.swift */; };
 		8BB68AD92906B3D200AD753B /* TimingWindowConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */; };
 		8BB68ADB2906BBFF00AD753B /* FakeDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */; };
@@ -78,7 +77,6 @@
 		8B6A15002916A161000FA821 /* TIA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIA.swift; sourceTree = "<group>"; };
 		8B6A15022916A1E4000FA821 /* TimeInterval+Microseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Microseconds.swift"; sourceTree = "<group>"; };
 		8B6A15042916A358000FA821 /* TimingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindow.swift; sourceTree = "<group>"; };
-		8B7A6869298BFF0F008257F1 /* RangedMeasurementChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedMeasurementChartView.swift; sourceTree = "<group>"; };
 		8B7E66C32901BDE300DA1C3D /* pulse-loop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "pulse-loop-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowConfigurationView.swift; sourceTree = "<group>"; };
 		8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDevice.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 				8B6A14F629168FD0000FA821 /* DeviceSelectionView.swift */,
 				8B560DC829546F2F00564909 /* ElectricConfigurationView.swift */,
 				8BE33035295DA65200CB4D81 /* LabeledSliderView.swift */,
-				8B7A6869298BFF0F008257F1 /* RangedMeasurementChartView.swift */,
 				8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */,
 				8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */,
 				8BB68AD82906B3D200AD753B /* TimingWindowConfigurationView.swift */,
@@ -337,7 +334,6 @@
 				8B560DCB295472C300564909 /* ElectricConfiguration.swift in Sources */,
 				8BB68AD72906B3AF00AD753B /* ContentView.swift in Sources */,
 				8BDDC31D291E744E00FDE269 /* DeviceListItem.swift in Sources */,
-				8B7A686A298BFF0F008257F1 /* RangedMeasurementChartView.swift in Sources */,
 				8B6A14FB291693A5000FA821 /* CBUUIDs.swift in Sources */,
 				8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
