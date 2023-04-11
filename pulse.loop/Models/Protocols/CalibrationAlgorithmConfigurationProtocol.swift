@@ -15,14 +15,14 @@ protocol CalibrationAlgorithmConfigurationProtocol: ObservableObject {
     associatedtype CurrentLimitType: GeneralCharacteristicProtocol<Float32>
     associatedtype OffsetCurrentType: GeneralCharacteristicProtocol<Float32>
     
-    var led1ADCSetpoint: ADCSetPointType { get set }                    // OK
-    var led1ADCWorkingThreshold: ADCWorkingThresholdType { get set }    // OK
-    var led1Alpha: AlphaType { get set }                                //
-    var led1MaximumCurrent: CurrentLimitType { get set }                // OK
-    var led1MinimumCurrent: CurrentLimitType { get set }                // OK
-    var led1MaximumOffsetCurrent: OffsetCurrentType { get set }         // OK
-    var led1MinimumOffsetCurrent: OffsetCurrentType { get set }         // OK
-    var led1OffsetCurrentSetpoint: OffsetCurrentType { get set }        //
+    var led1ADCSetpoint: ADCSetPointType { get set }
+    var led1ADCWorkingThreshold: ADCWorkingThresholdType { get set }
+    var led1Alpha: AlphaType { get set }
+    var led1MaximumCurrent: CurrentLimitType { get set }
+    var led1MinimumCurrent: CurrentLimitType { get set }
+    var led1MaximumOffsetCurrent: OffsetCurrentType { get set }
+    var led1MinimumOffsetCurrent: OffsetCurrentType { get set }
+    var led1OffsetCurrentSetpoint: OffsetCurrentType { get set }
     
     var led2ADCSetpoint: ADCSetPointType { get set }
     var led2ADCWorkingThreshold: ADCWorkingThresholdType { get set }

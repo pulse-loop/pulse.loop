@@ -51,6 +51,18 @@ struct ContentView: View {
                 }, label: {
                     Label("Calibration", systemImage: "scope")
                 })
+                
+                NavigationLink(destination: {
+                    if let device = device as? FakeDevice {
+                        ResultsView(sensorData: device.sensorData)
+                            .navigationTitle("Results")
+                    } else if let device = device as? BLEDevice {
+                        ResultsView(sensorData: device.sensorData)
+                            .navigationTitle("Results")
+                    }
+                }, label: {
+                    Label("Results", systemImage: "heart.text.square")
+                })
             }
             .navigationTitle("pulse.loop")
             .toolbar {
