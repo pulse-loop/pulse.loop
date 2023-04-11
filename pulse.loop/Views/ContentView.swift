@@ -41,8 +41,13 @@ struct ContentView: View {
                 })
 
                 NavigationLink(destination: {
-                    EmptyView()
-                        .navigationTitle("Calibration")
+                    if let device = device as? FakeDevice {
+                        CalibrationView(device: device)
+                            .navigationTitle("Calibration")
+                    } else if let device = device as? BLEDevice {
+                        CalibrationView(device: device)
+                            .navigationTitle("Calibration")
+                    }
                 }, label: {
                     Label("Calibration", systemImage: "scope")
                 })
