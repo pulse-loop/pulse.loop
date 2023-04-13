@@ -165,19 +165,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             }
             
             Section("Alpha") {
-                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1Alpha.value, in: 0...40E3) {
+                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1Alpha.value, in: 0...30E3) {
                     Text("LED 1 α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led1Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                 }
                 
-                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2Alpha.value, in: 0...40E3) {
+                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2Alpha.value, in: 0...2E3) {
                     Text("LED 2 α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led2Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                 }
                 
-                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3Alpha.value, in: 0...40E3) {
+                LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3Alpha.value, in: 0...2E3) {
                     Text("LED 3 α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led3Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
