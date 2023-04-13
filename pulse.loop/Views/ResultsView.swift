@@ -9,26 +9,60 @@ import SwiftUI
 
 struct ResultsView<SensorData: SensorDataProtocol>: View {
     @ObservedObject var sensorData: SensorData
-
+    
     init(sensorData: SensorData) {
         self.sensorData = sensorData
     }
-
+    
     var body: some View {
-        HStack {
-            ChartView(
-                characteristic: sensorData.filteredOpticalData,
-                channelFilter: ["Green DC", "Red DC", "Infrared DC"],
-                title: "DC"
-            )
-            .frame(width: 300, height: 320)
+        List {
+            HStack {
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Green DC"],
+                    title: "Green DC"
+                )
+                .frame(height: 320)
+                
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Green AC"],
+                    title: "Green AC"
+                )
+                .frame(height: 320)
+            }
             
-            ChartView(
-                characteristic: sensorData.filteredOpticalData,
-                channelFilter: ["Green AC", "Red AC", "Infrared AC"],
-                title: "AC"
-            )
-            .frame(width: 300, height: 320)
+            HStack {
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Red DC"],
+                    title: "Red DC"
+                )
+                .frame(height: 320)
+                
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Red AC"],
+                    title: "Red AC"
+                )
+                .frame(height: 320)
+            }
+            
+            HStack {
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Infrared DC"],
+                    title: "Infrared DC"
+                )
+                .frame(height: 320)
+                
+                ChartView(
+                    characteristic: sensorData.filteredOpticalData,
+                    channelFilter: ["Infrared AC"],
+                    title: "Infrared AC"
+                )
+                .frame(height: 320)
+            }
         }
     }
 }

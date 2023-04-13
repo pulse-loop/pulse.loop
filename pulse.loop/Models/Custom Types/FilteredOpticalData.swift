@@ -39,11 +39,11 @@ extension FilteredOpticalData: DataDecodable {
 extension FilteredOpticalData: PlottableData {
     func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Value)] {
         return [
-            (ChannelSpecifier(name: "Green DC", color: .blue), Float(self.led1DC)),
+            (ChannelSpecifier(name: "Green DC", color: .green), Float(self.led1DC)),
             (ChannelSpecifier(name: "Green AC", color: .green), Float(self.led1AC)),
             (ChannelSpecifier(name: "Red DC", color: .red), Float(self.led2DC)),
-            (ChannelSpecifier(name: "Red AC", color: .gray), Float(self.led2AC)),
-            (ChannelSpecifier(name: "Infrared DC", color: .red), Float(self.led3DC)),
+            (ChannelSpecifier(name: "Red AC", color: .red), Float(self.led2AC)),
+            (ChannelSpecifier(name: "Infrared DC", color: .gray), Float(self.led3DC)),
             (ChannelSpecifier(name: "Infrared AC", color: .gray), Float(self.led3AC))
         ]
     }

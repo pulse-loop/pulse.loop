@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "661DD31B-0C1B-4741-8E94-79E240A2B1DB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
@@ -41,6 +41,7 @@
          <BreakpointContent
             uuid = "ED32E8B2-6EFA-40C2-BE4E-11AFB3E07889"
             shouldBeEnabled = "No"
+            condition = "self.uuid.uuidString.contains(&quot;7512595D&quot;)"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
@@ -113,6 +114,119 @@
             startingLineNumber = "42"
             endingLineNumber = "42"
             landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F23112A2-32E0-47A1-A4EB-E441B7EB2DAE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "write(value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20D1859A-2509-4D45-AA2B-43CF2B7F97BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "refreshValue()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "845F3B74-237F-49B6-840D-2FC5A8CD98FA"
+            shouldBeEnabled = "Yes"
+            condition = "self.uuid.uuidString.contains(&quot;7512595D&quot;)"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "write(value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB78D098-40C4-4785-87F9-EEA8BAEE2DB2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "setLocalValue(value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A43261E5-20F2-407D-8B6A-A0FF58D45448"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "setLocalValue(value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13B225A9-CC7A-445A-A8F5-AF1332131F87"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "setLocalValue(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED455AEF-A47E-4639-A07D-5E8F36162FD6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "onDiscovered(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

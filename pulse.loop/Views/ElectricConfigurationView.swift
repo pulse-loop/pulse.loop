@@ -57,7 +57,7 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
 #endif
             
             Section("LED currents") {
-                TimelineView(.periodic(from: Date.now, by: 0.5)) {_ in
+                TimelineView(.periodic(from: Date.now, by: 1.0)) {_ in
                     LabeledSliderView(value: $device.electricConfiguration.led1Current.value, in: 0...0.100) {
                         Text("LED 1\t")
                         Text("\(device.electricConfiguration.led1Current.value * 1000, specifier: "%.2f") mA")
@@ -79,7 +79,7 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
             }
             
             Section("Offset currents") {
-                TimelineView(.periodic(from: Date.now, by: 0.5)) { _ in
+                TimelineView(.periodic(from: Date.now, by: 1.0)) { _ in
                     // swiftlint:disable line_length
                     
                     LabeledSliderView(value: $device.electricConfiguration.ambientOffsetCurrent.value, in: -7E-6...7E-6) {
@@ -93,13 +93,13 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
                         Text("\(device.electricConfiguration.led1OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
-                    
+
                     LabeledSliderView(value: $device.electricConfiguration.led2OffsetCurrent.value, in: -7E-6...7E-6) {
                         Text("LED 2\t")
                         Text("\(device.electricConfiguration.led2OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
-                    
+
                     LabeledSliderView(value: $device.electricConfiguration.led3OffsetCurrent.value, in: -7E-6...7E-6) {
                         Text("LED 3\t")
                         Text("\(device.electricConfiguration.led3OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
