@@ -147,19 +147,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             Section("Offset current setpoints") {
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
                     Text("LED 1 OC setpoint\t")
-                    Text("\(device.calibrationAlgorithmConfiguration.led1ADCWorkingThreshold.value * 1_000_000, specifier: "%.2f") µA")
+                    Text("\(device.calibrationAlgorithmConfiguration.led1OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
                     Text("LED 2 OC setpoint\t")
-                    Text("\(device.calibrationAlgorithmConfiguration.led2ADCWorkingThreshold.value * 1_000_000, specifier: "%.2f") µA")
+                    Text("\(device.calibrationAlgorithmConfiguration.led2OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
                     Text("LED 3 OC setpoint\t")
-                    Text("\(device.calibrationAlgorithmConfiguration.led3ADCWorkingThreshold.value * 1_000_000, specifier: "%.2f") µA")
+                    Text("\(device.calibrationAlgorithmConfiguration.led3OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
             }
