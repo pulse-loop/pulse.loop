@@ -19,6 +19,12 @@ protocol PlottableData {
     func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Value)]
 }
 
+extension Float32: PlottableData {
+    func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Value)] {
+        return [(specifier: ChannelSpecifier(name: "data", color: .blue), lastValue: self)]
+    }
+}
+
 struct ChartView<T, CharacteristicType: GeneralCharacteristicProtocol<T>>: View where T: PlottableData {
     typealias DataPoint = (value: T.Value, timestamp: TimeInterval)
     

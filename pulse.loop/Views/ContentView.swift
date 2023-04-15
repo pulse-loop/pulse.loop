@@ -54,10 +54,10 @@ struct ContentView: View {
                 
                 NavigationLink(destination: {
                     if let device = device as? FakeDevice {
-                        ResultsView(sensorData: device.sensorData)
+                        ResultsView(sensorData: device.sensorData, resultsData: device.results)
                             .navigationTitle("Results")
                     } else if let device = device as? BLEDevice {
-                        ResultsView(sensorData: device.sensorData)
+                        ResultsView(sensorData: device.sensorData, resultsData: device.results)
                             .navigationTitle("Results")
                     }
                 }, label: {

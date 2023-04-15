@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol ResultsDataProtocol: ObservableObject, CharacteristicContainer, PlottableData {
+protocol ResultsDataProtocol: ObservableObject, CharacteristicContainer {
     associatedtype BloodOxygenDataType: GeneralCharacteristicProtocol<Float32>
     associatedtype HeartRateDataType: GeneralCharacteristicProtocol<Float32>
     associatedtype PerfusionIndexDataType: GeneralCharacteristicProtocol<Float32>
@@ -20,16 +20,4 @@ protocol ResultsDataProtocol: ObservableObject, CharacteristicContainer, Plottab
     var led2PerfusionIndex: PerfusionIndexDataType { get }
     var led3PerfusionIndex: PerfusionIndexDataType { get }
     var wristPresence: WristPresenceDataType { get }
-}
-
-extension ResultsDataProtocol {
-    func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Float)] {
-        return [
-            (specifier: ChannelSpecifier(name: "Blood Oxygen", color: .blue), lastValue: self.bloodOxygen.value),
-            (specifier: ChannelSpecifier(name: "Heart Rate", color: .red), lastValue: self.heartRate.value),
-            (specifier: ChannelSpecifier(name: "LED 1 PI", color: .green), lastValue: self.heartRate.value),
-            (specifier: ChannelSpecifier(name: "LED 2 PI", color: .red), lastValue: self.heartRate.value),
-            (specifier: ChannelSpecifier(name: "LED 3 PI", color: .gray), lastValue: self.heartRate.value),
-        ]
-    }
 }

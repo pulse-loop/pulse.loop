@@ -19,9 +19,9 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
         var description: String {
             switch self {
             case .ambient: return "Ambient"
-            case .led1: return "LED 1"
-            case .led2: return "LED 2"
-            case .led3: return "LED 3"
+            case .led1: return "Green"
+            case .led2: return "Red"
+            case .led3: return "Infrared"
             }
         }
     }
@@ -58,33 +58,33 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
                 }
 
                 Form {
-                    LEDTimingConfigurationView(title: "LED 1", phase: $windowConfiguration.LED1Phase)
+                    LEDTimingConfigurationView(title: "Green", phase: $windowConfiguration.LED1Phase)
                 }
                 .tabItem {
                     Label {
-                        Text("LED 1")
+                        Text("Green")
                     } icon: {
                         Image(systemName: "1.circle")
                     }
                 }
 
                 Form {
-                    LEDTimingConfigurationView(title: "LED 2", phase: $windowConfiguration.LED2Phase)
+                    LEDTimingConfigurationView(title: "Red", phase: $windowConfiguration.LED2Phase)
                 }
                 .tabItem {
                     Label {
-                        Text("LED 2")
+                        Text("Red")
                     } icon: {
                         Image(systemName: "2.circle")
                     }
                 }
 
                 Form {
-                    LEDTimingConfigurationView(title: "LED 3", phase: $windowConfiguration.LED3Phase)
+                    LEDTimingConfigurationView(title: "Infrared", phase: $windowConfiguration.LED3Phase)
                 }
                 .tabItem {
                     Label {
-                        Text("LED 3")
+                        Text("Infrared")
                     } icon: {
                         Image(systemName: "3.circle")
                     }
@@ -102,11 +102,11 @@ struct TimingWindowConfigurationForm<OpticalWindowConfiguration: TimingWindowPro
             case .ambient:
                 AmbientTimingConfigurationView(title: "Ambient", phase: $windowConfiguration.ambientPhase)
             case .led1:
-                LEDTimingConfigurationView(title: "LED 1", phase: $windowConfiguration.LED1Phase)
+                LEDTimingConfigurationView(title: "Green", phase: $windowConfiguration.LED1Phase)
             case .led2:
-                LEDTimingConfigurationView(title: "LED 2", phase: $windowConfiguration.LED2Phase)
+                LEDTimingConfigurationView(title: "Red", phase: $windowConfiguration.LED2Phase)
             case .led3:
-                LEDTimingConfigurationView(title: "LED 3", phase: $windowConfiguration.LED3Phase)
+                LEDTimingConfigurationView(title: "Infrared", phase: $windowConfiguration.LED3Phase)
             }
             #endif
         }

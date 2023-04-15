@@ -19,13 +19,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             Section("LED current limits") {
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1MinimumCurrent.value, in: 0...100E-3) {
-                        Text("LED 1 min\t")
+                        Text("Green min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led1MinimumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1MaximumCurrent.value, in: 0...100E-3) {
-                        Text("LED 1 max\t")
+                        Text("Green max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led1MaximumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
@@ -33,13 +33,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
                 
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2MinimumCurrent.value, in: 0...100E-3) {
-                        Text("LED 2 min\t")
+                        Text("Red min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led2MinimumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2MaximumCurrent.value, in: 0...100E-3) {
-                        Text("LED 2 max\t")
+                        Text("Red max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led2MaximumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
@@ -47,13 +47,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
                 
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3MinimumCurrent.value, in: 0...100E-3) {
-                        Text("LED 3 min\t")
+                        Text("Infrared min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led3MinimumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3MaximumCurrent.value, in: 0...100E-3) {
-                        Text("LED 3 max\t")
+                        Text("Infrared max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led3MaximumCurrent.value * 1_000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
@@ -63,13 +63,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             Section("Offset current limits") {
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1MinimumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 1 offset min\t")
+                        Text("Green offset min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led1MinimumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1MaximumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 1 offset max\t")
+                        Text("Green offset max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led1MaximumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
@@ -77,13 +77,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
                 
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2MinimumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 2 offset min\t")
+                        Text("Red offset min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led2MinimumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2MaximumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 2 offset max\t")
+                        Text("Red offset max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led2MaximumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
@@ -91,13 +91,13 @@ struct CalibrationView<Device: DeviceProtocol>: View {
                 
                 HStack {
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3MinimumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 3 offset min\t")
+                        Text("Infrared offset min\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led3MinimumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3MaximumOffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 3 offset max\t")
+                        Text("Infrared offset max\t")
                         Text("\(device.calibrationAlgorithmConfiguration.led3MaximumOffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
@@ -106,19 +106,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             
             Section("ADC setpoints") {
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1ADCSetpoint.value, in: 0...1.5) {
-                    Text("LED 1 ADC setpoint\t")
+                    Text("Green ADC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led1ADCSetpoint.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2ADCSetpoint.value, in: 0...1.5) {
-                    Text("LED 2 ADC setpoint\t")
+                    Text("Red ADC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led2ADCSetpoint.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3ADCSetpoint.value, in: 0...1.5) {
-                    Text("LED 3 ADC setpoint\t")
+                    Text("Infrared ADC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led3ADCSetpoint.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
@@ -126,19 +126,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             
             Section("ADC working thresholds") {
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1ADCWorkingThreshold.value, in: 0...1.5) {
-                    Text("LED 1 ADC WT\t")
+                    Text("Green ADC WT\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led1ADCWorkingThreshold.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2ADCWorkingThreshold.value, in: 0...1.5) {
-                    Text("LED 2 ADC WT\t")
+                    Text("Red ADC WT\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led2ADCWorkingThreshold.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3ADCWorkingThreshold.value, in: 0...1.5) {
-                    Text("LED 3 ADC WT\t")
+                    Text("Infrared ADC WT\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led3ADCWorkingThreshold.value, specifier: "%.2f") V")
                         .foregroundColor(.secondary)
                 }
@@ -146,19 +146,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             
             Section("Offset current setpoints") {
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
-                    Text("LED 1 OC setpoint\t")
+                    Text("Green OC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led1OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
-                    Text("LED 2 OC setpoint\t")
+                    Text("Red OC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led2OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3OffsetCurrentSetpoint.value, in: -7E-6...7E-6) {
-                    Text("LED 3 OC setpoint\t")
+                    Text("Infrared OC setpoint\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led3OffsetCurrentSetpoint.value * 1_000_000, specifier: "%.2f") µA")
                         .foregroundColor(.secondary)
                 }
@@ -166,19 +166,19 @@ struct CalibrationView<Device: DeviceProtocol>: View {
             
             Section("Alpha") {
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led1Alpha.value, in: 0...30E3) {
-                    Text("LED 1 α\t")
+                    Text("Green α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led1Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led2Alpha.value, in: 0...2E3) {
-                    Text("LED 2 α\t")
+                    Text("Red α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led2Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                 }
                 
                 LabeledSliderView(value: $device.calibrationAlgorithmConfiguration.led3Alpha.value, in: 0...2E3) {
-                    Text("LED 3 α\t")
+                    Text("Infrared α\t")
                     Text("\(device.calibrationAlgorithmConfiguration.led3Alpha.value, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                 }

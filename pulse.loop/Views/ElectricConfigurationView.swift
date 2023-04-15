@@ -59,19 +59,19 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
             Section("LED currents") {
                 TimelineView(.periodic(from: Date.now, by: 1.0)) {_ in
                     LabeledSliderView(value: $device.electricConfiguration.led1Current.value, in: 0...0.100) {
-                        Text("LED 1\t")
+                        Text("Green\t")
                         Text("\(device.electricConfiguration.led1Current.value * 1000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.electricConfiguration.led2Current.value, in: 0...0.100) {
-                        Text("LED 2\t")
+                        Text("Red\t")
                         Text("\(device.electricConfiguration.led2Current.value * 1000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
                     
                     LabeledSliderView(value: $device.electricConfiguration.led3Current.value, in: 0...0.100) {
-                        Text("LED 3\t")
+                        Text("Infrared\t")
                         Text("\(device.electricConfiguration.led3Current.value * 1000, specifier: "%.2f") mA")
                             .foregroundColor(.secondary)
                     }
@@ -89,19 +89,19 @@ struct ElectricConfigurationView<Device>: View where Device: DeviceProtocol {
                     }
                     
                     LabeledSliderView(value: $device.electricConfiguration.led1OffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 1\t")
+                        Text("Green\t")
                         Text("\(device.electricConfiguration.led1OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
 
                     LabeledSliderView(value: $device.electricConfiguration.led2OffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 2\t")
+                        Text("Red\t")
                         Text("\(device.electricConfiguration.led2OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }
 
                     LabeledSliderView(value: $device.electricConfiguration.led3OffsetCurrent.value, in: -7E-6...7E-6) {
-                        Text("LED 3\t")
+                        Text("Infrared\t")
                         Text("\(device.electricConfiguration.led3OffsetCurrent.value * 1_000_000, specifier: "%.2f") µA")
                             .foregroundColor(.secondary)
                     }

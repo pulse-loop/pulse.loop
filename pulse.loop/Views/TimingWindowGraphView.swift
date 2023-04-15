@@ -173,17 +173,17 @@ struct TimingWindowGraphView<OpticalWindowConfiguration: TimingWindowProtocol>: 
 
                 HStack {
                     Circle().fill(ledColors[1]).frame(width: 20)
-                    Text("LED 1")
+                    Text("Green")
                 }
 
                 HStack {
                     Circle().fill(ledColors[2]).frame(width: 20)
-                    Text("LED 2")
+                    Text("Red")
                 }
 
                 HStack {
                     Circle().fill(ledColors[3]).frame(width: 20)
-                    Text("LED 3")
+                    Text("Infrared")
                 }
             }
             .padding(.horizontal, 8)
