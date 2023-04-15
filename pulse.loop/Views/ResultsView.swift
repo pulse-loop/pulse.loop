@@ -101,9 +101,11 @@ struct ResultsView<SensorData: SensorDataProtocol,
                         }
                     }
                     
-                    Text("SpO2: \(resultsData.bloodOxygen.value, specifier: "%.1f")%")
-                    Text("\(resultsData.heartRate.value, specifier: "%.1f") BPM")
-                    Text("Wrist \(resultsData.wristPresence.value ? "" : "not ")detected")
+                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                        Text("SpO2: \(resultsData.bloodOxygen.value, specifier: "%.1f")%")
+                        Text("\(resultsData.heartRate.value, specifier: "%.1f") BPM")
+                        Text("Wrist \(resultsData.wristPresence.value ? "" : "not ")detected")
+                    }
                 }
             }
         }
