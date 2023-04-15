@@ -9,10 +9,10 @@ import Foundation
 import CharacteristicKit
 
 struct RawOpticalData: Equatable {
-    var ambientReading: Int32 = 0
-    var led1Reading: Int32 = 0
-    var led2Reading: Int32 = 0
-    var led3Reading: Int32 = 0
+    var ambientReading: Float32 = 0
+    var led1Reading: Float32 = 0
+    var led2Reading: Float32 = 0
+    var led3Reading: Float32 = 0
 }
 
 extension RawOpticalData: DataDecodable {
@@ -23,10 +23,10 @@ extension RawOpticalData: DataDecodable {
         }
         
         var result = RawOpticalData()
-        result.ambientReading = Int32.decode(from: data.subdata(in: 0..<4)) ?? 0
-        result.led1Reading = Int32.decode(from: data.subdata(in: 4..<8)) ?? 0
-        result.led2Reading = Int32.decode(from: data.subdata(in: 8..<12)) ?? 0
-        result.led3Reading = Int32.decode(from: data.subdata(in: 12..<16)) ?? 0
+        result.ambientReading = Float32.decode(from: data.subdata(in: 0..<4)) ?? 0
+        result.led1Reading = Float32.decode(from: data.subdata(in: 4..<8)) ?? 0
+        result.led2Reading = Float32.decode(from: data.subdata(in: 8..<12)) ?? 0
+        result.led3Reading = Float32.decode(from: data.subdata(in: 12..<16)) ?? 0
 
         return result
     }
@@ -35,10 +35,10 @@ extension RawOpticalData: DataDecodable {
 extension RawOpticalData: PlottableData {
     func getChannels() -> [(specifier: ChannelSpecifier, lastValue: Value)] {
         return [
-            (ChannelSpecifier(name: "Ambient", color: .blue), Float(self.ambientReading)),
-            (ChannelSpecifier(name: "Green", color: .green), Float(self.led1Reading)),
-            (ChannelSpecifier(name: "Red", color: .red), Float(self.led2Reading)),
-            (ChannelSpecifier(name: "Infrared", color: .gray), Float(self.led3Reading))
+            (ChannelSpecifier(name: "Ambient", color: .blue), self.ambientReading),
+            (ChannelSpecifier(name: "Green", color: .green), self.led1Reading),
+            (ChannelSpecifier(name: "Red", color: .red), self.led2Reading),
+            (ChannelSpecifier(name: "Infrared", color: .gray), self.led3Reading)
         ]
     }
 }

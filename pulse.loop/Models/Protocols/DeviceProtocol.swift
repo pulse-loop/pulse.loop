@@ -40,6 +40,10 @@ protocol DeviceProtocol: GenericPeripheralModel, Equatable {
     // MARK: Sensor data.
     associatedtype SensorDataType: SensorDataProtocol
     var sensorData: SensorDataType { get }
+    
+    // MARK: Results.
+    associatedtype ResultsDataType: ResultsDataProtocol
+    var results: ResultsDataType { get }
 
     // MARK: Settings.
 

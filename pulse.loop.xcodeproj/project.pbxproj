@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B019D6D29EAF19000B960F7 /* ResultsDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B019D6C29EAF19000B960F7 /* ResultsDataProtocol.swift */; };
+		8B019D6F29EAF3ED00B960F7 /* ResultsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B019D6E29EAF3ED00B960F7 /* ResultsData.swift */; };
+		8B019D7129EAF50A00B960F7 /* FakeResultsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B019D7029EAF50A00B960F7 /* FakeResultsData.swift */; };
 		8B1F230C291D383D00B9BF9F /* TimingWindowConfigurationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */; };
 		8B1F230E291D38CF00B9BF9F /* SingleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */; };
 		8B31DCD629E04FBB004E1D5C /* FilteredOpticalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31DCD529E04FBB004E1D5C /* FilteredOpticalData.swift */; };
@@ -49,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B019D6C29EAF19000B960F7 /* ResultsDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDataProtocol.swift; sourceTree = "<group>"; };
+		8B019D6E29EAF3ED00B960F7 /* ResultsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsData.swift; sourceTree = "<group>"; };
+		8B019D7029EAF50A00B960F7 /* FakeResultsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResultsData.swift; sourceTree = "<group>"; };
 		8B1F230B291D383D00B9BF9F /* TimingWindowConfigurationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingWindowConfigurationForm.swift; sourceTree = "<group>"; };
 		8B1F230D291D38CF00B9BF9F /* SingleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimingView.swift; sourceTree = "<group>"; };
 		8B31DCD529E04FBB004E1D5C /* FilteredOpticalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredOpticalData.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 				8B31DCDB29E05C00004E1D5C /* FakeCalibrationAlgorithmConfiguration.swift */,
 				8BB68ADA2906BBFF00AD753B /* FakeDevice.swift */,
 				8B560DCC2954752C00564909 /* FakeElectricConfiguration.swift */,
+				8B019D7029EAF50A00B960F7 /* FakeResultsData.swift */,
 				8B55CC45292BBA87000F57FE /* FakeSensorData.swift */,
 				8BE12B6D2913DBBC00AD2FF9 /* FakeTimingWindow.swift */,
 			);
@@ -182,6 +189,7 @@
 				8B31DCD729E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift */,
 				8BB68AE12906C1D100AD753B /* DeviceProtocol.swift */,
 				8B55CC3F292BB1B6000F57FE /* ElectricConfigurationProtocol.swift */,
+				8B019D6C29EAF19000B960F7 /* ResultsDataProtocol.swift */,
 				8B55CC41292BB833000F57FE /* SensorDataProtocol.swift */,
 				8B6A14FE2916A01A000FA821 /* TimingWindowProtocol.swift */,
 			);
@@ -194,6 +202,7 @@
 				8B6A14F82916909E000FA821 /* BLEDevice.swift */,
 				8B31DCD929E05861004E1D5C /* CalibrationAlgorithmConfiguration.swift */,
 				8B560DCA295472C300564909 /* ElectricConfiguration.swift */,
+				8B019D6E29EAF3ED00B960F7 /* ResultsData.swift */,
 				8B55CC43292BB905000F57FE /* SensorData.swift */,
 				8B6A15042916A358000FA821 /* TimingWindow.swift */,
 			);
@@ -324,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B31DCD829E05388004E1D5C /* CalibrationAlgorithmConfigurationProtocol.swift in Sources */,
+				8B019D7129EAF50A00B960F7 /* FakeResultsData.swift in Sources */,
 				8B846A7229E5F66B008D527B /* ResultsView.swift in Sources */,
 				8B1F230C291D383D00B9BF9F /* TimingWindowConfigurationForm.swift in Sources */,
 				8B560DCD2954752C00564909 /* FakeElectricConfiguration.swift in Sources */,
@@ -345,6 +355,7 @@
 				8B43A54A29E080190065B3F3 /* CalibrationView.swift in Sources */,
 				8B55CC40292BB1B6000F57FE /* ElectricConfigurationProtocol.swift in Sources */,
 				8B678B8D28AFEC78009ECC97 /* pulse_loopApp.swift in Sources */,
+				8B019D6F29EAF3ED00B960F7 /* ResultsData.swift in Sources */,
 				8B6A14F729168FD0000FA821 /* DeviceSelectionView.swift in Sources */,
 				8B55CC44292BB905000F57FE /* SensorData.swift in Sources */,
 				8BB68AE22906C1D100AD753B /* DeviceProtocol.swift in Sources */,
@@ -356,6 +367,7 @@
 				8BB68AD92906B3D200AD753B /* TimingWindowConfigurationView.swift in Sources */,
 				8B6A14FF2916A01B000FA821 /* TimingWindowProtocol.swift in Sources */,
 				8B6A14F92916909E000FA821 /* BLEDevice.swift in Sources */,
+				8B019D6D29EAF19000B960F7 /* ResultsDataProtocol.swift in Sources */,
 				8B55CC42292BB833000F57FE /* SensorDataProtocol.swift in Sources */,
 				8B560DD029547F2D00564909 /* Collection+safe.swift in Sources */,
 				8B6A15052916A358000FA821 /* TimingWindow.swift in Sources */,

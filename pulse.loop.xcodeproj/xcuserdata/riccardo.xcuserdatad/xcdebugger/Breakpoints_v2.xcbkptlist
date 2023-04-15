@@ -164,6 +164,38 @@
             endingLineNumber = "98"
             landmarkName = "write(value:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "845F3B74-237F-49B6-840D-2FC5A8CD98FA - 9ca1e14d7160e32f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.write(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "845F3B74-237F-49B6-840D-2FC5A8CD98FA - 9ca1e14d7160e32f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.write(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "804">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,6 +228,38 @@
             endingLineNumber = "126"
             landmarkName = "setLocalValue(value:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A43261E5-20F2-407D-8B6A-A0FF58D45448 - bfdb56c4d5450ad0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.setLocalValue(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "488">
+               </Location>
+               <Location
+                  uuid = "A43261E5-20F2-407D-8B6A-A0FF58D45448 - bfdb56c4d5450ad0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.setLocalValue(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "696">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

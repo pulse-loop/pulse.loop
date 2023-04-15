@@ -40,6 +40,10 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
     // MARK: Optical frontend configuration.
     typealias TimingWindowType = FakeTimingWindow
     var timingWindow: TimingWindowType = TimingWindowType()
+    
+    // MARK: Results.
+    typealias ResultsDataType = FakeResultsData
+    var results: ResultsDataType = ResultsDataType()
 
     // MARK: Sensor data.
     typealias SensorDataType = FakeSensorData
@@ -73,12 +77,12 @@ final class FakeDevice: DeviceProtocol, MockPeripheralModel {
                                            envelopePhase: Float32,
                                            envelopeAmplitude: Float32,
                                            envelopeOffset: Float32,
-                                           envelopeFrequency: Float32) -> (Int32, Int32, Int32) {
+                                           envelopeFrequency: Float32) -> (Float32, Float32, Float32) {
 
                 let envelope = envelopeOffset + envelopeAmplitude * sinf((self.counter * envelopeFrequency) + envelopePhase)
                 let value = envelope * sinf((self.counter * frequency) + phase)
 
-                return (Int32(envelope * 1_000_000), Int32(-envelope * 1_000_000), Int32(value * 1_000_000))
+                return (envelope * 1_000_000, -envelope * 1_000_000, value * 1_000_000)
             }
 
             // Aggregated data generator.

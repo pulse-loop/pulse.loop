@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol SensorDataProtocol: ObservableObject {
+protocol SensorDataProtocol: ObservableObject, CharacteristicContainer {
     associatedtype RawOpticalDataType: GeneralCharacteristicProtocol<RawOpticalData>
     associatedtype FilteredOpticalDataType: GeneralCharacteristicProtocol<FilteredOpticalData>
 

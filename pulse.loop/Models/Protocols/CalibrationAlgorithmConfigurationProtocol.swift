@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol CalibrationAlgorithmConfigurationProtocol: ObservableObject {
+protocol CalibrationAlgorithmConfigurationProtocol: ObservableObject, CharacteristicContainer {
     associatedtype ADCSetPointType: GeneralCharacteristicProtocol<Float32>
     associatedtype ADCWorkingThresholdType: GeneralCharacteristicProtocol<Float32>
     associatedtype AlphaType: GeneralCharacteristicProtocol<Float32>

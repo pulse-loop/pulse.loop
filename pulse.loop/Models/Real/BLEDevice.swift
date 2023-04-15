@@ -12,6 +12,7 @@ import CharacteristicKit
 import Combine
 
 final class BLEDevice: DeviceProtocol, PeripheralModel {
+    
     static var requiredAdvertisedServices: [CBUUID]? = [CBUUIDs.pulseLoopIdentifierServiceIdentifier]
     static var servicesToScan: [CBUUID]?
     static var centralManager: CBCentralManager?
@@ -36,6 +37,7 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
         self.electricConfiguration = ElectricConfiguration()
         self.timingWindow = TimingWindow()
         self.sensorData = SensorData()
+        self.results = ResultsData()
 
         // Delegate.
         self.initialiseDelegate()
@@ -67,6 +69,10 @@ final class BLEDevice: DeviceProtocol, PeripheralModel {
     typealias TimingWindowType = TimingWindow
     var timingWindow: TimingWindowType
 
+    // MARK: Results.
+    typealias ResultsDataType = ResultsData
+    var results: ResultsDataType
+    
     // MARK: Sensor data.
     typealias SensorDataType = SensorData
     var sensorData: SensorDataType

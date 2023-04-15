@@ -8,7 +8,7 @@
 import Foundation
 import CharacteristicKit
 
-protocol ElectricConfigurationProtocol: ObservableObject {
+protocol ElectricConfigurationProtocol: ObservableObject, CharacteristicContainer {
     associatedtype TIAResistorType: GeneralCharacteristicProtocol<TIAResistor.RawValue>
     associatedtype TIACapacitorType: GeneralCharacteristicProtocol<TIACapacitor.RawValue>
     associatedtype CurrentType: GeneralCharacteristicProtocol<Float32>

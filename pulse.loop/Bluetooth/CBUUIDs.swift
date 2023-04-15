@@ -25,10 +25,12 @@ struct CBUUIDs {
 
     // | Service                        | UUID                                   | Description                                                                 |
     // |--------------------------------|----------------------------------------|-----------------------------------------------------------------------------|
+    // | Calibration                    | `0E87EDC7-757C-49BA-87A8-F1EA1053F4C1` | `[DEBUG ONLY]` Calibration data.                                            |
     // | Firmware upgrade               | `0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025` | Firmware upgrade service.                                                   |
     // | Historic data                  | `DE753059-8906-4F07-A192-12879BB84DA7` | Historic data that can be downloaded by the user.                           |
     // | Calibration                    | `0E87EDC7-757C-49BA-87A8-F1EA1053F4C1` | `[DEBUG ONLY]` Calibration data.                                            |
     // | Optical frontend configuration | `C8F276D4-E0DD-4660-8070-619FF734134B` | `[DEBUG ONLY]` Optical sensor configuration.                                |
+    // | Results                        | `5BE2E901-D0EC-4A5F-9488-3C80CE223852` | Heart rate measurements, Sp02 measurements, wrist presence and perfusion indeces. |
     // | Sensor data                    | `272DF1F7-9D28-4B8C-86F6-30DB30ACE42C` | `[DEBUG ONLY]` Optical sensor data, IMU data, system status and parameters. |
     // | Settings                       | `821198C8-3036-4E14-B01C-364F2B20C603` | Settings that can be changed by the user.                                   |
     // | pulse.loop identifier          | `68D68245-CFD8-4A1C-9858-B27ABC4C382E` | pulse.loop BLE API version. Used for detection.                             |
@@ -38,10 +40,11 @@ struct CBUUIDs {
     static private let kUUIDServiceDeviceInformation = "0x180A"
     static private let kUUIDServiceHeartRate = "0x180D"
     static private let kUUIDServicePulseOximeter = "0x1822"
+    static private let kUUIDServiceCalibration = "0E87EDC7-757C-49BA-87A8-F1EA1053F4C1"
     static private let kUUIDServiceFirmwareUpgrade = "0BA1B4AC-734A-4E75-AD22-8D5BBDEA5025"
     static private let kUUIDServiceHistoricData = "DE753059-8906-4F07-A192-12879BB84DA7"
-    static private let kUUIDServiceCalibration = "0E87EDC7-757C-49BA-87A8-F1EA1053F4C1"
     static private let kUUIDServiceOpticalFrontendConfiguration = "C8F276D4-E0DD-4660-8070-619FF734134B"
+    static private let kUUIDServiceResults = "5BE2E901-D0EC-4A5F-9488-3C80CE223852"
     static private let kUUIDServiceSensorData = "272DF1F7-9D28-4B8C-86F6-30DB30ACE42C"
     static private let kUUIDServiceSettings = "821198C8-3036-4E14-B01C-364F2B20C603"
     static private let kUUIDServicePulseLoopIdentifier = "68D68245-CFD8-4A1C-9858-B27ABC4C382E"
@@ -55,6 +58,7 @@ struct CBUUIDs {
     static let historicDataServiceIdentifier = CBUUID(string: kUUIDServiceHistoricData)
     static let calibrationServiceIdentifier = CBUUID(string: kUUIDServiceCalibration)
     static let opticalFrontendConfigurationServiceIdentifier = CBUUID(string: kUUIDServiceOpticalFrontendConfiguration)
+    static let resultsServiceIdentifier = CBUUID(string: kUUIDServiceResults)
     static let sensorDataServiceIdentifier = CBUUID(string: kUUIDServiceSensorData)
     static let settingsServiceIdentifier = CBUUID(string: kUUIDServiceSettings)
     static let pulseLoopIdentifierServiceIdentifier = CBUUID(string: kUUIDServicePulseLoopIdentifier)
@@ -330,4 +334,29 @@ struct CBUUIDs {
     static let tiaResistor1CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor1)
     static let tiaResistor2CharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTIAResistor2)
     static let totalWindowLengthCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicTotalWindowLength)
+    
+    // MARK: Results service
+    
+    // | Characteristic          | Access | Type   | UUID                                   |
+    // |-------------------------|--------|--------|----------------------------------------|
+    // | Blood oxygen saturation | Read   | `f32`  | `0776731C-A5F8-4B40-9500-E4F97F5958D9` |
+    // | Heart rate              | Read   | `f32`  | `D8CE0238-F60C-4C1D-908F-5554760AA1D6` |
+    // | LED1 perfusion index    | Read   | `f32`  | `459CAB03-5240-4837-9742-B71A5D8112A3` |
+    // | LED2 perfusion index    | Read   | `f32`  | `32D616C9-5721-4BF0-B5F3-B709C45225EE` |
+    // | LED3 perfusion index    | Read   | `f32`  | `C11839D6-50E7-4210-AD45-E44C5AB085AC` |
+    // | Wrist presence          | Read   | `bool` | `9439189D-C1C2-4970-BD64-B9F1932F159F` |
+
+    static private let kUUIDCharacteristicBloodOxygenSaturation = "0776731C-A5F8-4B40-9500-E4F97F5958D9"
+    static private let kUUIDCharacteristicHeartRate = "D8CE0238-F60C-4C1D-908F-5554760AA1D6"
+    static private let kUUIDCharacteristicLED1PerfusionIndex = "459CAB03-5240-4837-9742-B71A5D8112A3"
+    static private let kUUIDCharacteristicLED2PerfusionIndex = "32D616C9-5721-4BF0-B5F3-B709C45225EE"
+    static private let kUUIDCharacteristicLED3PerfusionIndex = "C11839D6-50E7-4210-AD45-E44C5AB085AC"
+    static private let kUUIDCharacteristicWristPresence = "9439189D-C1C2-4970-BD64-B9F1932F159F"
+
+    static let bloodOxygenSaturationCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicBloodOxygenSaturation)
+    static let heartRateCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicHeartRate)
+    static let led1PerfusionIndexCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED1PerfusionIndex)
+    static let led2PerfusionIndexCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED2PerfusionIndex)
+    static let led3PerfusionIndexCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicLED3PerfusionIndex)
+    static let wristPresenceCharacteristicIdentifier = CBUUID(string: kUUIDCharacteristicWristPresence)
 }
