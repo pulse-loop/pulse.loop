@@ -210,6 +210,21 @@
                   endingLineNumber = "100"
                   offsetFromSymbolStart = "900">
                </Location>
+               <Location
+                  uuid = "845F3B74-237F-49B6-840D-2FC5A8CD98FA - 9ca1e14d7160e0ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.write(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "696">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -288,6 +303,21 @@
                   startingLineNumber = "128"
                   endingLineNumber = "128"
                   offsetFromSymbolStart = "696">
+               </Location>
+               <Location
+                  uuid = "A43261E5-20F2-407D-8B6A-A0FF58D45448 - bfdb56c4d5450a12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharacteristicKit.Characteristic.setLocalValue(value: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "pulse.loop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Library/Developer/Xcode/DerivedData/pulse.loop-dwoalnihrqjzwhehdbabgjsdoaww/SourcePackages/checkouts/characteristickit/Sources/CharacteristicKit/Characteristics/Characteristic.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "488">
                </Location>
             </Locations>
          </BreakpointContent>
