@@ -28,7 +28,7 @@ struct ResultsView<SensorData: SensorDataProtocol,
                             
                             ChartView(
                                 characteristic: sensorData.filteredOpticalData,
-                                channelFilter: ["Green AC"],
+                                channelFilter: ["Green AC", "Green threshold"],
                                 title: "Green AC"
                             )
                             .frame(width: 300, height: 320)
@@ -44,7 +44,7 @@ struct ResultsView<SensorData: SensorDataProtocol,
                             
                             ChartView(
                                 characteristic: sensorData.filteredOpticalData,
-                                channelFilter: ["Red AC"],
+                                channelFilter: ["Red AC", "Red threshold"],
                                 title: "Red AC"
                             )
                             .frame(width: 300, height: 320)
@@ -60,7 +60,7 @@ struct ResultsView<SensorData: SensorDataProtocol,
                             
                             ChartView(
                                 characteristic: sensorData.filteredOpticalData,
-                                channelFilter: ["Infrared AC"],
+                                channelFilter: ["Infrared AC", "Infrared threshold"],
                                 title: "Infrared AC"
                             )
                             .frame(width: 300, height: 320)
@@ -74,27 +74,30 @@ struct ResultsView<SensorData: SensorDataProtocol,
                     HStack {
                         ChartView(
                             characteristic: resultsData.bloodOxygen,
+                            windowLength: 120,
                             title: "Blood Oxygen"
                         )
                         .frame(width: 300, height: 320)
                         ChartView(
                             characteristic: resultsData.heartRate,
+                            windowLength: 120,
                             title: "Heart Rate"
                         )
                         .frame(width: 300, height: 320)
                         ChartView(
                             characteristic: resultsData.led1PerfusionIndex,
+                            windowLength: 120,
                             title: "Green PI"
                         )
                         .frame(width: 300, height: 320)
                         ChartView(
                             characteristic: resultsData.led2PerfusionIndex,
-                            title: "Red PI"
+                            windowLength: 120, title: "Red PI"
                         )
                         .frame(width: 300, height: 320)
                         ChartView(
                             characteristic: resultsData.led3PerfusionIndex,
-                            title: "Infrared PI"
+                            windowLength: 120, title: "Infrared PI"
                         )
                         .frame(width: 300, height: 320)
                     }
@@ -102,7 +105,11 @@ struct ResultsView<SensorData: SensorDataProtocol,
                 
                 TimelineView(.periodic(from: .now, by: 1)) { context in
                     Text("SpO2: \(resultsData.bloodOxygen.value, specifier: "%.1f")%")
-                    Text("\(resultsData.heartRate.value, specifier: "%.1f") BPM")
+                }
+                TimelineView(.periodic(from: .now, by: 1)) { context in
+                    Text("Heart rate: \(resultsData.heartRate.value, specifier: "%.1f") BPM")
+                }
+                TimelineView(.periodic(from: .now, by: 1)) { context in
                     Text("Wrist \(resultsData.wristPresence.value ? "" : "not ")detected")
                 }
             }
