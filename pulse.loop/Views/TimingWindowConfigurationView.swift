@@ -37,7 +37,7 @@ struct TimingWindowConfigurationView<Device>: View where Device: DeviceProtocol 
     }
 }
 
-struct TimingWindowConfigurationViewpreviews: PreviewProvider {
+struct TimingWindowConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         let device = FakeDevice()
         device.connect()
